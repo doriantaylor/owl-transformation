@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="/transform"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+      xmlns:owl="http://www.w3.org/2002/07/owl#"
+      xmlns:dct="http://purl.org/dc/terms/"
+      xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+      xmlns:bibo="http://purl.org/ontology/bibo/"
+      xmlns:foaf="http://xmlns.com/foaf/0.1/"
+      xmlns:vann="http://purl.org/vocab/vann/"
+      xmlns:pfo="http://privatealpha.com/ontology/permutation/1#"
+      xml:lang="en">
+  <head>
+    <title about="#" property="dct:title">Permutation Functions Ontology</title>
+    <base href="http://privatealpha.com/ontology/permutation/1"/>
+    <meta about="#" property="vann:preferredNamespacePrefix" content="pfo"/>
+    <link about="#" rel="rdfs:isDefinedBy bibo:uri" href="#"/>
+  </head>
+  <body>
+    <h2>Permutation Functions Ontology</h2>
+    <div about="#" typeof="owl:Ontology bibo:Webpage">
+      <dl>
+        <dt>Author</dt>
+        <dd><a rel="external dct:creator" href="http://doriantaylor.com/person/dorian-taylor#me"><span property="foaf:name">Dorian Taylor</span></a></dd>
+        <dt>Created</dt>
+        <dd property="dct:created" datatype="xsd:dateTime" content="2014-06-05T03:06:58Z">June 4, 2014</dd>
+        <!--<dt>Updated</dt>
+        <dd property="2012-12-12T16:04:50-0800">December 12, 2012</dd>-->
+        <dt>Namespace URI</dt>
+        <dd><a href="#">http://privatealpha.com/ontology/permutation/1#</a></dd>
+        <dt>Preferred Namespace Prefix</dt>
+        <dd about="#" property="vann:preferredNamespacePrefix">pfo</dd>
+      </dl>
+      <p property="rdfs:comment dct:description">This document describes functions which permute the contents of HTTP representations, i.e., the actual literal payloads of HTTP messages.</p>
+      <p>Many, if not most Web content manipulation tasks are concerned exclusively with <em>representations</em>: the literal <em>contents</em> of HTTP <em>messages</em>, rather than abstract or internal representations. Such manipulations may include excerpting and rearranging files, compressing and decompressing, cropping and resizing images, and converting between data formats. If we separate these operations from other <em>development</em> tasks, we can reuse them.</p>
+      
+      <blockquote class="note">
+        <p></p>
+      </blockquote>
+    </div>
+    <div>
+      <h2>Classes</h2>
+      <div id="Permutation" about="[pfo:Permutation]" typeof="owl:Class">
+        <h4 property="rdfs:label">Permutation</h4>
+        <p property="rdfs:comment">This class provides a specification for a permutation function.</p>
+        <dl>
+          <dt>Properties:</dt>
+          <!-- WTF HTML5 -->
+          <dd rev="rdfs:domain"><a href="#implementation">pfo:implementation</a></dd>
+          <dd rev="rdfs:domain"><a href="#parameter">pfo:parameter</a></dd>
+          <dd rev="rdfs:domain"><a href="#parameter-list">pfo:parameter-list</a></dd>
+          <dd rev="rdfs:domain"><a href="#accepts">pfo:accepts</a></dd>
+          <dd rev="rdfs:domain"><a href="#returns">pfo:returns</a></dd>
+        </dl>
+      </div>
+      <div id="Parameter" about="[pfo:Parameter]" typeof="owl:Class">
+        <h4 property="rdfs:label">Parameter</h4>
+        <p property="rdfs:comment">This class provides a specification for a parameter in a given function.</p>
+      </div>
+      <div id="Instance" about="[pfo:Instance]" typeof="owl:Class">
+        <h4 property="rdfs:label">Instance</h4>
+        <p property="rdfs:comment">This class connects a specific input to a function with its output.</p>
+      </div>
+    </div>
+    <div>
+      <h2>Properties</h2>
+      <div id="implementation" about="[pfo:implementation]" typeof="owl:ObjectProperty">
+        <h4 property="rdfs:label">implementation</h4>
+        <p property="rdfs:comment">URI to the implementation of the function.</p>
+        <blockquote class="note">
+          <p property="skos:usageNote">The URI is meant to be dereferenced by an internal implementation, e.g. file:, jar:, or an idiosyncratic scheme like urn:x-python:.</p>
+        </blockquote>
+        <dl>
+          <dt>Domain:</dt>
+          <dd><a rel="rdfs:domain" href="#Permutation">pfo:Permutation</a></dd>
+          <dt>Range:</dt>
+          <dd><a rel="external rdfs:range" href="http://www.w3.org/2000/01/rdf-schema#Resource">rdfs:Resource</a></dd>
+        </dl>
+        <p><a rel="rdfs:isDefinedBy" href="#">Back to Top</a></p>
+      </div>
+      <div id="parameter" about="[pfo:parameter]" typeof="owl:ObjectProperty">
+        <h4 property="rdfs:label">parameter</h4>
+        <p property="rdfs:comment">Binds a parameter object to its function.</p>
+        <blockquote class="note">
+          <p property="skos:usageNote">Parameters can either be supplied to the function as key-value pairs or sequentially.</p>
+        </blockquote>
+        <dl>
+          <dt>Domain:</dt>
+          <dd><a rel="rdfs:domain" href="#Permutation">pfo:Permutation</a></dd>
+          <dt>Range:</dt>
+          <dd><a rel="rdfs:range" href="#Parameter">pfo:Parameter</a></dd>
+        </dl>
+        <p><a rel="rdfs:isDefinedBy" href="#">Back to Top</a></p>
+      </div>
+      <div id="parameter-list" about="[pfo:parameter-list]" typeof="owl:ObjectProperty">
+        <h4 property="rdfs:label">parameter-list</h4>
+        <p property="rdfs:comment">Specifies the sequence of parameters when the invocation method of the function is sequential.</p>
+        <dl>
+          <dt>Domain:</dt>
+          <dd><a rel="rdfs:domain" href="#Permutation">pfo:Permutation</a></dd>
+          <dt>Range:</dt>
+          <dd><a rel="external rdfs:range" href="http://www.w3.org/1999/02/22-rdf-syntax-ns#List">rdf:List</a></dd>
+        </dl>
+        <p><a rel="rdfs:isDefinedBy" href="#">Back to Top</a></p>
+      </div>
+      <div id="accepts" about="[pfo:accepts]" typeof="owl:ObjectProperty">
+        <h4 property="rdfs:label">accepts</h4>
+        <p property="rdfs:comment">Specifies the list of content-types, in order of preference, that the function can process.</p>
+        <dl>
+          <dt>Domain:</dt>
+          <dd><a rel="rdfs:domain" href="#Permutation">pfo:Permutation</a></dd>
+          <dt>Range:</dt>
+          <dd><a rel="external rdfs:range" href="http://www.w3.org/1999/02/22-rdf-syntax-ns#List">rdf:List</a></dd>
+        </dl>
+        <p><a rel="rdfs:isDefinedBy" href="#">Back to Top</a></p>
+      </div>
+      <div id="returns" about="[pfo:returns]" typeof="owl:ObjectProperty">
+        <h4 property="rdfs:label">returns</h4>
+        <p property="rdfs:comment">Specifies the list of content-types, in order of preference, that the function is capable of returning.</p>
+        <dl>
+          <dt>Domain:</dt>
+          <dd><a rel="rdfs:domain" href="#Permutation">pfo:Permutation</a></dd>
+          <dt>Range:</dt>
+          <dd><a rel="external rdfs:range" href="http://www.w3.org/1999/02/22-rdf-syntax-ns#List">rdf:List</a></dd>
+        </dl>
+        <p><a rel="rdfs:isDefinedBy" href="#">Back to Top</a></p>
+      </div>
+    </div>
+    <!--
+    <div>
+      <h2>References</h2>
+      <ul>
+      </ul>
+    </div>-->
+  </body>
+</html>
