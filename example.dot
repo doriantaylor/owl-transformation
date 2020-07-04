@@ -1,0 +1,64 @@
+digraph {
+    graph [bgcolor=transparent];
+    node [shape=box,color="#eeeeee",fontcolor="#eeeeee",fontname="Lucida Grande, Lucida Sans Unicode, sans-serif"];
+    edge [color="#eeeeee",fontcolor="#eeeeee",fontname="Lucida Grande, Lucida Sans Unicode, sans-serif"];
+
+    subgraph {
+        node [style=dashed];
+        prov_Activity [label="prov:Activity"];
+        prov_SoftwareAgent [label="prov:SoftwareAgent"];
+        rdf_List      [label="rdf:List"];
+        rdf_Property  [label="rdf:Property"];
+        rdf_Resource  [label="rdf:Resource"];
+        xsd_string    [label="xsd:string"];
+        xsd_token     [label="xsd:token"];
+    }
+
+    tfo_Application [label="tfo:Application"];
+    tfo_Parameter [label="tfo:Parameter"];
+    tfo_ParameterList [label="tfo:ParameterList"];
+    tfo_Partial [label="tfo:Partial"];
+    tfo_Transform [label="tfo:Transform"];
+    tfo_MarkupTransform [label="tfo:MarkupTransform"];
+
+    tfo_content_type [label="tfo:content-type", shape=note];
+    tfo_content_type -> xsd_token [style=dashed, label="owl:onDatatype"];
+
+    tfo_regexp [label="tfo:regexp", shape=note];
+    tfo_regexp -> xsd_string [style=dashed, label="owl:onDatatype"];
+    tfo_iregexp [label="tfo:iregexp", shape=note];
+    tfo_iregexp -> xsd_string [style=dashed, label="owl:onDatatype"];
+
+    tfo_xpath [label="tfo:xpath", shape=note];
+    tfo_xpath -> xsd_string [style=dashed, label="owl:onDatatype"];
+
+    subgraph {
+        edge [style=dashed, label="rdfs:subClassOf"];
+        tfo_Application -> tfo_Partial -> prov_Activity;
+        tfo_MarkupTransform -> tfo_Transform -> prov_SoftwareAgent;
+        tfo_Parameter -> rdf_Property;
+        tfo_ParameterList -> rdf_List;
+        tfo_iregexp -> tfo_regexp;
+    }
+
+    tfo_Transform -> tfo_Parameter [label="tfo:parameter"];
+    tfo_Transform -> tfo_ParameterList [label="tfo:parameter-list"];
+    tfo_Transform -> rdf_Resource [label="tfo:implementation"];
+    tfo_Transform -> tfo_content_type [label="tfo:accepts,\ntfo:returns"];
+    // tfo_Transform -> tfo_content_type [label="tfo:returns"];
+    tfo_Partial   -> tfo_Transform [label="tfo:transform"];
+    tfo_Application -> tfo_Partial [label="tfo:completes"];
+    tfo_Application -> rdf_Resource [label="tfo:input"];
+    tfo_Application -> rdf_Resource [label="tfo:output"];
+
+    tfo_Transform -> tfo_regexp [label="tfo:by-uri,\ntfo:not-by-uri"];
+    tfo_MarkupTransform -> tfo_xpath [label="tfo:by-xpath,\ntfo:not-by-xpath"];
+    
+
+    subgraph {
+        edge [style=dashed];
+        tfo_Parameter -> tfo_Application [label="rdfs:domain"];
+        tfo_ParameterList -> tfo_Parameter [label="rdf:first"];
+        tfo_ParameterList -> tfo_ParameterList [label="rdf:rest"];
+    }
+}

@@ -1,0 +1,29 @@
+digraph {
+    graph [bgcolor=transparent];
+    node [shape=box,color="#eeeeee",fontcolor="#eeeeee",fontname="Lucida Grande, Lucida Sans Unicode, sans-serif"];
+    edge [color="#eeeeee",fontcolor="#eeeeee",fontname="Lucida Grande, Lucida Sans Unicode, sans-serif"];
+
+    subgraph {
+        node [style=dashed];
+        prov_used [label="prov:used"];
+        prov_generated [label="prov:generated"];
+        prov_wasAttributedTo [label="prov:wasAttributedTo"];
+    }
+
+    tfo_completes [label="tfo:completes"];
+    tfo_input [label="tfo:input"];
+    tfo_output [label="tfo:output"];
+    tfo_transform [label="tfo:transform"];
+    tfo_implementation [label="tfo:implementation"];
+    tfo_parameter [label="tfo:parameter"];
+    tfo_parameter_list [label="tfo:parameter-list"];
+    tfo_accepts [label="tfo:accepts"];
+    tfo_returns [label="tfo:returns"];
+
+    subgraph {
+        edge [style=dashed, label="rdfs:subPropertyOf"];
+        tfo_input -> prov_used;
+        tfo_output -> prov_generated;
+        tfo_transform -> prov_wasAttributedTo;
+    }
+}
