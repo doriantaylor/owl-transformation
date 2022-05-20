@@ -12,20 +12,22 @@
       xmlns:bibo="http://purl.org/ontology/bibo/"
       xmlns:foaf="http://xmlns.com/foaf/0.1/"
       xmlns:vann="http://purl.org/vocab/vann/"
-      xmlns:ci="https://privatealpha.com/ontology/content-inventory/1#"
-      xmlns:tfo="https://privatealpha.com/ontology/transformation/1#"
-      prefix="rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# xsd: http://www.w3.org/2001/XMLSchema# owl: http://www.w3.org/2002/07/owl# sh: http://www.w3.org/ns/shacl# dct: http://purl.org/dc/terms/ skos: http://www.w3.org/2004/02/skos/core# prov: http://www.w3.org/ns/prov# bibo: http://purl.org/ontology/bibo/ foaf: http://xmlns.com/foaf/0.1/ vann: http://purl.org/vocab/vann/ ci: https://privatealpha.com/ontology/content-inventory/1# tfo: https://privatealpha.com/ontology/transformation/1#"
+      xmlns:ci="https://vocab.methodandstructure.com/content-inventory#"
+      xmlns:tfo="https://vocab.methodandstructure.com/transformation#"
+      prefix="rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# xsd: http://www.w3.org/2001/XMLSchema# owl: http://www.w3.org/2002/07/owl# sh: http://www.w3.org/ns/shacl# dct: http://purl.org/dc/terms/ skos: http://www.w3.org/2004/02/skos/core# prov: http://www.w3.org/ns/prov# bibo: http://purl.org/ontology/bibo/ foaf: http://xmlns.com/foaf/0.1/ vann: http://purl.org/vocab/vann/ ci: https://vocab.methodandstructure.com/content-inventory# tfo: https://vocab.methodandstructure.com/transformation#"
       xml:lang="en">
   <head>
     <title about="#" property="dct:title">Transformation Functions Ontology</title>
-    <base href="https://privatealpha.com/ontology/transformation/1"/>
+    <base href="https://vocab.methodandstructure.com/transformation"/>
     <meta about="#" property="vann:preferredNamespacePrefix" datatype="xsd:token" content="tfo"/>
     <link about="#" rel="rdfs:isDefinedBy bibo:uri" href="#"/>
-    <link about="#" rel="owl:sameAs" rev="ci:canonical" href="../permutation/1#"/>
-    <link rel="owl:sameAs" rev="ci:canonical" href="../permutation/1"/>
+    <link about="#" rel="owl:sameAs" rev="ci:canonical" href="https://privatealpha.com/ontology/permutation/1#"/>
+    <link about="#" rel="owl:sameAs" rev="ci:canonical" href="https://privatealpha.com/ontology/transformation/1#"/>
+    <link rel="owl:sameAs" rev="ci:canonical" href="https://privatealpha.com/ontology/permutation/1"/>
+    <link rel="owl:sameAs" rev="ci:canonical" href="https://privatealpha.com/ontology/transformation/1"/>
     <link rel="dct:subject foaf:primaryTopic" href="#"/>
   </head>
-  <body about="" typeof="bibo:Webpage">
+  <body about="" typeof="bibo:Specification">
     <h2>Transformation Functions Ontology</h2>
     <section about="#" typeof="owl:Ontology">
       <dl>
@@ -39,7 +41,7 @@
         <dd property="dct:modified" datatype="xsd:dateTime" content="2020-06-10T18:27:35Z">June 10, 2020</dd>
         <dd property="dct:modified" datatype="xsd:dateTime" content="2020-07-03T04:49:40Z">July 2, 2020</dd>
         <dt>Namespace URI</dt>
-        <dd><a href="#">https://privatealpha.com/ontology/transformation/1#</a></dd>
+        <dd><a href="#">https://vocab.methodandstructure.com/transformation#</a></dd>
         <dt>Preferred Namespace Prefix</dt>
         <dd about="#" property="vann:preferredNamespacePrefix" datatype="xsd:token">tfo</dd>
         <!--<dt>Imported Vocabularies</dt>
@@ -49,7 +51,7 @@
       <p>Many, if not most Web content manipulation tasks are concerned exclusively with <em>representations</em>: the literal <em>contents</em> of <abbr>HTTP</abbr> <em>messages</em>, rather than abstract or internal representations. Such manipulations may include excerpting and rearranging files, compressing and decompressing, cropping and resizing images, and converting between data formats. If we separate these operations from other <em>development</em> tasks, we can reuse them.</p>
       <p>The purpose of this vocabulary is to provide a mechanism for identifying <dfn>pure functions</dfn> that transform opaque data segments (like <abbr>HTTP</abbr> response bodies) and perhaps take additional scalar parameters (and specify both <em>named</em> and <em>sequential</em> calling conventions), and relate a function definition to a concrete implementation. The vocabulary also provides a mechanism for <a href="https://en.wikipedia.org/wiki/Memoization"><dfn>memoizing</dfn></a> the application of a function to a particular data object, i.e., relating a particular input (plus any additional parameters) to a particular output.</p>
       <p>Consider the following example:</p>
-      <pre style="margin: auto 2em; overflow-x: auto;">@prefix tfo:  &lt;https://privatealpha.com/ontology/transformation/1#&gt; .
+      <pre style="margin: auto 2em; overflow-x: auto;">@prefix tfo:  &lt;https://vocab.methodandstructure.com/transformation#&gt; .
 @prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
 @prefix owl:  &lt;http://www.w3.org/2002/07/owl#&gt; .
 @prefix xsd:  &lt;http://www.w3.org/2001/XMLSchema#&gt; .
@@ -92,7 +94,7 @@ ex:end a tfo:Parameter ;
     </section>
     <section>
       <h2>Classes</h2>
-      <object style="display: block; margin: auto; max-width: 100%; height: auto" data="example.svg"><img src="example" alt=""/></object>
+      <object style="display: block; margin: auto; max-width: 100%; height: auto" data="transformation/example"><img src="transformation/example" alt=""/></object>
       <section>
         <h3>Transforms</h3>
         <p>A <code>tfo:Transform</code> is essentially a function definition, specifying input and output constraints, and parameters in both named and positional representations.</p>
@@ -187,7 +189,7 @@ ex:end a tfo:Parameter ;
     </section>
     <section>
       <h2>Properties</h2>
-      <object style="display: block; margin: auto; max-width: 100%; height: auto" data="properties.svg"><img src="properties" alt=""/></object>
+      <object style="display: block; margin: auto; max-width: 100%; height: auto" data="transformation/properties"><img src="transformation/properties" alt=""/></object>
       <section>
         <h3>Core</h3>
         <section id="completes" about="[tfo:completes]" typeof="owl:ObjectProperty owl:FunctionalProperty">
@@ -433,6 +435,6 @@ ex:end a tfo:Parameter ;
         <li><a rel="dct:references" href="https://www.w3.org/TR/xmlschema-2/">XML Schema Part 2: Datatypes Second Edition</a></li>
         <li><a rel="dct:references" href="https://www.iana.org/assignments/media-types/media-types.xhtml">Media Types (<abbr>IANA</abbr>)</a></li>
       </ul>
-      </div>p
+      </div>
     </body>
   </html>
