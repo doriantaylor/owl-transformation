@@ -53,7 +53,6 @@ digraph {
 
     tfo_Transform -> tfo_regexp [label="tfo:by-uri,\ntfo:not-by-uri"];
     tfo_MarkupTransform -> tfo_xpath [label="tfo:by-xpath,\ntfo:not-by-xpath"];
-    
 
     subgraph {
         edge [style=dashed];
