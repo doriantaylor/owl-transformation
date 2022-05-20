@@ -103,7 +103,7 @@ over the input.
 
 ## Classes
 
-![](https://vocab.methodandstructure.com/transformation/example)
+![](https://vocab.methodandstructure.com/transformation-example)
 
 <div class="section">
 
@@ -237,7 +237,7 @@ function, affording the encapsulation and re-use of existing parameters.
 
 ## Properties
 
-![](https://vocab.methodandstructure.com/transformation/properties)
+![](https://vocab.methodandstructure.com/transformation-properties)
 
 <div class="section">
 

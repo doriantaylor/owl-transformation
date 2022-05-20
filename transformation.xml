@@ -94,7 +94,7 @@ ex:end a tfo:Parameter ;
     </section>
     <section>
       <h2>Classes</h2>
-      <object style="display: block; margin: auto; max-width: 100%; height: auto" data="transformation-example.svg"><img src="transformation-example" alt=""/></object>
+      <object style="display: block; margin: auto; max-width: 100%; height: auto" data="transformation-classes.svg"><img src="transformation-classes" alt=""/></object>
       <section>
         <h3>Transforms</h3>
         <p>A <code>tfo:Transform</code> is essentially a function definition, specifying input and output constraints, and parameters in both named and positional representations.</p>
