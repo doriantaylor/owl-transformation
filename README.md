@@ -103,7 +103,7 @@ over the input.
 
 ## Classes
 
-![](https://vocab.methodandstructure.com/transformation-example)
+![](https://vocab.methodandstructure.com/transformation-classes)
 
 <div class="section">
 

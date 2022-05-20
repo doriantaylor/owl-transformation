@@ -24,4 +24,4 @@ push:
 	rsync -avz --progress $(ME)* $(SITE)
 
 clean:
-	rm -f $(ME).{rdf,ttl,svg,png}
+	rm -f $(ME)*.{rdf,ttl,svg,png}
