@@ -28,7 +28,6 @@
     <link rel="dct:subject foaf:primaryTopic" href="#"/>
   </head>
   <body about="" typeof="bibo:Specification">
-    <h2>Transformation Functions Ontology</h2>
     <section about="#" typeof="owl:Ontology">
       <dl>
         <dt>Author</dt>
@@ -40,10 +39,11 @@
         <dd property="dct:modified" datatype="xsd:dateTime" content="2020-04-11T02:51:52Z">April 10, 2020</dd>
         <dd property="dct:modified" datatype="xsd:dateTime" content="2020-06-10T18:27:35Z">June 10, 2020</dd>
         <dd property="dct:modified" datatype="xsd:dateTime" content="2020-07-03T04:49:40Z">July 2, 2020</dd>
+        <dd property="dct:modified" datatype="xsd:dateTime" content="2023-08-27T00:30:09Z">August 27, 2023</dd>
         <dt>Namespace URI</dt>
-        <dd><a href="#">https://vocab.methodandstructure.com/transformation#</a></dd>
+        <dd><a href="#"><code>https://vocab.methodandstructure.com/transformation#</code></a></dd>
         <dt>Preferred Namespace Prefix</dt>
-        <dd about="#" property="vann:preferredNamespacePrefix" datatype="xsd:token">tfo</dd>
+        <dd><code about="#" property="vann:preferredNamespacePrefix" datatype="xsd:token">tfo</code></dd>
         <!--<dt>Imported Vocabularies</dt>
             <dd><a about="#" rel="owl:imports" resource="http://www.w3.org/ns/prov#" href="https://www.w3.org/TR/prov-o/"><span property="rdfs:label">W3C PROVenance Interchange Ontology (PROV-O)</span></a></dd>-->
       </dl>
@@ -51,7 +51,7 @@
       <p>Many, if not most Web content manipulation tasks are concerned exclusively with <em>representations</em>: the literal <em>contents</em> of <abbr>HTTP</abbr> <em>messages</em>, rather than abstract or internal representations. Such manipulations may include excerpting and rearranging files, compressing and decompressing, cropping and resizing images, and converting between data formats. If we separate these operations from other <em>development</em> tasks, we can reuse them.</p>
       <p>The purpose of this vocabulary is to provide a mechanism for identifying <dfn>pure functions</dfn> that transform opaque data segments (like <abbr>HTTP</abbr> response bodies) and perhaps take additional scalar parameters (and specify both <em>named</em> and <em>sequential</em> calling conventions), and relate a function definition to a concrete implementation. The vocabulary also provides a mechanism for <a href="https://en.wikipedia.org/wiki/Memoization"><dfn>memoizing</dfn></a> the application of a function to a particular data object, i.e., relating a particular input (plus any additional parameters) to a particular output.</p>
       <p>Consider the following example:</p>
-      <pre style="margin: auto 2em; overflow-x: auto;">@prefix tfo:  &lt;https://vocab.methodandstructure.com/transformation#&gt; .
+      <pre>@prefix tfo:  &lt;https://vocab.methodandstructure.com/transformation#&gt; .
 @prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
 @prefix owl:  &lt;http://www.w3.org/2002/07/owl#&gt; .
 @prefix xsd:  &lt;http://www.w3.org/2001/XMLSchema#&gt; .
@@ -94,7 +94,9 @@ ex:end a tfo:Parameter ;
     </section>
     <section>
       <h2>Classes</h2>
-      <object style="display: block; margin: auto; max-width: 100%; height: auto" data="transformation-classes.svg"><img src="transformation-classes" alt=""/></object>
+      <figure>
+        <object data="transformation-classes.svg"><img src="transformation-classes" alt=""/></object>
+      </figure>
       <section>
         <h3>Transforms</h3>
         <p>A <code>tfo:Transform</code> is essentially a function definition, specifying input and output constraints, and parameters in both named and positional representations.</p>
@@ -111,6 +113,7 @@ ex:end a tfo:Parameter ;
             <dd rev="rdfs:domain"><a href="#parameter-list">tfo:parameter-list</a></dd>
             <dd rev="rdfs:domain"><a href="#accepts">tfo:accepts</a></dd>
             <dd rev="rdfs:domain"><a href="#returns">tfo:returns</a></dd>
+            <dd rev="rdfs:domain"><a href="#prefers">tfo:prefers</a></dd>
             <dd rev="rdfs:domain"><a href="#by-uri">tfo:by-uri</a></dd>
             <dd rev="rdfs:domain"><a href="#not-by-uri">tfo:not-by-uri</a></dd>
           </dl>
@@ -189,7 +192,9 @@ ex:end a tfo:Parameter ;
     </section>
     <section>
       <h2>Properties</h2>
-      <object style="display: block; margin: auto; max-width: 100%; height: auto" data="transformation-properties.svg"><img src="transformation-properties" alt=""/></object>
+      <figure>
+        <object data="transformation-properties.svg"><img src="transformation-properties" alt=""/></object>
+      </figure>
       <section>
         <h3>Core</h3>
         <section id="completes" about="[tfo:completes]" typeof="owl:ObjectProperty owl:FunctionalProperty">
@@ -252,7 +257,7 @@ ex:end a tfo:Parameter ;
             <dd rel="rdfs:range">
               <span about="_:uo1" rel="owl:unionOf" resource="_:q1">
                 <a about="_:q1" rel="rdf:first" href="#content-type">tfo:content-type</a> <span about="_:q1" rel="rdf:rest" resource="_:q2">&#x222a;</span> <a about="_:q2" rel="rdf:first" resource="rdf:List" href="https://www.w3.org/TR/rdf-schema/#ch_list">rdf:List</a>
-                <span about="_:q2" rel="rdf:rest" resource="rdf:nil"/>
+                <span about="_:q2" rel="rdf:rest" resource="rdf:nil"></span>
               </span>
             </dd>
           </dl>
@@ -268,7 +273,25 @@ ex:end a tfo:Parameter ;
             <dd rel="rdfs:range">
               <span about="_:uo2" rel="owl:unionOf" resource="_:q3">
                 <a about="_:q3" rel="rdf:first" href="#content-type">tfo:content-type</a> <span about="_:q3" rel="rdf:rest" resource="_:q4">&#x222a;</span> <a about="_:q4" rel="rdf:first" resource="rdf:List" href="https://www.w3.org/TR/rdf-schema/#ch_list">rdf:List</a>
-                <span about="_:q4" rel="rdf:rest" resource="rdf:nil"/>
+                <span about="_:q4" rel="rdf:rest" resource="rdf:nil"></span>
+              </span>
+            </dd>
+          </dl>
+          <p><a rel="rdfs:isDefinedBy" href="#">Back to Top</a></p>
+        </section>
+        <section id="prefers" about="[tfo:prefers]" typeof="owl:ObjectProperty">
+          <h4 property="rdfs:label">prefers</h4>
+          <p property="rdfs:comment">Specifies the <em>preferred</em> content type.</p>
+          <dl>
+            <dt>Subproperty of:</dt>
+            <dd><a rel="rdfs:subPropertyOf" href="#returns">tfo:returns</a></dd>
+            <dt>Domain:</dt>
+            <dd><a rel="rdfs:domain" href="#Transform">tfo:Transform</a></dd>
+            <dt>Range:</dt>
+            <dd rel="rdfs:range">
+              <span about="_:uo3" rel="owl:unionOf" resource="_:q5">
+                <a about="_:q5" rel="rdf:first" href="#content-type">tfo:content-type</a> <span about="_:q5" rel="rdf:rest" resource="_:q6">&#x222a;</span> <a about="_:q6" rel="rdf:first" resource="rdf:List" href="https://www.w3.org/TR/rdf-schema/#ch_list">rdf:List</a>
+                <span about="_:q6" rel="rdf:rest" resource="rdf:nil"></span>
               </span>
             </dd>
           </dl>
@@ -387,7 +410,7 @@ ex:end a tfo:Parameter ;
         <p property="rdfs:comment">A literal that represents a content-type such as that which is found in the HTTP <code>Accept:</code> or <code>Content-Type:</code> header.</p>
         <dl>
           <dt>Restriction of:</dt>
-          <dd><a rel="owl:onDatatype" resource="xsd:token" href="https://www.w3.org/TR/xmlschema-2/#token">xsd:token</a> <span rel="owl:withRestrictions" resource="_:rl1">matching</span> <span about="_:rl1" rel="rdf:first"><code about="_:rp1" property="xsd:pattern" datatype="xsd:string">^([!#$%&amp;'\*\+\-.^_`|~0-9-A-Za-z]+)(?:/[!#$%&amp;'\*\+\-.^_`|~0-9-A-Za-z]+)?)$</code></span> <span about="_:rl1" rel="rdf:rest" resource="rdf:nil"/></dd>
+          <dd><a rel="owl:onDatatype" resource="xsd:token" href="https://www.w3.org/TR/xmlschema-2/#token">xsd:token</a> <span rel="owl:withRestrictions" resource="_:rl1">matching</span> <span about="_:rl1" rel="rdf:first"><code about="_:rp1" property="xsd:pattern" datatype="xsd:string">^([!#$%&amp;'\*\+\-.^_`|~0-9-A-Za-z]+)(?:/[!#$%&amp;'\*\+\-.^_`|~0-9-A-Za-z]+)?)$</code></span> <span about="_:rl1" rel="rdf:rest" resource="rdf:nil"></span></dd>
           <dt>See also:</dt>
           <dd><a rel="rdfs:seeAlso" href="https://tools.ietf.org/html/rfc7230#section-3.2.6">RFC 7230 &#x2014; Hypertext Transfer Protocol (HTTP/1.1): Message Syntax and Routing &#xa7; 3.2.6: Field Value Components</a></dd>
           <dd><a rel="rdfs:seeAlso" href="https://tools.ietf.org/html/rfc7231#section-5.3.2">RFC 7231 &#x2014; Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content &#xa7; 5.3.2: <code>Accept</code></a></dd>
