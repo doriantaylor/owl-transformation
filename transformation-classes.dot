@@ -3,53 +3,78 @@ digraph {
     node [shape=box,color="#000000",fontcolor="#000000",fontname="Lucida Grande, Lucida Sans Unicode, sans-serif"];
     edge [color="#000000",fontcolor="#000000",fontname="Lucida Grande, Lucida Sans Unicode, sans-serif"];
 
+    // third-party classes
+
     subgraph {
         node [style=dashed];
-        prov_Activity [label="prov:Activity"];
-        prov_SoftwareAgent [label="prov:SoftwareAgent"];
-        rdf_List      [label="rdf:List"];
-        rdf_Property  [label="rdf:Property"];
-        rdf_Resource  [label="rdf:Resource"];
-        xsd_string    [label="xsd:string"];
-        xsd_token     [label="xsd:token"];
+        prov_Activity [label="prov:Activity", target="_parent", href="https://www.w3.org/TR/prov-o/#Activity"];
+        prov_SoftwareAgent [label="prov:SoftwareAgent", target="_parent", href="https://www.w3.org/TR/prov-o/#SoftwareAgent"];
+        rdf_List      [label="rdf:List", target="_parent", href="https://www.w3.org/TR/rdf-schema/#ch_list"];
+        rdf_Property  [label="rdf:Property", target="_parent", href="https://www.w3.org/TR/rdf-schema/#ch_property"];
+        rdfs_Resource [label="rdfs:Resource", target="_parent", href="https://www.w3.org/TR/rdf-schema/#ch_resource"];
+        xsd_string    [label="xsd:string", target="_parent", href="https://www.w3.org/TR/xmlschema-2/#string"];
+        xsd_token     [label="xsd:token", target="_parent", href="https://www.w3.org/TR/xmlschema-2/#token"];
+        rdf_nil       [label="rdf:nil", target="_parent", href="https://www.w3.org/TR/rdf-schema/#ch_resource"];
     }
 
-    tfo_Application [label="tfo:Application"];
-    tfo_Parameter [label="tfo:Parameter"];
-    tfo_ParameterList [label="tfo:ParameterList"];
-    tfo_Partial [label="tfo:Partial"];
-    tfo_Transform [label="tfo:Transform"];
-    tfo_MarkupTransform [label="tfo:MarkupTransform"];
+    // our classes
 
-    tfo_content_type [label="tfo:content-type", shape=note];
-    tfo_content_type -> xsd_token [style=dashed, label="owl:onDatatype"];
+    tfo_Application [label="tfo:Application", target="_parent", href="https://vocab.methodandstructure.com/transformation#Application"];
+    tfo_Parameter [label="tfo:Parameter", target="_parent", href="https://vocab.methodandstructure.com/transformation#Parameter"];
+    tfo_ParameterList [label="tfo:ParameterList", target="_parent", href="https://vocab.methodandstructure.com/transformation#ParameterList"];
+    tfo_Partial [label="tfo:Partial", target="_parent", href="https://vocab.methodandstructure.com/transformation#Partial"];
+    tfo_Transform [label="tfo:Transform", target="_parent", href="https://vocab.methodandstructure.com/transformation#Transform"];
+    tfo_MarkupTransform [label="tfo:MarkupTransform", target="_parent", href="https://vocab.methodandstructure.com/transformation#MarkupTransform"];
+    tfo_Queue [label="tfo:Queue", target="_parent", href="https://vocab.methodandstructure.com/transformation#Queue"];
+    tfo_StrictQueue [label="tfo:StrictQueue", target="_parent", href="https://vocab.methodandstructure.com/transformation#StrictQueue"];
+    tfo_TransformList [label="tfo:TransformList", target="_parent", href="https://vocab.methodandstructure.com/transformation#TransformList"];
+    tfo_Marker [label="tfo:Marker", target="_parent", href="https://vocab.methodandstructure.com/transformation#Marker"];
 
-    tfo_regexp [label="tfo:regexp", shape=note];
-    tfo_regexp -> xsd_string [style=dashed, label="owl:onDatatype"];
-    tfo_iregexp [label="tfo:iregexp", shape=note];
-    tfo_iregexp -> xsd_string [style=dashed, label="owl:onDatatype"];
+    // our datatypes
 
-    tfo_xpath [label="tfo:xpath", shape=note];
-    tfo_xpath -> xsd_string [style=dashed, label="owl:onDatatype"];
+    subgraph {
+        node [shape=note];
+        tfo_content_type [label="tfo:content-type", target="_parent", href="https://vocab.methodandstructure.com/transformation#content-type"];
+        tfo_regexp [label="tfo:regexp", target="_parent", href="https://vocab.methodandstructure.com/transformation#regexp"];
+        tfo_iregexp [label="tfo:iregexp", target="_parent", href="https://vocab.methodandstructure.com/transformation#iregexp"];
+        tfo_xpath [label="tfo:xpath", target="_parent", href="https://vocab.methodandstructure.com/transformation#xpath"];
+    }
+
+    subgraph {
+        edge [style=dashed, label="owl:onDatatype"];
+        tfo_content_type -> xsd_token;
+        tfo_regexp       -> xsd_string;
+        tfo_iregexp      -> xsd_string;
+        tfo_xpath        -> xsd_string;
+    }
+
+    // moar subclasses
 
     subgraph {
         edge [style=dashed, label="rdfs:subClassOf"];
-        tfo_Application -> tfo_Partial -> prov_Activity;
+        tfo_Application     -> tfo_Partial -> prov_Activity;
         tfo_MarkupTransform -> tfo_Transform -> prov_SoftwareAgent;
-        tfo_Parameter -> rdf_Property;
-        tfo_ParameterList -> rdf_List;
-        tfo_iregexp -> tfo_regexp;
+        tfo_Parameter       -> rdf_Property;
+        tfo_ParameterList   -> rdf_List;
+        tfo_iregexp         -> tfo_regexp;
+        tfo_StrictQueue     -> tfo_Queue;
+        tfo_TransformList   -> rdf_List;
     }
 
     tfo_Transform -> tfo_Parameter [label="tfo:parameter"];
     tfo_Transform -> tfo_ParameterList [label="tfo:parameter-list"];
-    tfo_Transform -> rdf_Resource [label="tfo:implementation"];
+    tfo_Transform -> rdfs_Resource [label="tfo:implementation"];
     tfo_Transform -> tfo_content_type [label="tfo:accepts,\ntfo:returns"];
     // tfo_Transform -> tfo_content_type [label="tfo:returns"];
+    tfo_Transform -> tfo_Transform [label="tfo:precedes,\ntfo:follows"];
+    tfo_Transform -> tfo_Marker [label="tfo:position"];
     tfo_Partial   -> tfo_Transform [label="tfo:transform"];
     tfo_Application -> tfo_Partial [label="tfo:completes"];
-    tfo_Application -> rdf_Resource [label="tfo:input"];
-    tfo_Application -> rdf_Resource [label="tfo:output"];
+    tfo_Application -> rdfs_Resource [label="tfo:input"];
+    tfo_Application -> rdfs_Resource [label="tfo:output"];
+
+    tfo_Queue -> tfo_Transform [label="tfo:member"];
+    tfo_Queue -> tfo_TransformList [label="tfo:member-list"];
 
     tfo_Transform -> tfo_regexp [label="tfo:by-uri,\ntfo:not-by-uri"];
     tfo_MarkupTransform -> tfo_xpath [label="tfo:by-xpath,\ntfo:not-by-xpath"];
@@ -59,5 +84,10 @@ digraph {
         tfo_Parameter -> tfo_Application [label="rdfs:domain"];
         tfo_ParameterList -> tfo_Parameter [label="rdf:first"];
         tfo_ParameterList -> tfo_ParameterList [label="rdf:rest"];
+        tfo_ParameterList -> rdf_nil [label="rdf:rest"];
+        tfo_TransformList -> tfo_Transform [label="rdf:first"];
+        tfo_TransformList -> tfo_Partial [label="rdf:first"];
+        tfo_TransformList -> tfo_TransformList [label="rdf:rest"];
+        tfo_TransformList -> rdf_nil [label="rdf:rest"];
     }
 }
