@@ -28,7 +28,6 @@ digraph {
     tfo_Queue [label="tfo:Queue", target="_parent", href="https://vocab.methodandstructure.com/transformation#Queue"];
     tfo_StrictQueue [label="tfo:StrictQueue", target="_parent", href="https://vocab.methodandstructure.com/transformation#StrictQueue"];
     tfo_TransformList [label="tfo:TransformList", target="_parent", href="https://vocab.methodandstructure.com/transformation#TransformList"];
-    tfo_Marker [label="tfo:Marker", target="_parent", href="https://vocab.methodandstructure.com/transformation#Marker"];
 
     // our datatypes
 
@@ -48,7 +47,7 @@ digraph {
         tfo_xpath        -> xsd_string;
     }
 
-    // moar subclasses
+    // subclass relations
 
     subgraph {
         edge [style=dashed, label="rdfs:subClassOf"];
@@ -61,19 +60,21 @@ digraph {
         tfo_TransformList   -> rdf_List;
     }
 
+    // main relations
+
     tfo_Transform -> tfo_Parameter [label="tfo:parameter"];
     tfo_Transform -> tfo_ParameterList [label="tfo:parameter-list"];
     tfo_Transform -> rdfs_Resource [label="tfo:implementation"];
     tfo_Transform -> tfo_content_type [label="tfo:accepts,\ntfo:returns"];
     // tfo_Transform -> tfo_content_type [label="tfo:returns"];
     tfo_Transform -> tfo_Transform [label="tfo:precedes,\ntfo:follows"];
-    tfo_Transform -> tfo_Marker [label="tfo:position"];
     tfo_Partial   -> tfo_Transform [label="tfo:transform"];
     tfo_Application -> tfo_Partial [label="tfo:completes"];
     tfo_Application -> rdfs_Resource [label="tfo:input"];
     tfo_Application -> rdfs_Resource [label="tfo:output"];
 
-    tfo_Queue -> tfo_Transform [label="tfo:member"];
+    tfo_Queue -> tfo_Transform [label="tfo:member,\ntfo:first,\ntfo:last"];
+    tfo_Queue -> tfo_Partial [label="tfo:member,\ntfo:first,\ntfo:last"];
     tfo_Queue -> tfo_TransformList [label="tfo:member-list"];
 
     tfo_Transform -> tfo_regexp [label="tfo:by-uri,\ntfo:not-by-uri"];

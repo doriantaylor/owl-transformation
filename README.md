@@ -19,6 +19,8 @@ July 2, 2020
 
 August 27, 2023
 
+September 6, 2023
+
 Namespace URI  
 [`https://vocab.methodandstructure.com/transformation#`](https://vocab.methodandstructure.com/transformation#)
 
@@ -150,8 +152,6 @@ Properties:
 
 [`tfo:follows`](https://vocab.methodandstructure.com/transformation#follows)
 
-[`tfo:position`](https://vocab.methodandstructure.com/transformation#position)
-
 [`tfo:by-uri`](https://vocab.methodandstructure.com/transformation#by-uri)
 
 [`tfo:not-by-uri`](https://vocab.methodandstructure.com/transformation#not-by-uri)
@@ -275,6 +275,12 @@ rev="rdfs:domain"><code>tfo:member</code></a>
 href="https://vocab.methodandstructure.com/transformation#member-list"
 rev="rdfs:domain"><code>tfo:member-list</code></a>
 
+<a href="https://vocab.methodandstructure.com/transformation#first"
+rev="rdfs:domain"><code>tfo:first</code></a>
+
+<a href="https://vocab.methodandstructure.com/transformation#last"
+rev="rdfs:domain"><code>tfo:last</code></a>
+
 </div>
 
 <div id="StrictQueue" class="section" about="[tfo:StrictQueue]"
@@ -320,26 +326,6 @@ about="_:q41" rel="rdf:rest" resource="rdf:nil"></span></span> </span>
 resource="rdf:rest"><code>rdf:rest</code></a> ∈ <a
 href="https://vocab.methodandstructure.com/transformation#TransformList"
 rel="owl:allValuesFrom"><code>tfo:TransformList</code></a>
-
-</div>
-
-<div id="Marker" class="section" about="[tfo:Marker]"
-typeof="owl:Class">
-
-#### `Marker`
-
-A marker is a symbolic representation of a position in a queue.
-
-In range of:  
-<a href="https://vocab.methodandstructure.com/transformation#position"
-rev="rdfs:domain"><code>tfo:position</code></a>
-
-Instances:  
-<a href="https://vocab.methodandstructure.com/transformation#FIRST"
-rev="rdf:type"><code>tfo:FIRST</code></a>
-
-<a href="https://vocab.methodandstructure.com/transformation#LAST"
-rev="rdf:type"><code>tfo:LAST</code></a>
 
 </div>
 
@@ -406,97 +392,10 @@ rev="rdfs:domain"><code>tfo:transform</code></a>
 
 <div class="section">
 
-### Core
+### Specifying Transforms
 
-<div id="completes" class="section" about="[tfo:completes]"
-typeof="owl:ObjectProperty owl:FunctionalProperty">
-
-#### `completes`
-
-Identifies a `tfo:Partial` function that this `tfo:Application`
-completes.
-
-Domain:  
-<a
-href="https://vocab.methodandstructure.com/transformation#Application"
-rel="rdfs:domain"><code>tfo:Application</code></a>
-
-Range:  
-<a href="https://vocab.methodandstructure.com/transformation#Partial"
-rel="rdfs:range"><code>tfo:Partial</code></a>
-
-<a href="https://vocab.methodandstructure.com/transformation#"
-rel="rdfs:isDefinedBy">Back to Top</a>
-
-</div>
-
-<div id="implementation" class="section" about="[tfo:implementation]"
-typeof="owl:ObjectProperty owl:FunctionalProperty">
-
-#### `implementation`
-
-URI to the implementation of the function.
-
-The URI is meant to be dereferenced by an internal implementation, e.g.
-file:, jar:, or an idiosyncratic scheme like urn:x-python:.
-
-Domain:  
-<a href="https://vocab.methodandstructure.com/transformation#Transform"
-rel="rdfs:domain"><code>tfo:Transform</code></a>
-
-Range:  
-<a href="https://www.w3.org/TR/rdf-schema/#ch_resource" rel="rdfs:range"
-resource="rdfs:Resource"><code>rdfs:Resource</code></a>
-
-<a href="https://vocab.methodandstructure.com/transformation#"
-rel="rdfs:isDefinedBy">Back to Top</a>
-
-</div>
-
-<div id="parameter" class="section" about="[tfo:parameter]"
-typeof="owl:ObjectProperty">
-
-#### `parameter`
-
-Binds a parameter object to its function.
-
-Parameters can either be supplied to the function as key-value pairs or
-sequentially.
-
-Domain:  
-<a href="https://vocab.methodandstructure.com/transformation#Transform"
-rel="rdfs:domain"><code>tfo:Transform</code></a>
-
-Range:  
-<a href="https://vocab.methodandstructure.com/transformation#Parameter"
-rel="rdfs:range"><code>tfo:Parameter</code></a>
-
-<a href="https://vocab.methodandstructure.com/transformation#"
-rel="rdfs:isDefinedBy">Back to Top</a>
-
-</div>
-
-<div id="parameter-list" class="section" about="[tfo:parameter-list]"
-typeof="owl:ObjectProperty owl:FunctionalProperty">
-
-#### `parameter-list`
-
-Specifies the sequence of parameters when the invocation method of the
-function is sequential.
-
-Domain:  
-<a href="https://vocab.methodandstructure.com/transformation#Transform"
-rel="rdfs:domain"><code>tfo:Transform</code></a>
-
-Range:  
-<a
-href="https://vocab.methodandstructure.com/transformation#ParameterList"
-rel="rdfs:range"><code>tfo:ParameterList</code></a>
-
-<a href="https://vocab.methodandstructure.com/transformation#"
-rel="rdfs:isDefinedBy">Back to Top</a>
-
-</div>
+These properties have to do with specifying `tfo:Transform` entities and
+their parameters.
 
 <div id="accepts" class="section" about="[tfo:accepts]"
 typeof="owl:ObjectProperty">
@@ -580,6 +479,74 @@ rel="rdfs:isDefinedBy">Back to Top</a>
 
 </div>
 
+<div id="implementation" class="section" about="[tfo:implementation]"
+typeof="owl:ObjectProperty owl:FunctionalProperty">
+
+#### `implementation`
+
+URI to the implementation of the function.
+
+The URI is meant to be dereferenced by an internal implementation, e.g.
+file:, jar:, or an idiosyncratic scheme like urn:x-python:.
+
+Domain:  
+<a href="https://vocab.methodandstructure.com/transformation#Transform"
+rel="rdfs:domain"><code>tfo:Transform</code></a>
+
+Range:  
+<a href="https://www.w3.org/TR/rdf-schema/#ch_resource" rel="rdfs:range"
+resource="rdfs:Resource"><code>rdfs:Resource</code></a>
+
+<a href="https://vocab.methodandstructure.com/transformation#"
+rel="rdfs:isDefinedBy">Back to Top</a>
+
+</div>
+
+<div id="parameter" class="section" about="[tfo:parameter]"
+typeof="owl:ObjectProperty">
+
+#### `parameter`
+
+Binds a parameter object to its function.
+
+Parameters can either be supplied to the function as key-value pairs or
+sequentially.
+
+Domain:  
+<a href="https://vocab.methodandstructure.com/transformation#Transform"
+rel="rdfs:domain"><code>tfo:Transform</code></a>
+
+Range:  
+<a href="https://vocab.methodandstructure.com/transformation#Parameter"
+rel="rdfs:range"><code>tfo:Parameter</code></a>
+
+<a href="https://vocab.methodandstructure.com/transformation#"
+rel="rdfs:isDefinedBy">Back to Top</a>
+
+</div>
+
+<div id="parameter-list" class="section" about="[tfo:parameter-list]"
+typeof="owl:ObjectProperty owl:FunctionalProperty">
+
+#### `parameter-list`
+
+Specifies the sequence of parameters when the invocation method of the
+function is sequential.
+
+Domain:  
+<a href="https://vocab.methodandstructure.com/transformation#Transform"
+rel="rdfs:domain"><code>tfo:Transform</code></a>
+
+Range:  
+<a
+href="https://vocab.methodandstructure.com/transformation#ParameterList"
+rel="rdfs:range"><code>tfo:ParameterList</code></a>
+
+<a href="https://vocab.methodandstructure.com/transformation#"
+rel="rdfs:isDefinedBy">Back to Top</a>
+
+</div>
+
 <div id="default" class="section" about="[tfo:default]"
 typeof="owl:ObjectProperty">
 
@@ -601,6 +568,9 @@ rel="rdfs:isDefinedBy">Back to Top</a>
 <div class="section">
 
 ### Specifying Queues
+
+These properties all have to do with providing hints to topological
+sorts of transforms within queues, or otherwise explicit sequences.
 
 <div id="member" class="section" about="[tfo:member]"
 typeof="owl:ObjectProperty">
@@ -698,11 +668,91 @@ rel="rdfs:isDefinedBy">Back to Top</a>
 
 </div>
 
+<div id="first" class="section" about="[tfo:first]"
+typeof="owl:ObjectProperty owl:FunctionalProperty">
+
+#### `first`
+
+Explicitly specifies a transform that must go *first*.
+
+Sub-property of:  
+<a href="https://vocab.methodandstructure.com/transformation#member"
+rel="rdfs:subPropertyOf"><code>tfo:member</code></a>
+
+Domain:  
+<a href="https://vocab.methodandstructure.com/transformation#Queue"
+rel="rdfs:domain"><code>tfo:Queue</code></a>
+
+Range:  
+<span about="_:uo41" rel="owl:unionOf" resource="_:q42">
+<a href="https://vocab.methodandstructure.com/transformation#Transform"
+about="_:q42" rel="rdf:first"><code>tfo:Transform</code></a> <span
+about="_:q42" rel="rdf:rest" resource="_:q43">∪</span>
+<a href="https://vocab.methodandstructure.com/transformation#Partial"
+about="_:q43" rel="rdf:first"><code>tfo:Partial</code></a> <span
+about="_:q43" rel="rdf:rest" resource="rdf:nil"></span> </span>
+
+<a href="https://vocab.methodandstructure.com/transformation#"
+rel="rdfs:isDefinedBy">Back to Top</a>
+
+</div>
+
+<div id="last" class="section" about="[tfo:last]"
+typeof="owl:ObjectProperty owl:FunctionalProperty">
+
+#### `last`
+
+Explicitly specifies a transform that must go *last*.
+
+Sub-property of:  
+<a href="https://vocab.methodandstructure.com/transformation#member"
+rel="rdfs:subPropertyOf"><code>tfo:member</code></a>
+
+Domain:  
+<a href="https://vocab.methodandstructure.com/transformation#Queue"
+rel="rdfs:domain"><code>tfo:Queue</code></a>
+
+Range:  
+<span about="_:uo42" rel="owl:unionOf" resource="_:q44">
+<a href="https://vocab.methodandstructure.com/transformation#Transform"
+about="_:q44" rel="rdf:first"><code>tfo:Transform</code></a> <span
+about="_:q44" rel="rdf:rest" resource="_:q45">∪</span>
+<a href="https://vocab.methodandstructure.com/transformation#Partial"
+about="_:q45" rel="rdf:first"><code>tfo:Partial</code></a> <span
+about="_:q45" rel="rdf:rest" resource="rdf:nil"></span> </span>
+
+<a href="https://vocab.methodandstructure.com/transformation#"
+rel="rdfs:isDefinedBy">Back to Top</a>
+
+</div>
+
 </div>
 
 <div class="section">
 
 ### Applying Transformations
+
+<div id="completes" class="section" about="[tfo:completes]"
+typeof="owl:ObjectProperty owl:FunctionalProperty">
+
+#### `completes`
+
+Identifies a `tfo:Partial` function that this `tfo:Application`
+completes.
+
+Domain:  
+<a
+href="https://vocab.methodandstructure.com/transformation#Application"
+rel="rdfs:domain"><code>tfo:Application</code></a>
+
+Range:  
+<a href="https://vocab.methodandstructure.com/transformation#Partial"
+rel="rdfs:range"><code>tfo:Partial</code></a>
+
+<a href="https://vocab.methodandstructure.com/transformation#"
+rel="rdfs:isDefinedBy">Back to Top</a>
+
+</div>
 
 <div id="transform" class="section" about="[tfo:transform]"
 typeof="owl:ObjectProperty owl:FunctionalProperty">
@@ -981,53 +1031,6 @@ An XPath expression.
 Restriction of:  
 <a href="https://www.w3.org/TR/xmlschema-2/#string" rel="owl:onDatatype"
 resource="xsd:string"><code>xsd:string</code></a>
-
-<a href="https://vocab.methodandstructure.com/transformation#"
-rel="rdfs:isDefinedBy">Back to Top</a>
-
-</div>
-
-</div>
-
-<div class="section">
-
-## Individuals
-
-Currently the only individuals specified are the two `tfo:Marker`
-instances, `tfo:FIRST` and `tfo:LAST`.
-
-<div id="FIRST" class="section" about="[tfo:FIRST]" typeof="tfo:Marker">
-
-### `FIRST`
-
-Symbolic representation for the *first* object in a queue.
-
-Instance of:  
-<a href="https://vocab.methodandstructure.com/transformation#Marker"
-rel="rdf:type"><code>tfo:Marker</code></a>
-
-See also:  
-<a href="https://vocab.methodandstructure.com/transformation#Queue"
-rel="rdfs:seeAlso"><code>tfo:Queue</code></a>
-
-<a href="https://vocab.methodandstructure.com/transformation#"
-rel="rdfs:isDefinedBy">Back to Top</a>
-
-</div>
-
-<div id="LAST" class="section" about="[tfo:LAST]" typeof="tfo:Marker">
-
-### `LAST`
-
-Symbolic representation for the *last* object in a queue.
-
-Instance of:  
-<a href="https://vocab.methodandstructure.com/transformation#Marker"
-rel="rdf:type"><code>tfo:Marker</code></a>
-
-See also:  
-<a href="https://vocab.methodandstructure.com/transformation#Queue"
-rel="rdfs:seeAlso"><code>tfo:Queue</code></a>
 
 <a href="https://vocab.methodandstructure.com/transformation#"
 rel="rdfs:isDefinedBy">Back to Top</a>

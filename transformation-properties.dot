@@ -1,29 +1,140 @@
 digraph {
-    graph [bgcolor=transparent];
-    node [shape=box,color="#000000",fontcolor="#000000",fontname="Lucida Grande, Lucida Sans Unicode, sans-serif"];
-    edge [color="#000000",fontcolor="#000000",fontname="Lucida Grande, Lucida Sans Unicode, sans-serif"];
+    graph [bgcolor=transparent,rankdir=TB];
+    node [shape=box,style=rounded,color="#000000",fontcolor="#000000",fontname="Lucida Grande, Lucida Sans Unicode, sans-serif"];
+    edge [concentrate=true,color="#000000",fontcolor="#000000",fontname="Lucida Grande, Lucida Sans Unicode, sans-serif"];
 
     subgraph {
-        node [style=dashed];
-        prov_used [label="prov:used"];
-        prov_generated [label="prov:generated"];
-        prov_wasAttributedTo [label="prov:wasAttributedTo"];
+        node [shape=box, style=dashed];
+        rdfs_Resource [label="rdfs:Resource", target="_parent", href="https://www.w3.org/TR/rdf-schema/#ch_resource"];
     }
 
-    tfo_completes [label="tfo:completes"];
-    tfo_input [label="tfo:input"];
-    tfo_output [label="tfo:output"];
-    tfo_transform [label="tfo:transform"];
-    tfo_implementation [label="tfo:implementation"];
-    tfo_parameter [label="tfo:parameter"];
-    tfo_parameter_list [label="tfo:parameter-list"];
-    tfo_accepts [label="tfo:accepts"];
-    tfo_returns [label="tfo:returns"];
+    // our classes
+
+    subgraph {
+        node [shape=box, style=""];
+        tfo_Transform [label="tfo:Transform", target="_parent", href="https://vocab.methodandstructure.com/transformation#Transform"];
+        tfo_Parameter [label="tfo:Parameter", target="_parent", href="https://vocab.methodandstructure.com/transformation#Parameter"];
+        tfo_ParameterList [label="tfo:ParameterList", target="_parent", href="https://vocab.methodandstructure.com/transformation#ParameterList"];
+        tfo_Queue [label="tfo:Queue", target="_parent", href="https://vocab.methodandstructure.com/transformation#Queue"];
+        tfo_TransformList [label="tfo:TransformList", target="_parent", href="https://vocab.methodandstructure.com/transformation#TransformList"];
+        tfo_Partial [label="tfo:Partial", target="_parent", href="https://vocab.methodandstructure.com/transformation#Partial"];
+        tfo_Application [label="tfo:Application", target="_parent", href="https://vocab.methodandstructure.com/transformation#Application"];
+    }
+
+    // our datatypes
+    subgraph {
+        node [shape=note];
+        tfo_content_type [label="tfo:content-type", target="_parent", href="https://vocab.methodandstructure.com/transformation#content-type"];
+    }
+
+    // third-party properties
+
+    subgraph {
+        node [style="dashed,rounded"];
+        prov_used [label="prov:used", target="_parent", href="https://www.w3.org/TR/prov-o/#used"];
+        prov_generated [label="prov:generated", target="_parent", href="https://www.w3.org/TR/prov-o/#generated"];
+        prov_wasAttributedTo [label="prov:wasAttributedTo", target="_parent", href="https://www.w3.org/TR/prov-o/#wasAttributedTo"];
+    }
+
+
+    // our properties
+
+    tfo_accepts [label="tfo:accepts", target="_parent", href="https://vocab.methodandstructure.com/transformation#accepts"];
+    tfo_returns [label="tfo:returns", target="_parent", href="https://vocab.methodandstructure.com/transformation#returns"];
+    tfo_prefers [label="tfo:prefers", target="_parent", href="https://vocab.methodandstructure.com/transformation#prefers"];
+    tfo_implementation [label="tfo:implementation", target="_parent", href="https://vocab.methodandstructure.com/transformation#implementation"];
+    tfo_parameter [label="tfo:parameter", target="_parent", href="https://vocab.methodandstructure.com/transformation#parameter"];
+    tfo_parameter_list [label="tfo:parameter-list", target="_parent", href="https://vocab.methodandstructure.com/transformation#parameter-list"];
+    tfo_default [label="tfo:default", target="_parent", href="https://vocab.methodandstructure.com/transformation#default"];
+
+    tfo_completes [label="tfo:completes", target="_parent", href="https://vocab.methodandstructure.com/transformation#completes"];
+    tfo_input [label="tfo:input", target="_parent", href="https://vocab.methodandstructure.com/transformation#input"];
+    tfo_output [label="tfo:output", target="_parent", href="https://vocab.methodandstructure.com/transformation#output"];
+    tfo_transform [label="tfo:transform", target="_parent", href="https://vocab.methodandstructure.com/transformation#transform"];
+
+    tfo_member [label="tfo:member", target="_parent", href="https://vocab.methodandstructure.com/transformation#member"];
+    tfo_member_list [label="tfo:member-list", target="_parent", href="https://vocab.methodandstructure.com/transformation#member-lits"];
+    tfo_precedes [label="tfo:precedes", target="_parent", href="https://vocab.methodandstructure.com/transformation#precedes"];
+    tfo_follows [label="tfo:follows", target="_parent", href="https://vocab.methodandstructure.com/transformation#follows"];
+    tfo_first [label="tfo:first", target="_parent", href="https://vocab.methodandstructure.com/transformation#first"];
+    tfo_last [label="tfo:last", target="_parent", href="https://vocab.methodandstructure.com/transformation#last"];
 
     subgraph {
         edge [style=dashed, label="rdfs:subPropertyOf"];
-        tfo_input -> prov_used;
-        tfo_output -> prov_generated;
+        tfo_prefers   -> tfo_returns;
+        tfo_input     -> prov_used;
+        tfo_output    -> prov_generated;
         tfo_transform -> prov_wasAttributedTo;
+
+        tfo_first -> tfo_member;
+        tfo_last  -> tfo_member;
+    }
+
+    subgraph {
+        edge [style=dashed, dir=back, label="rdfs:domain"];
+        tfo_Transform -> tfo_accepts;
+        tfo_Transform -> tfo_returns;
+        tfo_Transform -> tfo_implementation;
+        tfo_Transform -> tfo_parameter;
+        tfo_Transform -> tfo_parameter_list;
+        tfo_Transform -> tfo_precedes;
+        tfo_Transform -> tfo_follows;
+
+        tfo_Parameter -> tfo_default;
+
+        tfo_Queue -> tfo_member;
+        tfo_Queue -> tfo_member_list;
+
+        tfo_Partial -> tfo_transform;
+
+        tfo_Application -> tfo_completes;
+        tfo_Application -> tfo_input;
+        tfo_Application -> tfo_output;
+
+        /*
+        tfo_accepts        -> tfo_Transform;
+        tfo_returns        -> tfo_Transform;
+        tfo_implementation -> tfo_Transform;
+        tfo_parameter      -> tfo_Transform;
+        tfo_parameter_list -> tfo_Transform;
+        tfo_precedes       -> tfo_Transform;
+        tfo_follows        -> tfo_Transform;
+
+        tfo_default -> tfo_Parameter;
+
+        tfo_member      -> tfo_Queue;
+        tfo_member_list -> tfo_Queue;
+
+        tfo_transform -> tfo_Partial;
+
+        tfo_completes -> tfo_Application;
+        tfo_input     -> tfo_Application;
+        tfo_output    -> tfo_Application;
+        */
+    }
+
+    subgraph {
+        edge [style=dashed, label="rdfs:range"];
+
+        tfo_accepts -> tfo_content_type;
+        tfo_returns -> tfo_content_type;
+
+        tfo_parameter      -> tfo_Parameter;
+        tfo_parameter_list -> tfo_ParameterList;
+
+        tfo_member      -> tfo_Transform;
+        tfo_member      -> tfo_Partial;
+        tfo_member_list -> tfo_TransformList;
+
+        tfo_transform -> tfo_Transform;
+        tfo_precedes  -> tfo_Transform;
+        tfo_follows   -> tfo_Transform;
+
+        tfo_completes -> tfo_Partial;
+
+        tfo_implementation -> rdfs_Resource;
+        tfo_default        -> rdfs_Resource;
+        tfo_input          -> rdfs_Resource;
+        tfo_output         -> rdfs_Resource;
     }
 }
