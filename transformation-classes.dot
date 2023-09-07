@@ -14,7 +14,7 @@ digraph {
         rdfs_Resource [label="rdfs:Resource", target="_parent", href="https://www.w3.org/TR/rdf-schema/#ch_resource"];
         xsd_string    [label="xsd:string", target="_parent", href="https://www.w3.org/TR/xmlschema-2/#string"];
         xsd_token     [label="xsd:token", target="_parent", href="https://www.w3.org/TR/xmlschema-2/#token"];
-        rdf_nil       [label="rdf:nil", target="_parent", href="https://www.w3.org/TR/rdf-schema/#ch_resource"];
+        rdf_nil       [label="rdf:nil", target="_parent", href="https://www.w3.org/TR/rdf-schema/#ch_nil"];
     }
 
     // our classes

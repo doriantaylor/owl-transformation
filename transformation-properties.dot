@@ -90,27 +90,6 @@ digraph {
         tfo_Application -> tfo_completes;
         tfo_Application -> tfo_input;
         tfo_Application -> tfo_output;
-
-        /*
-        tfo_accepts        -> tfo_Transform;
-        tfo_returns        -> tfo_Transform;
-        tfo_implementation -> tfo_Transform;
-        tfo_parameter      -> tfo_Transform;
-        tfo_parameter_list -> tfo_Transform;
-        tfo_precedes       -> tfo_Transform;
-        tfo_follows        -> tfo_Transform;
-
-        tfo_default -> tfo_Parameter;
-
-        tfo_member      -> tfo_Queue;
-        tfo_member_list -> tfo_Queue;
-
-        tfo_transform -> tfo_Partial;
-
-        tfo_completes -> tfo_Application;
-        tfo_input     -> tfo_Application;
-        tfo_output    -> tfo_Application;
-        */
     }
 
     subgraph {
