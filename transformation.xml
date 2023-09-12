@@ -6,6 +6,7 @@
       xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
       xmlns:owl="http://www.w3.org/2002/07/owl#"
       xmlns:sh="http://www.w3.org/ns/shacl#"
+      xmlns:httpv="http://www.w3.org/2011/http#"
       xmlns:dct="http://purl.org/dc/terms/"
       xmlns:skos="http://www.w3.org/2004/02/skos/core#"
       xmlns:prov="http://www.w3.org/ns/prov#"
@@ -14,7 +15,7 @@
       xmlns:vann="http://purl.org/vocab/vann/"
       xmlns:ci="https://vocab.methodandstructure.com/content-inventory#"
       xmlns:tfo="https://vocab.methodandstructure.com/transformation#"
-      prefix="rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# xsd: http://www.w3.org/2001/XMLSchema# owl: http://www.w3.org/2002/07/owl# sh: http://www.w3.org/ns/shacl# dct: http://purl.org/dc/terms/ skos: http://www.w3.org/2004/02/skos/core# prov: http://www.w3.org/ns/prov# bibo: http://purl.org/ontology/bibo/ foaf: http://xmlns.com/foaf/0.1/ vann: http://purl.org/vocab/vann/ ci: https://vocab.methodandstructure.com/content-inventory# tfo: https://vocab.methodandstructure.com/transformation#"
+      prefix="rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# xsd: http://www.w3.org/2001/XMLSchema# owl: http://www.w3.org/2002/07/owl# sh: http://www.w3.org/ns/shacl# httpv: http://www.w3.org/2011/http# dct: http://purl.org/dc/terms/ skos: http://www.w3.org/2004/02/skos/core# prov: http://www.w3.org/ns/prov# bibo: http://purl.org/ontology/bibo/ foaf: http://xmlns.com/foaf/0.1/ vann: http://purl.org/vocab/vann/ ci: https://vocab.methodandstructure.com/content-inventory# tfo: https://vocab.methodandstructure.com/transformation#"
       xml:lang="en">
   <head>
     <title about="#" property="dct:title">Transformation Functions Ontology</title>
@@ -117,6 +118,7 @@ ex:end a tfo:Parameter ;
             <dd rev="rdfs:domain"><a href="#prefers"><code>tfo:prefers</code></a></dd>
             <dd rev="rdfs:domain"><a href="#precedes"><code>tfo:precedes</code></a></dd>
             <dd rev="rdfs:domain"><a href="#follows"><code>tfo:follows</code></a></dd>
+            <dd rev="rdfs:domain"><a href="#triggers"><code>tfo:triggers</code></a></dd>
             <dd rev="rdfs:domain"><a href="#by-uri"><code>tfo:by-uri</code></a></dd>
             <dd rev="rdfs:domain"><a href="#not-by-uri"><code>tfo:not-by-uri</code></a></dd>
           </dl>
@@ -186,6 +188,7 @@ ex:end a tfo:Parameter ;
             <dd><a rev="rdfs:domain" href="#member-list"><code>tfo:member-list</code></a></dd>
             <dd><a rev="rdfs:domain" href="#first"><code>tfo:first</code></a></dd>
             <dd><a rev="rdfs:domain" href="#last"><code>tfo:last</code></a></dd>
+            <dd><a rev="rdfs:domain" href="#next"><code>tfo:next</code></a></dd>
           </dl>
         </section>
         <section id="StrictQueue" about="[tfo:StrictQueue]" typeof="owl:Class">
@@ -194,6 +197,14 @@ ex:end a tfo:Parameter ;
           <dl>
             <dt>Subclass of:</dt>
             <dd><a rel="rdfs:subClassOf" href="#Queue"><code>tfo:Queue</code></a></dd>
+          </dl>
+        </section>
+        <section id="AddressableQueue" about="[tfo:AddressableQueue]" typeof="owl:Class">
+          <h4 property="rdfs:label"><code>AddressableQueue</code></h4>
+          <p property="rdfs:comment">An <em>addressable</em> queue is a strict queue intended to hold transforms that have been invoked through the <abbr>URL</abbr>.</p>
+          <dl>
+            <dt>Subclass of:</dt>
+            <dd><a rel="rdfs:subClassOf" href="#StrictQueue"><code>tfo:StrictQueue</code></a></dd>
           </dl>
         </section>
         <section id="TransformList" about="[tfo:TransformList]" typeof="owl:Class">
@@ -213,6 +224,17 @@ ex:end a tfo:Parameter ;
             <dd rel="rdfs:subClassOf" resource="_:op5">
               <a rel="owl:onProperty" resource="rdf:rest" href="https://www.w3.org/TR/rdf-schema/#ch_rest"><code>rdf:rest</code></a> &#x2208; <a rel="owl:allValuesFrom" href="#TransformList"><code>tfo:TransformList</code></a>
             </dd>
+          </dl>
+        </section>
+        <section id="Insertion" about="[tfo:Insertion]" typeof="owl:Class">
+          <h4 property="rdfs:label"><code>Insertion</code></h4>
+          <p property="rdfs:comment">An insertion is a pre-packaged event that manipulates a per-request instance of a transformation queue. When the result of the transform being run matches the condition, the contents of the <code>tfo:Insertion</code> are inserted into the target queue.</p>
+          <dl>
+            <dt>Subclass of:</dt>
+            <dd><a rel="rdfs:subClassOf" href="#Queue"><code>tfo:Queue</code></a></dd>
+            <dt>Properties:</dt>
+            <dd><a rev="rdfs:domain" href="#target"><code>tfo:condition</code></a></dd>
+            <dd><a rev="rdfs:domain" href="#target"><code>tfo:target</code></a></dd>
           </dl>
         </section>
       </section>
@@ -406,6 +428,17 @@ ex:end a tfo:Parameter ;
           </dl>
           <p><a rel="rdfs:isDefinedBy" href="#">Back to Top</a></p>
         </section>
+        <section id="next" about="[tfo:next]" typeof="owl:ObjectProperty owl:FunctionalProperty">
+          <h4 property="rdfs:label"><code>next</code></h4>
+          <p property="rdfs:comment">Specifies the next queue to run after this one.</p>
+          <dl>
+            <dt>Domain:</dt>
+            <dd><a rel="rdfs:domain" href="#Queue"><code>tfo:Queue</code></a></dd>
+            <dt>Range:</dt>
+            <dd><a rel="rdfs:range" href="#Queue"><code>tfo:Queue</code></a></dd>
+          </dl>
+          <p><a rel="rdfs:isDefinedBy" href="#">Back to Top</a></p>
+        </section>
         <section id="first" about="[tfo:first]" typeof="owl:ObjectProperty owl:FunctionalProperty">
           <h4 property="rdfs:label"><code>first</code></h4>
           <p property="rdfs:comment">Explicitly specifies a transform that must go <em>first</em>.</p>
@@ -446,7 +479,45 @@ ex:end a tfo:Parameter ;
         </section>
       </section>
       <section>
+        <h3>Manipulating Queues at Runtime</h3>
+        <p>These properties relate trnasforms to queue insertion events.</p>
+        <section id="triggers" about="[tfo:triggers]" typeof="owl:ObjectProperty">
+          <h4 property="rdfs:label"><code>triggers</code></h4>
+          <p property="rdfs:comment">A <code>tfo:Transform</code> can trigger an <code>tfo:Insertion</code> event on a certain condition (e.g., successful completion).</p>
+          <dl>
+            <dt>Domain:</dt>
+            <dd><a rel="rdfs:domain" href="#Transform"><code>tfo:Transform</code></a></dd>
+            <dt>Range:</dt>
+            <dd><a rel="rdfs:range" href="#Insertion"><code>tfo:Insertion</code></a></dd>
+          </dl>
+          <p><a rel="rdfs:isDefinedBy" href="#">Back to Top</a></p>
+        </section>
+        <section id="target" about="[tfo:target]" typeof="owl:ObjectProperty">
+          <h4 property="rdfs:label"><code>target</code></h4>
+          <p property="rdfs:comment">A target queue for the insertion.</p>
+          <dl>
+            <dt>Domain:</dt>
+            <dd><a rel="rdfs:domain" href="#Insertion"><code>tfo:Insertion</code></a></dd>
+            <dt>Range:</dt>
+            <dd><a rel="rdfs:range" href="#Queue"><code>tfo:Queue</code></a></dd>
+          </dl>
+          <p><a rel="rdfs:isDefinedBy" href="#">Back to Top</a></p>
+        </section>
+        <section id="condition" about="[tfo:condition]" typeof="owl:ObjectProperty">
+          <h4 property="rdfs:label"><code>condition</code></h4>
+          <p property="rdfs:comment">An <abbr>HTTP</abbr> status code for which the insertion is triggered.</p>
+          <dl>
+            <dt>Domain:</dt>
+            <dd><a rel="rdfs:domain" href="#Insertion"><code>tfo:Insertion</code></a></dd>
+            <dt>Range:</dt>
+            <dd><a rel="rdfs:range" resource="httpv:StatusCode" href="https://www.w3.org/TR/HTTP-in-RDF10/#StatusCodeClass"><code>http:StatusCode</code></a></dd>
+          </dl>
+          <p><a rel="rdfs:isDefinedBy" href="#">Back to Top</a></p>
+        </section>
+      </section>
+      <section>
         <h3>Applying Transformations</h3>
+        <p>This group of properties is responsible for relating <code>tfo:Transform</code> to the actual data objects they transform.</p>
         <section id="completes" about="[tfo:completes]" typeof="owl:ObjectProperty owl:FunctionalProperty">
           <h4 property="rdfs:label"><code>completes</code></h4>
           <p property="rdfs:comment">Identifies a <code>tfo:Partial</code> function that this <code>tfo:Application</code> completes.</p>

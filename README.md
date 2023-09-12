@@ -152,6 +152,8 @@ Properties:
 
 [`tfo:follows`](https://vocab.methodandstructure.com/transformation#follows)
 
+[`tfo:triggers`](https://vocab.methodandstructure.com/transformation#triggers)
+
 [`tfo:by-uri`](https://vocab.methodandstructure.com/transformation#by-uri)
 
 [`tfo:not-by-uri`](https://vocab.methodandstructure.com/transformation#not-by-uri)
@@ -281,6 +283,9 @@ rev="rdfs:domain"><code>tfo:first</code></a>
 <a href="https://vocab.methodandstructure.com/transformation#last"
 rev="rdfs:domain"><code>tfo:last</code></a>
 
+<a href="https://vocab.methodandstructure.com/transformation#next"
+rev="rdfs:domain"><code>tfo:next</code></a>
+
 </div>
 
 <div id="StrictQueue" class="section" about="[tfo:StrictQueue]"
@@ -295,6 +300,21 @@ contents.
 Subclass of:  
 <a href="https://vocab.methodandstructure.com/transformation#Queue"
 rel="rdfs:subClassOf"><code>tfo:Queue</code></a>
+
+</div>
+
+<div id="AddressableQueue" class="section"
+about="[tfo:AddressableQueue]" typeof="owl:Class">
+
+#### `AddressableQueue`
+
+An *addressable* queue is a strict queue intended to hold transforms
+that have been invoked through the URL.
+
+Subclass of:  
+<a
+href="https://vocab.methodandstructure.com/transformation#StrictQueue"
+rel="rdfs:subClassOf"><code>tfo:StrictQueue</code></a>
 
 </div>
 
@@ -326,6 +346,29 @@ about="_:q41" rel="rdf:rest" resource="rdf:nil"></span></span> </span>
 resource="rdf:rest"><code>rdf:rest</code></a> ∈ <a
 href="https://vocab.methodandstructure.com/transformation#TransformList"
 rel="owl:allValuesFrom"><code>tfo:TransformList</code></a>
+
+</div>
+
+<div id="Insertion" class="section" about="[tfo:Insertion]"
+typeof="owl:Class">
+
+#### `Insertion`
+
+An insertion is a pre-packaged event that manipulates a per-request
+instance of a transformation queue. When the result of the transform
+being run matches the condition, the contents of the `tfo:Insertion` are
+inserted into the target queue.
+
+Subclass of:  
+<a href="https://vocab.methodandstructure.com/transformation#Queue"
+rel="rdfs:subClassOf"><code>tfo:Queue</code></a>
+
+Properties:  
+<a href="https://vocab.methodandstructure.com/transformation#target"
+rev="rdfs:domain"><code>tfo:condition</code></a>
+
+<a href="https://vocab.methodandstructure.com/transformation#target"
+rev="rdfs:domain"><code>tfo:target</code></a>
 
 </div>
 
@@ -668,6 +711,26 @@ rel="rdfs:isDefinedBy">Back to Top</a>
 
 </div>
 
+<div id="next" class="section" about="[tfo:next]"
+typeof="owl:ObjectProperty owl:FunctionalProperty">
+
+#### `next`
+
+Specifies the next queue to run after this one.
+
+Domain:  
+<a href="https://vocab.methodandstructure.com/transformation#Queue"
+rel="rdfs:domain"><code>tfo:Queue</code></a>
+
+Range:  
+<a href="https://vocab.methodandstructure.com/transformation#Queue"
+rel="rdfs:range"><code>tfo:Queue</code></a>
+
+<a href="https://vocab.methodandstructure.com/transformation#"
+rel="rdfs:isDefinedBy">Back to Top</a>
+
+</div>
+
 <div id="first" class="section" about="[tfo:first]"
 typeof="owl:ObjectProperty owl:FunctionalProperty">
 
@@ -730,7 +793,80 @@ rel="rdfs:isDefinedBy">Back to Top</a>
 
 <div class="section">
 
+### Manipulating Queues at Runtime
+
+These properties relate trnasforms to queue insertion events.
+
+<div id="triggers" class="section" about="[tfo:triggers]"
+typeof="owl:ObjectProperty">
+
+#### `triggers`
+
+A `tfo:Transform` can trigger an `tfo:Insertion` event on a certain
+condition (e.g., successful completion).
+
+Domain:  
+<a href="https://vocab.methodandstructure.com/transformation#Transform"
+rel="rdfs:domain"><code>tfo:Transform</code></a>
+
+Range:  
+<a href="https://vocab.methodandstructure.com/transformation#Insertion"
+rel="rdfs:range"><code>tfo:Insertion</code></a>
+
+<a href="https://vocab.methodandstructure.com/transformation#"
+rel="rdfs:isDefinedBy">Back to Top</a>
+
+</div>
+
+<div id="target" class="section" about="[tfo:target]"
+typeof="owl:ObjectProperty">
+
+#### `target`
+
+A target queue for the insertion.
+
+Domain:  
+<a href="https://vocab.methodandstructure.com/transformation#Insertion"
+rel="rdfs:domain"><code>tfo:Insertion</code></a>
+
+Range:  
+<a href="https://vocab.methodandstructure.com/transformation#Queue"
+rel="rdfs:range"><code>tfo:Queue</code></a>
+
+<a href="https://vocab.methodandstructure.com/transformation#"
+rel="rdfs:isDefinedBy">Back to Top</a>
+
+</div>
+
+<div id="condition" class="section" about="[tfo:condition]"
+typeof="owl:ObjectProperty">
+
+#### `condition`
+
+An HTTP status code for which the insertion is triggered.
+
+Domain:  
+<a href="https://vocab.methodandstructure.com/transformation#Insertion"
+rel="rdfs:domain"><code>tfo:Insertion</code></a>
+
+Range:  
+<a href="https://www.w3.org/TR/HTTP-in-RDF10/#StatusCodeClass"
+rel="rdfs:range"
+resource="httpv:StatusCode"><code>http:StatusCode</code></a>
+
+<a href="https://vocab.methodandstructure.com/transformation#"
+rel="rdfs:isDefinedBy">Back to Top</a>
+
+</div>
+
+</div>
+
+<div class="section">
+
 ### Applying Transformations
+
+This group of properties is responsible for relating `tfo:Transform` to
+the actual data objects they transform.
 
 <div id="completes" class="section" about="[tfo:completes]"
 typeof="owl:ObjectProperty owl:FunctionalProperty">

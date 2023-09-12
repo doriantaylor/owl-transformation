@@ -6,6 +6,7 @@ digraph {
     subgraph {
         node [shape=box, style=dashed];
         rdfs_Resource [label="rdfs:Resource", target="_parent", href="https://www.w3.org/TR/rdf-schema/#ch_resource"];
+        http_StatusCode [label="http:StatusCode", target="_parent", href="https://www.w3.org/TR/HTTP-in-RDF10/#StatusCodeClass"];
     }
 
     // our classes
@@ -16,6 +17,7 @@ digraph {
         tfo_Parameter [label="tfo:Parameter", target="_parent", href="https://vocab.methodandstructure.com/transformation#Parameter"];
         tfo_ParameterList [label="tfo:ParameterList", target="_parent", href="https://vocab.methodandstructure.com/transformation#ParameterList"];
         tfo_Queue [label="tfo:Queue", target="_parent", href="https://vocab.methodandstructure.com/transformation#Queue"];
+        tfo_Insertion [label="tfo:Insertion", target="_parent", href="https://vocab.methodandstructure.com/transformation#Insertion"];
         tfo_TransformList [label="tfo:TransformList", target="_parent", href="https://vocab.methodandstructure.com/transformation#TransformList"];
         tfo_Partial [label="tfo:Partial", target="_parent", href="https://vocab.methodandstructure.com/transformation#Partial"];
         tfo_Application [label="tfo:Application", target="_parent", href="https://vocab.methodandstructure.com/transformation#Application"];
@@ -46,6 +48,8 @@ digraph {
     tfo_parameter [label="tfo:parameter", target="_parent", href="https://vocab.methodandstructure.com/transformation#parameter"];
     tfo_parameter_list [label="tfo:parameter-list", target="_parent", href="https://vocab.methodandstructure.com/transformation#parameter-list"];
     tfo_default [label="tfo:default", target="_parent", href="https://vocab.methodandstructure.com/transformation#default"];
+    tfo_triggers [label="tfo:triggers", target="_parent", href="https://vocab.methodandstructure.com/transformation#triggers"];
+
 
     tfo_completes [label="tfo:completes", target="_parent", href="https://vocab.methodandstructure.com/transformation#completes"];
     tfo_input [label="tfo:input", target="_parent", href="https://vocab.methodandstructure.com/transformation#input"];
@@ -53,11 +57,14 @@ digraph {
     tfo_transform [label="tfo:transform", target="_parent", href="https://vocab.methodandstructure.com/transformation#transform"];
 
     tfo_member [label="tfo:member", target="_parent", href="https://vocab.methodandstructure.com/transformation#member"];
-    tfo_member_list [label="tfo:member-list", target="_parent", href="https://vocab.methodandstructure.com/transformation#member-lits"];
+    tfo_member_list [label="tfo:member-list", target="_parent", href="https://vocab.methodandstructure.com/transformation#member-list"];
+    tfo_next [label="tfo:next", target="_parent", href="https://vocab.methodandstructure.com/transformation#next"];
     tfo_precedes [label="tfo:precedes", target="_parent", href="https://vocab.methodandstructure.com/transformation#precedes"];
     tfo_follows [label="tfo:follows", target="_parent", href="https://vocab.methodandstructure.com/transformation#follows"];
     tfo_first [label="tfo:first", target="_parent", href="https://vocab.methodandstructure.com/transformation#first"];
     tfo_last [label="tfo:last", target="_parent", href="https://vocab.methodandstructure.com/transformation#last"];
+    tfo_condition [label="tfo:condition", target="_parent", href="https://vocab.methodandstructure.com/transformation#condition"];
+    tfo_target [label="tfo:target", target="_parent", href="https://vocab.methodandstructure.com/transformation#target"];
 
     subgraph {
         edge [style=dashed, label="rdfs:subPropertyOf"];
@@ -79,11 +86,17 @@ digraph {
         tfo_Transform -> tfo_parameter_list;
         tfo_Transform -> tfo_precedes;
         tfo_Transform -> tfo_follows;
+        tfo_Transform -> tfo_triggers;
 
         tfo_Parameter -> tfo_default;
 
         tfo_Queue -> tfo_member;
         tfo_Queue -> tfo_member_list;
+
+        tfo_Queue -> tfo_next;
+
+        tfo_Insertion -> tfo_condition;
+        tfo_Insertion -> tfo_target;
 
         tfo_Partial -> tfo_transform;
 
@@ -105,9 +118,15 @@ digraph {
         tfo_member      -> tfo_Partial;
         tfo_member_list -> tfo_TransformList;
 
+        tfo_next -> tfo_Queue;
+
         tfo_transform -> tfo_Transform;
         tfo_precedes  -> tfo_Transform;
         tfo_follows   -> tfo_Transform;
+
+        tfo_triggers  -> tfo_Insertion;
+        tfo_target    -> tfo_Transform;
+        tfo_condition -> http_StatusCode;
 
         tfo_completes -> tfo_Partial;
 
