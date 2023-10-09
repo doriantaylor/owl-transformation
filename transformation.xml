@@ -10,12 +10,13 @@
       xmlns:dct="http://purl.org/dc/terms/"
       xmlns:skos="http://www.w3.org/2004/02/skos/core#"
       xmlns:prov="http://www.w3.org/ns/prov#"
+      xmlns:dcat="http://www.w3.org/ns/dcat#"
       xmlns:bibo="http://purl.org/ontology/bibo/"
       xmlns:foaf="http://xmlns.com/foaf/0.1/"
       xmlns:vann="http://purl.org/vocab/vann/"
       xmlns:ci="https://vocab.methodandstructure.com/content-inventory#"
       xmlns:tfo="https://vocab.methodandstructure.com/transformation#"
-      prefix="rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# xsd: http://www.w3.org/2001/XMLSchema# owl: http://www.w3.org/2002/07/owl# sh: http://www.w3.org/ns/shacl# httpv: http://www.w3.org/2011/http# dct: http://purl.org/dc/terms/ skos: http://www.w3.org/2004/02/skos/core# prov: http://www.w3.org/ns/prov# bibo: http://purl.org/ontology/bibo/ foaf: http://xmlns.com/foaf/0.1/ vann: http://purl.org/vocab/vann/ ci: https://vocab.methodandstructure.com/content-inventory# tfo: https://vocab.methodandstructure.com/transformation#"
+      prefix="rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# xsd: http://www.w3.org/2001/XMLSchema# owl: http://www.w3.org/2002/07/owl# sh: http://www.w3.org/ns/shacl# httpv: http://www.w3.org/2011/http# dct: http://purl.org/dc/terms/ skos: http://www.w3.org/2004/02/skos/core# prov: http://www.w3.org/ns/prov# dcat: http://www.w3.org/ns/dcat# bibo: http://purl.org/ontology/bibo/ foaf: http://xmlns.com/foaf/0.1/ vann: http://purl.org/vocab/vann/ ci: https://vocab.methodandstructure.com/content-inventory# tfo: https://vocab.methodandstructure.com/transformation#"
       xml:lang="en">
   <head>
     <title about="#" property="dct:title">Transformation Functions Ontology</title>
@@ -42,6 +43,7 @@
         <dd property="dct:modified" datatype="xsd:dateTime" content="2020-07-03T04:49:40Z">July 2, 2020</dd>
         <dd property="dct:modified" datatype="xsd:dateTime" content="2023-08-27T00:30:09Z">August 27, 2023</dd>
         <dd property="dct:modified" datatype="xsd:dateTime" content="2023-09-06T20:54:02Z">September 6, 2023</dd>
+        <dd property="dct:modified" datatype="xsd:dateTime" content="2023-10-09T19:04:07Z">October 9, 2023</dd>
         <dt>Namespace URI</dt>
         <dd><a href="#"><code>https://vocab.methodandstructure.com/transformation#</code></a></dd>
         <dt>Preferred Namespace Prefix</dt>
@@ -83,7 +85,7 @@ ex:end a tfo:Parameter ;
   owl:maxCardinality 1 ;
   rdfs:range xsd:nonNegativeInteger .
 
-&lt;urn:uuid:1d85f168-1710-4bc8-b68b-c7513483c228&gt; a tfo:Application ;
+&lt;urn:uuid:1d85f168-1710-4bc8-b68b-c7513483c228&gt; a tfo:Invocation ;
   prov:startedAtTime "2020-01-20T16:46:27.043Z"^^xsd:dateTime ;
   prov:endedAtTime "2020-01-20T16:46:27.051Z"^^xsd:dateTime ;
   tfo:transform ex:range ;
@@ -92,13 +94,28 @@ ex:end a tfo:Parameter ;
   ex:end 31337 ;
   tfo:output &lt;ni:///sha-256;QqNiOgLJk13nOs8Mn4prYtEIZZfwuiju2y4cT_YCOlI&gt; .</pre>
       <p>The preceding example defines a transformation function, along with its parameters, and relates it to a fictional implementation embedded in a <abbr>JAR</abbr> somewhere (the exact way a transform's implementation is resolved is out of scope for this vocabulary). At the bottom is an imaginary application of the transformation function, along with values for supplied parameters. The input and output are designated by digest URIs, which can be resolved to their corresponding representations.</p>
-      <p>This vocabulary extends <a href="https://www.w3.org/TR/prov-o/">the Provenance Ontology</a>, by way of refining the <a href="https://www.w3.org/TR/prov-o/#SoftwareAgent"><code>prov:SoftwareAgent</code></a> and <a href="https://www.w3.org/TR/prov-o/#Activity"><code>prov:Activity</code></a> classes, and related properties. For instance, a record can use its inherited <abbr>PROV</abbr> properties to store metrics on the time it took to execute the function over the input.</p>
+      <p>This vocabulary extends the <a about="#" rel="owl:imports" resource="dcat:" href="https://www.w3.org/TR/vocab-dcat-2/">Data Catalog Vocabulary</a> by making <code>tfo:Transform</code> a subclass of <a href="https://www.w3.org/TR/vocab-dcat-2/#Class:Data_Service"><code>dcat:DataService</code></a> and <a about="#" resource="prov:" href="https://www.w3.org/TR/prov-o/">the Provenance Ontology</a>, by way of refining the <a href="https://www.w3.org/TR/prov-o/#Activity"><code>prov:Activity</code></a> class and related properties. For instance, a record can use its inherited <abbr>PROV</abbr> properties to store metrics on the time it took to execute the function over the input.</p>
     </div>
     <section>
       <h2>Classes</h2>
       <figure>
         <object data="transformation-classes.svg"><img src="transformation-classes" alt=""/></object>
       </figure>
+      <section>
+        <h3>Bundles</h3>
+        <p>The Transformation Functions Ontology includes a basic bundling class that affords the reuse of parameters, e.g. for configuration.</p>
+        <section id="Bundle" about="[tfo:Bundle]" typeof="owl:Class">
+          <h4 property="rdfs:label"><code>Bundle</code></h4>
+          <p property="rdfs:comment">This class provides a basic mechanism to yoke a set of transformation functions together.</p>
+          <dl>
+            <dt>Subclass of:</dt>
+            <dd><a rel="rdfs:subClassOf" resource="dcat:Catalog" href="https://www.w3.org/TR/vocab-dcat-2/#Class:Catalog"><code>dcat:Catalog</code></a></dd>
+            <dd><a rel="rdfs:subClassOf" resource="prov:SoftwareAgent" href="https://www.w3.org/TR/prov-o/#SoftwareAgent"><code>prov:SoftwareAgent</code></a></dd>
+            <dt>Properties:</dt>
+            <dd rev="rdfs:domain"><a href="#implementation"><code>tfo:implementation</code></a></dd>
+          </dl>
+        </section>
+      </section>
       <section>
         <h3>Transforms</h3>
         <p>A <code>tfo:Transform</code> is essentially a function definition, specifying input and output constraints, and parameters in both named and positional representations.</p>
@@ -107,12 +124,12 @@ ex:end a tfo:Parameter ;
           <p property="rdfs:comment">This class provides a specification for a transformation function.</p>
           <dl>
             <dt>Subclass of:</dt>
-            <dd><a rel="rdfs:subClassOf" resource="prov:SoftwareAgent" href="https://www.w3.org/TR/prov-o/#SoftwareAgent"><code>prov:SoftwareAgent</code></a></dd>
+            <dd><a rel="rdfs:subClassOf" resource="dcat:DataService" href="https://www.w3.org/TR/vocab-dcat-2/#Class:Data_Service"><code>dcat:DataService</code></a></dd>
+            <dd><a rel="rdfs:subClassOf" resource="prov:Entity" href="https://www.w3.org/TR/prov-o/#Entity"><code>prov:Entity</code></a></dd>
             <dt>Properties:</dt>
             <!-- WTF HTML5 -->
-            <dd rev="rdfs:domain"><a href="#implementation"><code>tfo:implementation</code></a></dd>
-            <dd rev="rdfs:domain"><a href="#parameter"><code>tfo:parameter</code></a></dd>
-            <dd rev="rdfs:domain"><a href="#parameter-list"><code>tfo:parameter-list</code></a></dd>
+            <dd about="dcat:DataService" rev="rdfs:domain"><a href="#parameter"><code>tfo:parameter</code></a></dd>
+            <dd about="dcat:DataService" rev="rdfs:domain"><a href="#parameter-list"><code>tfo:parameter-list</code></a></dd>
             <dd rev="rdfs:domain"><a href="#accepts"><code>tfo:accepts</code></a></dd>
             <dd rev="rdfs:domain"><a href="#returns"><code>tfo:returns</code></a></dd>
             <dd rev="rdfs:domain"><a href="#prefers"><code>tfo:prefers</code></a></dd>
@@ -124,7 +141,7 @@ ex:end a tfo:Parameter ;
           </dl>
         </section>
         <section id="MarkupTransform" about="[tfo:MarkupTransform]" typeof="owl:Class">
-          <h4 property="rdfs:label"><code>MarkupTransform</code></h4>
+          <h4><del property="owl:deprecated" datatype="xsd:boolean" content="true"><code property="rdfs:label">MarkupTransform</code></del></h4>
           <p property="rdfs:comment">This class represents the set of transformation functions that operate exclusively over (HTML/XML) markup.</p>
           <dl>
             <dt>Subclass of:</dt>
@@ -146,8 +163,11 @@ ex:end a tfo:Parameter ;
             <dd><a rel="rdfs:subClassOf" resource="rdf:Property" href="https://www.w3.org/TR/rdf-schema/#ch_property"><code>rdf:Property</code></a></dd>
             <dt>Property restrictions:</dt>
             <dd rel="rdfs:subClassOf" resource="_:op1">
-              <a rel="owl:onProperty" resource="rdfs:domain" href="https://www.w3.org/TR/rdf-schema/#ch_domain"><code>rdfs:domain</code></a> &#x2208; <a rel="owl:allValuesFrom" href="#Partial"><code>tfo:Partial</code></a>
-            </dd>
+              <a rel="owl:onProperty" resource="rdfs:domain" href="https://www.w3.org/TR/rdf-schema/#ch_domain"><code>rdfs:domain</code></a> &#x2208;
+              <span rel="owl:allValuesFrom" resource="_:E0U5-E-2m20e9akyFS7CJK">
+                <span rel="owl:unionOf" resource="_:ERYaN15IEBIX5V9Qjn1gSJ">(<a rel="rdf:first" href="#Partial"><code>tfo:Partial</code></a> <span about="_:ERYaN15IEBIX5V9Qjn1gSJ" rel="rdf:rest" resource="_:Elw4xkTlnNqDG4rt5jhIUJ">&#x222a;</span> <a about="_:Elw4xkTlnNqDG4rt5jhIUJ" rel="rdf:first" href="#Bundle"><code>tfo:Bundle</code></a><span about="_:Elw4xkTlnNqDG4rt5jhIUJ" rel="rdf:rest" resource="rdf:nil">)</span>
+              </span>
+              </span></dd>
             <dt>Properties:</dt>
             <dd><a rev="rdfs:domain" href="#default"><code>tfo:default</code></a></dd>
           </dl>
@@ -178,7 +198,7 @@ ex:end a tfo:Parameter ;
             <p>An inference rule that cannot be described in RDFS or OWL is that <code>?q tfo:member-list ( ?a ?b ) .</code> implies  <code>?q tfo:member ?a, ?b .</code></p>
           </aside>
           <aside role="note" property="skos:note">
-            <p>Given that <code>tfo:Application</code> is a subclass of <code>tfo:Partial</code>, there is nothing <em>in principle</em> preventing the former from being introduced into a queue. If this happens, we ignore any <code>tfo:input</code> or <code>tfo:output</code> statemments associated with the application of the function.</p>
+            <p>Given that <code>tfo:Invocation</code> is a subclass of <code>tfo:Partial</code>, there is nothing <em>in principle</em> preventing the former from being introduced into a queue. If this happens, we ignore any <code>tfo:input</code> or <code>tfo:output</code> statemments associated with the application of the function.</p>
           </aside>
           <dl>
             <dt>Subclass of:</dt>
@@ -239,14 +259,16 @@ ex:end a tfo:Parameter ;
         </section>
       </section>
       <section>
-        <h3>Function Application</h3>
-        <p>Recording partial and full function applications is important for <em>memoizing</em> computations.</p>
-        <section id="Application" about="[tfo:Application]" typeof="owl:Class">
-          <h4 property="rdfs:label"><code>Application</code></h4>
-          <p property="rdfs:comment">This class represents an application of a transformation function, connecting a specific input and scalar parameters with its output.</p>
+        <h3>Function Invocation</h3>
+        <p>Recording partial and full function invocations is important for <em>memoizing</em> computations.</p>
+        <section id="Invocation" about="[tfo:Invocation]" typeof="owl:Class">
+          <h4 property="rdfs:label"><code>Invocation</code></h4>
+          <p property="rdfs:comment">This class represents an invocation of a transformation function, connecting a specific input and scalar parameters with its output.</p>
           <dl>
             <dt>Subclass of:</dt>
             <dd><a rel="rdfs:subClassOf" href="#Partial"><code>tfo:Partial</code></a></dd>
+            <dt>Same as:</dt>
+            <dd><code rel="owl:sameAs" resource="#Application"><del property="owl:deprecated" datatype="xsd:boolean" content="true">tfo:Application</del></code></dd>
             <dt>Properties:</dt>
             <dd><a rev="rdfs:domain" href="#completes"><code>tfo:completes</code></a></dd>
             <dd><a rev="rdfs:domain" href="#input"><code>tfo:input</code></a></dd>
@@ -327,11 +349,11 @@ ex:end a tfo:Parameter ;
           <h4 property="rdfs:label"><code>implementation</code></h4>
           <p property="rdfs:comment">URI to the implementation of the function.</p>
           <aside role="note">
-            <p property="skos:usageNote">The URI is meant to be dereferenced by an internal implementation, e.g. file:, jar:, or an idiosyncratic scheme like urn:x-python:.</p>
+            <p property="skos:usageNote">The URI is meant to be dereferenced by an internal implementation, e.g. <code>file:</code>, <code>jar:</code>, or an idiosyncratic scheme like <code>urn:x-python:</code>.</p>
           </aside>
           <dl>
             <dt>Domain:</dt>
-            <dd><a rel="rdfs:domain" href="#Transform"><code>tfo:Transform</code></a></dd>
+            <dd><a rel="rdfs:domain" href="#Bundle"><code>tfo:Bundle</code></a></dd>
             <dt>Range:</dt>
             <dd><a rel="rdfs:range" href="https://www.w3.org/TR/rdf-schema/#ch_resource" resource="rdfs:Resource"><code>rdfs:Resource</code></a></dd>
           </dl>
@@ -520,10 +542,10 @@ ex:end a tfo:Parameter ;
         <p>This group of properties is responsible for relating <code>tfo:Transform</code> to the actual data objects they transform.</p>
         <section id="completes" about="[tfo:completes]" typeof="owl:ObjectProperty owl:FunctionalProperty">
           <h4 property="rdfs:label"><code>completes</code></h4>
-          <p property="rdfs:comment">Identifies a <code>tfo:Partial</code> function that this <code>tfo:Application</code> completes.</p>
+          <p property="rdfs:comment">Identifies a <code>tfo:Partial</code> function that this <code>tfo:Invocation</code> completes.</p>
           <dl>
             <dt>Domain:</dt>
-            <dd><a rel="rdfs:domain" href="#Application"><code>tfo:Application</code></a></dd>
+            <dd><a rel="rdfs:domain" href="#Invocation"><code>tfo:Invocation</code></a></dd>
             <dt>Range:</dt>
             <dd><a rel="rdfs:range" href="#Partial"><code>tfo:Partial</code></a></dd>
           </dl>
@@ -533,6 +555,8 @@ ex:end a tfo:Parameter ;
           <h4 property="rdfs:label"><code>transform</code></h4>
           <p property="rdfs:comment">Specifies the transform associated with this particular application</p>
           <dl>
+            <dt>Subproperty of:</dt>
+            <dd><a rel="rdfs:subPropertyOf" href="#input"><code>tfo:input</code></a></dd>
             <dt>Domain:</dt>
             <dd><a rel="rdfs:domain" href="#Partial"><code>tfo:Partial</code></a></dd>
             <dt>Range:</dt>
@@ -544,8 +568,10 @@ ex:end a tfo:Parameter ;
           <h4 property="rdfs:label"><code>input</code></h4>
           <p property="rdfs:comment">Specifies the resource that was the input of the transformation function.</p>
           <dl>
+            <dt>Subproperty of:</dt>
+            <dd><a rel="rdfs:PropertyOf" resource="prov:used" href="https://www.w3.org/TR/prov-o/#used"><code>prov:used</code></a></dd>
             <dt>Domain:</dt>
-            <dd><a rel="rdfs:domain" href="#Application"><code>tfo:Application</code></a></dd>
+            <dd><a rel="rdfs:domain" href="#Invocation"><code>tfo:Invocation</code></a></dd>
             <dt>Range:</dt>
             <dd><a rel="rdfs:range" href="https://www.w3.org/TR/rdf-schema/#ch_resource" resource="rdfs:Resource"><code>rdfs:Resource</code></a></dd>
           </dl>
@@ -556,7 +582,7 @@ ex:end a tfo:Parameter ;
           <p property="rdfs:comment">Specifies the resource that was the output of the transformation function.</p>
           <dl>
             <dt>Domain:</dt>
-            <dd><a rel="rdfs:domain" href="#Application"><code>tfo:Application</code></a></dd>
+            <dd><a rel="rdfs:domain" href="#Invocation"><code>tfo:Invocation</code></a></dd>
             <dt>Range:</dt>
             <dd><a rel="rdfs:range" href="https://www.w3.org/TR/rdf-schema/#ch_resource" resource="rdfs:Resource"><code>rdfs:Resource</code></a></dd>
           </dl>

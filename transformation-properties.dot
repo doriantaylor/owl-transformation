@@ -7,12 +7,14 @@ digraph {
         node [shape=box, style=dashed];
         rdfs_Resource [label="rdfs:Resource", target="_parent", href="https://www.w3.org/TR/rdf-schema/#ch_resource"];
         http_StatusCode [label="http:StatusCode", target="_parent", href="https://www.w3.org/TR/HTTP-in-RDF10/#StatusCodeClass"];
+        dcat_DataService [label="dcat:DataService" target="_parent", href="https://www.w3.org/TR/vocab-dcat-2/#Class:Data_Service"];
     }
 
     // our classes
 
     subgraph {
         node [shape=box, style=""];
+        tfo_Bundle [label="tfo:Bundle", target="_parent", href="https://vocab.methodandstructure.com/transformation#Bundle"];
         tfo_Transform [label="tfo:Transform", target="_parent", href="https://vocab.methodandstructure.com/transformation#Transform"];
         tfo_Parameter [label="tfo:Parameter", target="_parent", href="https://vocab.methodandstructure.com/transformation#Parameter"];
         tfo_ParameterList [label="tfo:ParameterList", target="_parent", href="https://vocab.methodandstructure.com/transformation#ParameterList"];
@@ -20,7 +22,7 @@ digraph {
         tfo_Insertion [label="tfo:Insertion", target="_parent", href="https://vocab.methodandstructure.com/transformation#Insertion"];
         tfo_TransformList [label="tfo:TransformList", target="_parent", href="https://vocab.methodandstructure.com/transformation#TransformList"];
         tfo_Partial [label="tfo:Partial", target="_parent", href="https://vocab.methodandstructure.com/transformation#Partial"];
-        tfo_Application [label="tfo:Application", target="_parent", href="https://vocab.methodandstructure.com/transformation#Application"];
+        tfo_Invocation [label="tfo:Invocation", target="_parent", href="https://vocab.methodandstructure.com/transformation#Invocation"];
     }
 
     // our datatypes
@@ -37,7 +39,6 @@ digraph {
         prov_generated [label="prov:generated", target="_parent", href="https://www.w3.org/TR/prov-o/#generated"];
         prov_wasAttributedTo [label="prov:wasAttributedTo", target="_parent", href="https://www.w3.org/TR/prov-o/#wasAttributedTo"];
     }
-
 
     // our properties
 
@@ -69,9 +70,8 @@ digraph {
     subgraph {
         edge [style=dashed, label="rdfs:subPropertyOf"];
         tfo_prefers   -> tfo_returns;
-        tfo_input     -> prov_used;
+        tfo_transform -> tfo_input -> prov_used;
         tfo_output    -> prov_generated;
-        tfo_transform -> prov_wasAttributedTo;
 
         tfo_first -> tfo_member;
         tfo_last  -> tfo_member;
@@ -79,11 +79,11 @@ digraph {
 
     subgraph {
         edge [style=dashed, dir=back, label="rdfs:domain"];
-        tfo_Transform -> tfo_accepts;
-        tfo_Transform -> tfo_returns;
-        tfo_Transform -> tfo_implementation;
-        tfo_Transform -> tfo_parameter;
-        tfo_Transform -> tfo_parameter_list;
+        tfo_Bundle -> tfo_implementation;
+        dcat_DataService -> tfo_accepts;
+        dcat_DataService -> tfo_returns;
+        dcat_DataService -> tfo_parameter;
+        dcat_DataService -> tfo_parameter_list;
         tfo_Transform -> tfo_precedes;
         tfo_Transform -> tfo_follows;
         tfo_Transform -> tfo_triggers;
@@ -100,9 +100,9 @@ digraph {
 
         tfo_Partial -> tfo_transform;
 
-        tfo_Application -> tfo_completes;
-        tfo_Application -> tfo_input;
-        tfo_Application -> tfo_output;
+        tfo_Invocation -> tfo_completes;
+        tfo_Invocation -> tfo_input;
+        tfo_Invocation -> tfo_output;
     }
 
     subgraph {

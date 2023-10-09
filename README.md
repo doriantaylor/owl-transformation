@@ -21,6 +21,8 @@ August 27, 2023
 
 September 6, 2023
 
+October 9, 2023
+
 Namespace URI  
 [`https://vocab.methodandstructure.com/transformation#`](https://vocab.methodandstructure.com/transformation#)
 
@@ -82,7 +84,7 @@ Consider the following example:
       owl:maxCardinality 1 ;
       rdfs:range xsd:nonNegativeInteger .
 
-    <urn:uuid:1d85f168-1710-4bc8-b68b-c7513483c228> a tfo:Application ;
+    <urn:uuid:1d85f168-1710-4bc8-b68b-c7513483c228> a tfo:Invocation ;
       prov:startedAtTime "2020-01-20T16:46:27.043Z"^^xsd:dateTime ;
       prov:endedAtTime "2020-01-20T16:46:27.051Z"^^xsd:dateTime ;
       tfo:transform ex:range ;
@@ -99,10 +101,15 @@ application of the transformation function, along with values for
 supplied parameters. The input and output are designated by digest URIs,
 which can be resolved to their corresponding representations.
 
-This vocabulary extends [the Provenance
-Ontology](https://www.w3.org/TR/prov-o/), by way of refining the
-[`prov:SoftwareAgent`](https://www.w3.org/TR/prov-o/#SoftwareAgent) and
-[`prov:Activity`](https://www.w3.org/TR/prov-o/#Activity) classes, and
+This vocabulary extends the
+<a href="https://www.w3.org/TR/vocab-dcat-2/" about="#"
+rel="owl:imports" resource="dcat:">Data Catalog Vocabulary</a> by making
+`tfo:Transform` a subclass of
+[`dcat:DataService`](https://www.w3.org/TR/vocab-dcat-2/#Class:Data_Service)
+and
+<a href="https://www.w3.org/TR/prov-o/" about="#" resource="prov:">the
+Provenance Ontology</a>, by way of refining the
+[`prov:Activity`](https://www.w3.org/TR/prov-o/#Activity) class and
 related properties. For instance, a record can use its inherited PROV
 properties to store metrics on the time it took to execute the function
 over the input.
@@ -114,6 +121,37 @@ over the input.
 ## Classes
 
 ![](https://vocab.methodandstructure.com/transformation-classes)
+
+<div class="section">
+
+### Bundles
+
+The Transformation Functions Ontology includes a basic bundling class
+that affords the reuse of parameters, e.g. for configuration.
+
+<div id="Bundle" class="section" about="[tfo:Bundle]"
+typeof="owl:Class">
+
+#### `Bundle`
+
+This class provides a basic mechanism to yoke a set of transformation
+functions together.
+
+Subclass of:  
+<a href="https://www.w3.org/TR/vocab-dcat-2/#Class:Catalog"
+rel="rdfs:subClassOf"
+resource="dcat:Catalog"><code>dcat:Catalog</code></a>
+
+<a href="https://www.w3.org/TR/prov-o/#SoftwareAgent"
+rel="rdfs:subClassOf"
+resource="prov:SoftwareAgent"><code>prov:SoftwareAgent</code></a>
+
+Properties:  
+[`tfo:implementation`](https://vocab.methodandstructure.com/transformation#implementation)
+
+</div>
+
+</div>
 
 <div class="section">
 
@@ -131,13 +169,14 @@ typeof="owl:Class">
 This class provides a specification for a transformation function.
 
 Subclass of:  
-<a href="https://www.w3.org/TR/prov-o/#SoftwareAgent"
+<a href="https://www.w3.org/TR/vocab-dcat-2/#Class:Data_Service"
 rel="rdfs:subClassOf"
-resource="prov:SoftwareAgent"><code>prov:SoftwareAgent</code></a>
+resource="dcat:DataService"><code>dcat:DataService</code></a>
+
+<a href="https://www.w3.org/TR/prov-o/#Entity" rel="rdfs:subClassOf"
+resource="prov:Entity"><code>prov:Entity</code></a>
 
 Properties:  
-[`tfo:implementation`](https://vocab.methodandstructure.com/transformation#implementation)
-
 [`tfo:parameter`](https://vocab.methodandstructure.com/transformation#parameter)
 
 [`tfo:parameter-list`](https://vocab.methodandstructure.com/transformation#parameter-list)
@@ -163,7 +202,7 @@ Properties:
 <div id="MarkupTransform" class="section" about="[tfo:MarkupTransform]"
 typeof="owl:Class">
 
-#### `MarkupTransform`
+#### ~~`MarkupTransform`~~
 
 This class represents the set of transformation functions that operate
 exclusively over (HTML/XML) markup.
@@ -204,8 +243,17 @@ resource="rdf:Property"><code>rdf:Property</code></a>
 Property restrictions:  
 <a href="https://www.w3.org/TR/rdf-schema/#ch_domain"
 rel="owl:onProperty" resource="rdfs:domain"><code>rdfs:domain</code></a>
-∈ <a href="https://vocab.methodandstructure.com/transformation#Partial"
-rel="owl:allValuesFrom"><code>tfo:Partial</code></a>
+∈ <span rel="owl:allValuesFrom" resource="_:E0U5-E-2m20e9akyFS7CJK">
+<span rel="owl:unionOf"
+resource="_:ERYaN15IEBIX5V9Qjn1gSJ">(<a href="https://vocab.methodandstructure.com/transformation#Partial"
+rel="rdf:first"><code>tfo:Partial</code></a> <span
+about="_:ERYaN15IEBIX5V9Qjn1gSJ" rel="rdf:rest"
+resource="_:Elw4xkTlnNqDG4rt5jhIUJ">∪</span>
+<a href="https://vocab.methodandstructure.com/transformation#Bundle"
+about="_:Elw4xkTlnNqDG4rt5jhIUJ"
+rel="rdf:first"><code>tfo:Bundle</code></a><span
+about="_:Elw4xkTlnNqDG4rt5jhIUJ" rel="rdf:rest"
+resource="rdf:nil">)</span> </span> </span>
 
 Properties:  
 <a href="https://vocab.methodandstructure.com/transformation#default"
@@ -260,7 +308,7 @@ or by dynamic sorting at runtime.
 An inference rule that cannot be described in RDFS or OWL is that
 `?q tfo:member-list ( ?a ?b ) .` implies `?q tfo:member ?a, ?b .`
 
-Given that `tfo:Application` is a subclass of `tfo:Partial`, there is
+Given that `tfo:Invocation` is a subclass of `tfo:Partial`, there is
 nothing *in principle* preventing the former from being introduced into
 a queue. If this happens, we ignore any `tfo:input` or `tfo:output`
 statemments associated with the application of the function.
@@ -376,22 +424,25 @@ rev="rdfs:domain"><code>tfo:target</code></a>
 
 <div class="section">
 
-### Function Application
+### Function Invocation
 
-Recording partial and full function applications is important for
+Recording partial and full function invocations is important for
 *memoizing* computations.
 
-<div id="Application" class="section" about="[tfo:Application]"
+<div id="Invocation" class="section" about="[tfo:Invocation]"
 typeof="owl:Class">
 
-#### `Application`
+#### `Invocation`
 
-This class represents an application of a transformation function,
+This class represents an invocation of a transformation function,
 connecting a specific input and scalar parameters with its output.
 
 Subclass of:  
 <a href="https://vocab.methodandstructure.com/transformation#Partial"
 rel="rdfs:subClassOf"><code>tfo:Partial</code></a>
+
+Same as:  
+`tfo:Application`
 
 Properties:  
 <a href="https://vocab.methodandstructure.com/transformation#completes"
@@ -530,11 +581,11 @@ typeof="owl:ObjectProperty owl:FunctionalProperty">
 URI to the implementation of the function.
 
 The URI is meant to be dereferenced by an internal implementation, e.g.
-file:, jar:, or an idiosyncratic scheme like urn:x-python:.
+`file:`, `jar:`, or an idiosyncratic scheme like `urn:x-python:`.
 
 Domain:  
-<a href="https://vocab.methodandstructure.com/transformation#Transform"
-rel="rdfs:domain"><code>tfo:Transform</code></a>
+<a href="https://vocab.methodandstructure.com/transformation#Bundle"
+rel="rdfs:domain"><code>tfo:Bundle</code></a>
 
 Range:  
 <a href="https://www.w3.org/TR/rdf-schema/#ch_resource" rel="rdfs:range"
@@ -873,13 +924,12 @@ typeof="owl:ObjectProperty owl:FunctionalProperty">
 
 #### `completes`
 
-Identifies a `tfo:Partial` function that this `tfo:Application`
+Identifies a `tfo:Partial` function that this `tfo:Invocation`
 completes.
 
 Domain:  
-<a
-href="https://vocab.methodandstructure.com/transformation#Application"
-rel="rdfs:domain"><code>tfo:Application</code></a>
+<a href="https://vocab.methodandstructure.com/transformation#Invocation"
+rel="rdfs:domain"><code>tfo:Invocation</code></a>
 
 Range:  
 <a href="https://vocab.methodandstructure.com/transformation#Partial"
@@ -896,6 +946,10 @@ typeof="owl:ObjectProperty owl:FunctionalProperty">
 #### `transform`
 
 Specifies the transform associated with this particular application
+
+Subproperty of:  
+<a href="https://vocab.methodandstructure.com/transformation#input"
+rel="rdfs:subPropertyOf"><code>tfo:input</code></a>
 
 Domain:  
 <a href="https://vocab.methodandstructure.com/transformation#Partial"
@@ -918,10 +972,13 @@ typeof="owl:ObjectProperty owl:FunctionalProperty">
 Specifies the resource that was the input of the transformation
 function.
 
+Subproperty of:  
+<a href="https://www.w3.org/TR/prov-o/#used" rel="rdfs:PropertyOf"
+resource="prov:used"><code>prov:used</code></a>
+
 Domain:  
-<a
-href="https://vocab.methodandstructure.com/transformation#Application"
-rel="rdfs:domain"><code>tfo:Application</code></a>
+<a href="https://vocab.methodandstructure.com/transformation#Invocation"
+rel="rdfs:domain"><code>tfo:Invocation</code></a>
 
 Range:  
 <a href="https://www.w3.org/TR/rdf-schema/#ch_resource" rel="rdfs:range"
@@ -941,9 +998,8 @@ Specifies the resource that was the output of the transformation
 function.
 
 Domain:  
-<a
-href="https://vocab.methodandstructure.com/transformation#Application"
-rel="rdfs:domain"><code>tfo:Application</code></a>
+<a href="https://vocab.methodandstructure.com/transformation#Invocation"
+rel="rdfs:domain"><code>tfo:Invocation</code></a>
 
 Range:  
 <a href="https://www.w3.org/TR/rdf-schema/#ch_resource" rel="rdfs:range"

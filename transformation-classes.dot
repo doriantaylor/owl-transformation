@@ -8,6 +8,9 @@ digraph {
     subgraph {
         node [style=dashed];
         prov_Activity [label="prov:Activity", target="_parent", href="https://www.w3.org/TR/prov-o/#Activity"];
+        prov_Entity [label="prov:Entity", target="_parent", href="https://www.w3.org/TR/prov-o/#Entity"];
+        dcat_Catalog [label="dcat:Catalog" target="_parent", href="https://www.w3.org/TR/vocab-dcat-2/#Class:Catalog"];
+        dcat_DataService [label="dcat:DataService" target="_parent", href="https://www.w3.org/TR/vocab-dcat-2/#Class:Data_Service"];
         prov_SoftwareAgent [label="prov:SoftwareAgent", target="_parent", href="https://www.w3.org/TR/prov-o/#SoftwareAgent"];
         rdf_List      [label="rdf:List", target="_parent", href="https://www.w3.org/TR/rdf-schema/#ch_list"];
         rdf_Property  [label="rdf:Property", target="_parent", href="https://www.w3.org/TR/rdf-schema/#ch_property"];
@@ -15,12 +18,13 @@ digraph {
         http_StatusCode [label="http:StatusCode", target="_parent", href="https://www.w3.org/TR/HTTP-in-RDF10/#StatusCodeClass"];
         xsd_string    [label="xsd:string", target="_parent", href="https://www.w3.org/TR/xmlschema-2/#string"];
         xsd_token     [label="xsd:token", target="_parent", href="https://www.w3.org/TR/xmlschema-2/#token"];
-        rdf_nil       [label="rdf:nil", target="_parent", href="https://www.w3.org/TR/rdf-schema/#ch_nil"];
+        //rdf_nil       [label="rdf:nil", target="_parent", href="https://www.w3.org/TR/rdf-schema/#ch_nil"];
     }
 
     // our classes
 
-    tfo_Application [label="tfo:Application", target="_parent", href="https://vocab.methodandstructure.com/transformation#Application"];
+    tfo_Bundle [label="tfo:Bundle", target="_parent", href="https://vocab.methodandstructure.com/transformation#Bundle"];
+    tfo_Invocation [label="tfo:Invocation", target="_parent", href="https://vocab.methodandstructure.com/transformation#Invocation"];
     tfo_Parameter [label="tfo:Parameter", target="_parent", href="https://vocab.methodandstructure.com/transformation#Parameter"];
     tfo_ParameterList [label="tfo:ParameterList", target="_parent", href="https://vocab.methodandstructure.com/transformation#ParameterList"];
     tfo_Partial [label="tfo:Partial", target="_parent", href="https://vocab.methodandstructure.com/transformation#Partial"];
@@ -54,8 +58,11 @@ digraph {
 
     subgraph {
         edge [style=dashed, label="rdfs:subClassOf"];
-        tfo_Application      -> tfo_Partial -> prov_Activity;
-        tfo_MarkupTransform  -> tfo_Transform -> prov_SoftwareAgent;
+        tfo_Bundle           -> dcat_Catalog;
+        tfo_Bundle           -> prov_SoftwareAgent;
+        tfo_Invocation       -> tfo_Partial -> prov_Activity;
+        tfo_MarkupTransform  -> tfo_Transform -> dcat_DataService;
+        tfo_Transform        -> prov_Entity;
         tfo_Parameter        -> rdf_Property;
         tfo_ParameterList    -> rdf_List;
         tfo_iregexp          -> tfo_regexp;
@@ -67,17 +74,17 @@ digraph {
 
     // main relations
 
-    tfo_Transform -> tfo_Parameter [label="tfo:parameter"];
-    tfo_Transform -> tfo_ParameterList [label="tfo:parameter-list"];
-    tfo_Transform -> rdfs_Resource [label="tfo:implementation"];
-    tfo_Transform -> tfo_content_type [label="tfo:accepts,\ntfo:returns"];
+    tfo_Bundle -> rdfs_Resource [label="tfo:implementation"];
+    dcat_DataService -> tfo_Parameter [label="tfo:parameter"];
+    dcat_DataService -> tfo_ParameterList [label="tfo:parameter-list"];
+    dcat_DataService -> tfo_content_type [label="tfo:accepts,\ntfo:returns"];
     // tfo_Transform -> tfo_content_type [label="tfo:returns"];
     tfo_Transform -> tfo_Transform [label="tfo:precedes,\ntfo:follows"];
     tfo_Transform -> tfo_Insertion [label="tfo:triggers"];
     tfo_Partial   -> tfo_Transform [label="tfo:transform"];
-    tfo_Application -> tfo_Partial [label="tfo:completes"];
-    tfo_Application -> rdfs_Resource [label="tfo:input"];
-    tfo_Application -> rdfs_Resource [label="tfo:output"];
+    tfo_Invocation -> tfo_Partial [label="tfo:completes"];
+    tfo_Invocation -> rdfs_Resource [label="tfo:input"];
+    tfo_Invocation -> rdfs_Resource [label="tfo:output"];
 
     tfo_Queue -> tfo_Queue [label="tfo:next"];
     tfo_Queue -> tfo_Transform [label="tfo:member,\ntfo:first,\ntfo:last"];
@@ -92,13 +99,14 @@ digraph {
 
     subgraph {
         edge [style=dashed];
-        tfo_Parameter -> tfo_Application [label="rdfs:domain"];
-        tfo_ParameterList -> tfo_Parameter [label="rdf:first"];
-        tfo_ParameterList -> tfo_ParameterList [label="rdf:rest"];
-        tfo_ParameterList -> rdf_nil [label="rdf:rest"];
-        tfo_TransformList -> tfo_Transform [label="rdf:first"];
-        tfo_TransformList -> tfo_Partial [label="rdf:first"];
-        tfo_TransformList -> tfo_TransformList [label="rdf:rest"];
-        tfo_TransformList -> rdf_nil [label="rdf:rest"];
+        dcat_Catalog -> dcat_DataService [label="dcat:service"];
+        //tfo_Parameter -> tfo_Invocation [label="rdfs:domain"];
+        //tfo_ParameterList -> tfo_Parameter [label="rdf:first"];
+        //tfo_ParameterList -> tfo_ParameterList [label="rdf:rest"];
+        //tfo_ParameterList -> rdf_nil [label="rdf:rest"];
+        //tfo_TransformList -> tfo_Transform [label="rdf:first"];
+        //tfo_TransformList -> tfo_Partial [label="rdf:first"];
+        //tfo_TransformList -> tfo_TransformList [label="rdf:rest"];
+        //tfo_TransformList -> rdf_nil [label="rdf:rest"];
     }
 }
