@@ -500,8 +500,9 @@ Specifies the list of content-types, in order of preference, that the
 function can process.
 
 Domain:  
-<a href="https://vocab.methodandstructure.com/transformation#Transform"
-rel="rdfs:domain"><code>tfo:Transform</code></a>
+<a href="https://www.w3.org/TR/vocab-dcat-2/#Class:Data_Service"
+rel="rdfs:domain"
+resource="dcat:DataService"><code>dcat:DataService</code></a>
 
 Range:  
 <span about="_:uo1" rel="owl:unionOf" resource="_:q1"> <a
@@ -526,8 +527,9 @@ Specifies the list of content-types, in order of preference, that the
 function is capable of returning.
 
 Domain:  
-<a href="https://vocab.methodandstructure.com/transformation#Transform"
-rel="rdfs:domain"><code>tfo:Transform</code></a>
+<a href="https://www.w3.org/TR/vocab-dcat-2/#Class:Data_Service"
+rel="rdfs:domain"
+resource="dcat:DataService"><code>dcat:DataService</code></a>
 
 Range:  
 <span about="_:uo2" rel="owl:unionOf" resource="_:q3"> <a
@@ -607,8 +609,9 @@ Parameters can either be supplied to the function as key-value pairs or
 sequentially.
 
 Domain:  
-<a href="https://vocab.methodandstructure.com/transformation#Transform"
-rel="rdfs:domain"><code>tfo:Transform</code></a>
+<a href="https://www.w3.org/TR/vocab-dcat-2/#Class:Data_Service"
+rel="rdfs:domain"
+resource="dcat:DataService"><code>dcat:DataService</code></a>
 
 Range:  
 <a href="https://vocab.methodandstructure.com/transformation#Parameter"
@@ -628,8 +631,9 @@ Specifies the sequence of parameters when the invocation method of the
 function is sequential.
 
 Domain:  
-<a href="https://vocab.methodandstructure.com/transformation#Transform"
-rel="rdfs:domain"><code>tfo:Transform</code></a>
+<a href="https://www.w3.org/TR/vocab-dcat-2/#Class:Data_Service"
+rel="rdfs:domain"
+resource="dcat:DataService"><code>dcat:DataService</code></a>
 
 Range:  
 <a

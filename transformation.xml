@@ -130,8 +130,8 @@ ex:end a tfo:Parameter ;
             <!-- WTF HTML5 -->
             <dd about="dcat:DataService" rev="rdfs:domain"><a href="#parameter"><code>tfo:parameter</code></a></dd>
             <dd about="dcat:DataService" rev="rdfs:domain"><a href="#parameter-list"><code>tfo:parameter-list</code></a></dd>
-            <dd rev="rdfs:domain"><a href="#accepts"><code>tfo:accepts</code></a></dd>
-            <dd rev="rdfs:domain"><a href="#returns"><code>tfo:returns</code></a></dd>
+            <dd about="dcat:DataService" rev="rdfs:domain"><a href="#accepts"><code>tfo:accepts</code></a></dd>
+            <dd about="dcat:DataService" rev="rdfs:domain"><a href="#returns"><code>tfo:returns</code></a></dd>
             <dd rev="rdfs:domain"><a href="#prefers"><code>tfo:prefers</code></a></dd>
             <dd rev="rdfs:domain"><a href="#precedes"><code>tfo:precedes</code></a></dd>
             <dd rev="rdfs:domain"><a href="#follows"><code>tfo:follows</code></a></dd>
@@ -300,7 +300,7 @@ ex:end a tfo:Parameter ;
           <p property="rdfs:comment">Specifies the list of content-types, in order of preference, that the function can process.</p>
           <dl>
             <dt>Domain:</dt>
-            <dd><a rel="rdfs:domain" href="#Transform"><code>tfo:Transform</code></a></dd>
+            <dd><a rel="rdfs:domain" resource="dcat:DataService" href="https://www.w3.org/TR/vocab-dcat-2/#Class:Data_Service"><code>dcat:DataService</code></a></dd>
             <dt>Range:</dt>
             <dd rel="rdfs:range">
               <span about="_:uo1" rel="owl:unionOf" resource="_:q1">
@@ -316,7 +316,7 @@ ex:end a tfo:Parameter ;
           <p property="rdfs:comment">Specifies the list of content-types, in order of preference, that the function is capable of returning.</p>
           <dl>
             <dt>Domain:</dt>
-            <dd><a rel="rdfs:domain" href="#Transform"><code>tfo:Transform</code></a></dd>
+            <dd><a rel="rdfs:domain" resource="dcat:DataService" href="https://www.w3.org/TR/vocab-dcat-2/#Class:Data_Service"><code>dcat:DataService</code></a></dd>
             <dt>Range:</dt>
             <dd rel="rdfs:range">
               <span about="_:uo2" rel="owl:unionOf" resource="_:q3">
@@ -367,7 +367,7 @@ ex:end a tfo:Parameter ;
           </aside>
           <dl>
             <dt>Domain:</dt>
-            <dd><a rel="rdfs:domain" href="#Transform"><code>tfo:Transform</code></a></dd>
+            <dd><a rel="rdfs:domain" resource="dcat:DataService" href="https://www.w3.org/TR/vocab-dcat-2/#Class:Data_Service"><code>dcat:DataService</code></a></dd>
             <dt>Range:</dt>
             <dd><a rel="rdfs:range" href="#Parameter"><code>tfo:Parameter</code></a></dd>
           </dl>
@@ -378,7 +378,7 @@ ex:end a tfo:Parameter ;
           <p property="rdfs:comment">Specifies the sequence of parameters when the invocation method of the function is sequential.</p>
           <dl>
             <dt>Domain:</dt>
-            <dd><a rel="rdfs:domain" href="#Transform"><code>tfo:Transform</code></a></dd>
+            <dd><a rel="rdfs:domain" resource="dcat:DataService" href="https://www.w3.org/TR/vocab-dcat-2/#Class:Data_Service"><code>dcat:DataService</code></a></dd>
             <dt>Range:</dt>
             <dd><a rel="rdfs:range" href="#ParameterList"><code>tfo:ParameterList</code></a></dd>
           </dl>
