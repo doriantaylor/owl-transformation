@@ -177,13 +177,13 @@ resource="dcat:DataService"><code>dcat:DataService</code></a>
 resource="prov:Entity"><code>prov:Entity</code></a>
 
 Properties:  
-[`tfo:parameter`](https://vocab.methodandstructure.com/transformation#parameter)
+[*`tfo:parameter`*](https://vocab.methodandstructure.com/transformation#parameter)
 
-[`tfo:parameter-list`](https://vocab.methodandstructure.com/transformation#parameter-list)
+[*`tfo:parameter-list`*](https://vocab.methodandstructure.com/transformation#parameter-list)
 
-[`tfo:accepts`](https://vocab.methodandstructure.com/transformation#accepts)
+[*`tfo:accepts`*](https://vocab.methodandstructure.com/transformation#accepts)
 
-[`tfo:returns`](https://vocab.methodandstructure.com/transformation#returns)
+[*`tfo:returns`*](https://vocab.methodandstructure.com/transformation#returns)
 
 [`tfo:prefers`](https://vocab.methodandstructure.com/transformation#prefers)
 
@@ -207,14 +207,17 @@ typeof="owl:Class">
 This class represents the set of transformation functions that operate
 exclusively over (HTML/XML) markup.
 
+This class has been deprecated since it only made sense in 2020 when
+this vocabulary was being used in a different context.
+
 Subclass of:  
 <a href="https://vocab.methodandstructure.com/transformation#Transform"
 rel="rdfs:subClassOf"><code>tfo:Transform</code></a>
 
 Properties:  
-[`tfo:by-xpath`](https://vocab.methodandstructure.com/transformation#by-xpath)
+[~~`tfo:by-xpath`~~](https://vocab.methodandstructure.com/transformation#by-xpath)
 
-[`tfo:not-by-xpath`](https://vocab.methodandstructure.com/transformation#not-by-xpath)
+[~~`tfo:not-by-xpath`~~](https://vocab.methodandstructure.com/transformation#not-by-xpath)
 
 </div>
 
@@ -437,11 +440,15 @@ typeof="owl:Class">
 This class represents an invocation of a transformation function,
 connecting a specific input and scalar parameters with its output.
 
+This class supersedes `tfo:Application`, which has been deprecated due
+to being too easily confused with a software application versus the
+application of a function.
+
 Subclass of:  
 <a href="https://vocab.methodandstructure.com/transformation#Partial"
 rel="rdfs:subClassOf"><code>tfo:Partial</code></a>
 
-Same as:  
+Equivalent to:  
 `tfo:Application`
 
 Properties:  
@@ -1092,7 +1099,7 @@ rel="rdfs:isDefinedBy">Back to Top</a>
 <div id="by-xpath" class="section" about="[tfo:by-xpath]"
 typeof="owl:DatatypeProperty">
 
-#### `by-xpath`
+#### ~~`by-xpath`~~
 
 Specifies an XPath expression for matching against markup (HTML/XML)
 content.
@@ -1100,11 +1107,11 @@ content.
 Domain:  
 <a
 href="https://vocab.methodandstructure.com/transformation#MarkupTransform"
-rel="rdfs:domain"><code>tfo:MarkupTransform</code></a>
+rel="rdfs:domain"><del><code>tfo:MarkupTransform</code></del></a>
 
 Range:  
 <a href="https://vocab.methodandstructure.com/transformation#xpath"
-rel="rdfs:range"><code>tfo:xpath</code></a>
+rel="rdfs:range"><del><code>tfo:xpath</code></del></a>
 
 <a href="https://vocab.methodandstructure.com/transformation#"
 rel="rdfs:isDefinedBy">Back to Top</a>
@@ -1114,7 +1121,7 @@ rel="rdfs:isDefinedBy">Back to Top</a>
 <div id="not-by-xpath" class="section" about="[tfo:not-by-xpath]"
 typeof="owl:DatatypeProperty">
 
-#### `not-by-xpath`
+#### ~~`not-by-xpath`~~
 
 Specifies an XPath expression for *anti*-matching against markup
 (HTML/XML) content.
@@ -1122,11 +1129,11 @@ Specifies an XPath expression for *anti*-matching against markup
 Domain:  
 <a
 href="https://vocab.methodandstructure.com/transformation#MarkupTransform"
-rel="rdfs:domain"><code>tfo:MarkupTransform</code></a>
+rel="rdfs:domain"><del><code>tfo:MarkupTransform</code></del></a>
 
 Range:  
 <a href="https://vocab.methodandstructure.com/transformation#xpath"
-rel="rdfs:range"><code>tfo:xpath</code></a>
+rel="rdfs:range"><del><code>tfo:xpath</code></del></a>
 
 <a href="https://vocab.methodandstructure.com/transformation#"
 rel="rdfs:isDefinedBy">Back to Top</a>
@@ -1220,7 +1227,7 @@ rel="rdfs:isDefinedBy">Back to Top</a>
 <div id="xpath" class="section" about="[tfo:xpath]"
 typeof="rdfs:Datatype">
 
-### `xpath`
+### ~~`xpath`~~
 
 An XPath expression.
 

@@ -37,7 +37,7 @@ digraph {
         node [style="dashed,rounded"];
         prov_used [label="prov:used", target="_parent", href="https://www.w3.org/TR/prov-o/#used"];
         prov_generated [label="prov:generated", target="_parent", href="https://www.w3.org/TR/prov-o/#generated"];
-        prov_wasAttributedTo [label="prov:wasAttributedTo", target="_parent", href="https://www.w3.org/TR/prov-o/#wasAttributedTo"];
+        // prov_wasAttributedTo [label="prov:wasAttributedTo", target="_parent", href="https://www.w3.org/TR/prov-o/#wasAttributedTo"];
     }
 
     // our properties

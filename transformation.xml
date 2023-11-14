@@ -64,7 +64,7 @@
 @prefix prov: &lt;http://www.w3.org/ns/prov#&gt; .
 @prefix ex:   &lt;https://example.club/#&gt; .
 
-ex:range a tfo:Transform ;
+ex:range a tfo:Function ;
   skos:prefLabel "Byte Range"@en ;
   skos:description "Select a subset of bytes from a given segment."@en ;
   tfo:accepts "*/*"^^tfo:content-type ;
@@ -94,7 +94,7 @@ ex:end a tfo:Parameter ;
   ex:end 31337 ;
   tfo:output &lt;ni:///sha-256;QqNiOgLJk13nOs8Mn4prYtEIZZfwuiju2y4cT_YCOlI&gt; .</pre>
       <p>The preceding example defines a transformation function, along with its parameters, and relates it to a fictional implementation embedded in a <abbr>JAR</abbr> somewhere (the exact way a transform's implementation is resolved is out of scope for this vocabulary). At the bottom is an imaginary application of the transformation function, along with values for supplied parameters. The input and output are designated by digest URIs, which can be resolved to their corresponding representations.</p>
-      <p>This vocabulary extends the <a about="#" rel="owl:imports" resource="dcat:" href="https://www.w3.org/TR/vocab-dcat-2/">Data Catalog Vocabulary</a> by making <code>tfo:Transform</code> a subclass of <a href="https://www.w3.org/TR/vocab-dcat-2/#Class:Data_Service"><code>dcat:DataService</code></a> and <a about="#" resource="prov:" href="https://www.w3.org/TR/prov-o/">the Provenance Ontology</a>, by way of refining the <a href="https://www.w3.org/TR/prov-o/#Activity"><code>prov:Activity</code></a> class and related properties. For instance, a record can use its inherited <abbr>PROV</abbr> properties to store metrics on the time it took to execute the function over the input.</p>
+      <p>This vocabulary extends the <a about="#" rel="owl:imports" resource="dcat:" href="https://www.w3.org/TR/vocab-dcat-2/">Data Catalog Vocabulary</a> by making <code>tfo:Function</code> a subclass of <a href="https://www.w3.org/TR/vocab-dcat-2/#Class:Data_Service"><code>dcat:DataService</code></a> and <a about="#" resource="prov:" href="https://www.w3.org/TR/prov-o/">the Provenance Ontology</a>, by way of refining the <a href="https://www.w3.org/TR/prov-o/#Activity"><code>prov:Activity</code></a> class and related properties. For instance, a record can use its inherited <abbr>PROV</abbr> properties to store metrics on the time it took to execute the function over the input.</p>
     </div>
     <section>
       <h2>Classes</h2>
@@ -118,8 +118,8 @@ ex:end a tfo:Parameter ;
       </section>
       <section>
         <h3>Transforms</h3>
-        <p>A <code>tfo:Transform</code> is essentially a function definition, specifying input and output constraints, and parameters in both named and positional representations.</p>
-        <section id="Transform" about="[tfo:Transform]" typeof="owl:Class">
+        <p>A <code>tfo:Function</code> is essentially a function definition, specifying input and output constraints, and parameters in both named and positional representations.</p>
+        <section id="Transform" about="[tfo:Function]" typeof="owl:Class">
           <h4 property="rdfs:label"><code>Transform</code></h4>
           <p property="rdfs:comment">This class provides a specification for a transformation function.</p>
           <dl>
@@ -128,10 +128,10 @@ ex:end a tfo:Parameter ;
             <dd><a rel="rdfs:subClassOf" resource="prov:Entity" href="https://www.w3.org/TR/prov-o/#Entity"><code>prov:Entity</code></a></dd>
             <dt>Properties:</dt>
             <!-- WTF HTML5 -->
-            <dd about="dcat:DataService" rev="rdfs:domain"><a href="#parameter"><code>tfo:parameter</code></a></dd>
-            <dd about="dcat:DataService" rev="rdfs:domain"><a href="#parameter-list"><code>tfo:parameter-list</code></a></dd>
-            <dd about="dcat:DataService" rev="rdfs:domain"><a href="#accepts"><code>tfo:accepts</code></a></dd>
-            <dd about="dcat:DataService" rev="rdfs:domain"><a href="#returns"><code>tfo:returns</code></a></dd>
+            <dd about="dcat:DataService" rev="rdfs:domain"><a href="#parameter"><em><code>tfo:parameter</code></em></a></dd>
+            <dd about="dcat:DataService" rev="rdfs:domain"><a href="#parameter-list"><em><code>tfo:parameter-list</code></em></a></dd>
+            <dd about="dcat:DataService" rev="rdfs:domain"><a href="#accepts"><em><code>tfo:accepts</code></em></a></dd>
+            <dd about="dcat:DataService" rev="rdfs:domain"><a href="#returns"><em><code>tfo:returns</code></em></a></dd>
             <dd rev="rdfs:domain"><a href="#prefers"><code>tfo:prefers</code></a></dd>
             <dd rev="rdfs:domain"><a href="#precedes"><code>tfo:precedes</code></a></dd>
             <dd rev="rdfs:domain"><a href="#follows"><code>tfo:follows</code></a></dd>
@@ -143,12 +143,15 @@ ex:end a tfo:Parameter ;
         <section id="MarkupTransform" about="[tfo:MarkupTransform]" typeof="owl:Class">
           <h4><del property="owl:deprecated" datatype="xsd:boolean" content="true"><code property="rdfs:label">MarkupTransform</code></del></h4>
           <p property="rdfs:comment">This class represents the set of transformation functions that operate exclusively over (HTML/XML) markup.</p>
+          <aside role="note" property="skos:note">
+            <p>This class has been deprecated since it only made sense in 2020 when this vocabulary was being used in a different context.</p>
+          </aside>
           <dl>
             <dt>Subclass of:</dt>
-            <dd><a rel="rdfs:subClassOf" href="#Transform"><code>tfo:Transform</code></a></dd>
+            <dd><a rel="rdfs:subClassOf" href="#Function"><code>tfo:Function</code></a></dd>
             <dt>Properties:</dt>
-            <dd rev="rdfs:domain"><a href="#by-xpath"><code>tfo:by-xpath</code></a></dd>
-            <dd rev="rdfs:domain"><a href="#not-by-xpath"><code>tfo:not-by-xpath</code></a></dd>
+            <dd rev="rdfs:domain"><a href="#by-xpath"><del><code>tfo:by-xpath</code></del></a></dd>
+            <dd rev="rdfs:domain"><a href="#not-by-xpath"><del><code>tfo:not-by-xpath</code></del></a></dd>
           </dl>
         </section>
       </section>
@@ -190,10 +193,10 @@ ex:end a tfo:Parameter ;
       </section>
       <section>
         <h3>Queues</h3>
-        <p>Queues are how we bundle sequences of <code>tfo:Transform</code> (or <code>tfo:Partial</code>) for execution. <q>Queue</q> is something of a misnomer, as the sequence of transforms need not be explicitly asserted, but rather negotiated on the fly. </p>
+        <p>Queues are how we bundle sequences of <code>tfo:Function</code> (or <code>tfo:Partial</code>) for execution. <q>Queue</q> is something of a misnomer, as the sequence of transforms need not be explicitly asserted, but rather negotiated on the fly. </p>
         <section id="Queue" about="[tfo:Queue]" typeof="owl:Class">
           <h4 property="rdfs:label"><code>Queue</code></h4>
-          <p property="rdfs:comment">A queue is a collection of <code>tfo:Transform</code> (and/or <code>tfo:Partial</code>) elements, organized either by explicit sequence (via <code>tfo:member-list</code>), or by dynamic sorting at runtime.</p>
+          <p property="rdfs:comment">A queue is a collection of <code>tfo:Function</code> (and/or <code>tfo:Partial</code>) elements, organized either by explicit sequence (via <code>tfo:member-list</code>), or by dynamic sorting at runtime.</p>
           <aside role="note" property="skos:note">
             <p>An inference rule that cannot be described in RDFS or OWL is that <code>?q tfo:member-list ( ?a ?b ) .</code> implies  <code>?q tfo:member ?a, ?b .</code></p>
           </aside>
@@ -227,22 +230,22 @@ ex:end a tfo:Parameter ;
             <dd><a rel="rdfs:subClassOf" href="#StrictQueue"><code>tfo:StrictQueue</code></a></dd>
           </dl>
         </section>
-        <section id="TransformList" about="[tfo:TransformList]" typeof="owl:Class">
+        <section id="TransformList" about="[tfo:FunctionList]" typeof="owl:Class">
           <h4 property="rdfs:label"><code>TransformList</code></h4>
-          <p property="rdfs:comment">A transform list is a list that only holds <code>tfo:Transform</code> or <code>tfo:Partial</code> entities.</p>
+          <p property="rdfs:comment">A transform list is a list that only holds <code>tfo:Function</code> or <code>tfo:Partial</code> entities.</p>
           <dl>
             <dt>Subclass of:</dt>
             <dd><a rel="rdfs:subClassOf" resource="rdf:List" href="https://www.w3.org/TR/rdf-schema/#ch_list"><code>rdf:List</code></a></dd>
             <dt>Property restrictions:</dt>
             <dd rel="rdfs:subClassOf" resource="_:op4">
               <a rel="owl:onProperty" resource="rdf:first" href="https://www.w3.org/TR/rdf-schema/#ch_first"><code>rdf:first</code></a> &#x2208; <span rel="owl:allValuesFrom"><span about="_:uo40" rel="owl:unionOf" resource="_:q40">
-              <a about="_:q40" rel="rdf:first" href="#Transform"><code>tfo:Transform</code></a>
+              <a about="_:q40" rel="rdf:first" href="#Function"><code>tfo:Function</code></a>
               <span about="_:q40" rel="rdf:rest" resource="_:q41">&#x222a;</span> <a about="_:q41" rel="rdf:first" href="#Partial"><code>tfo:Partial</code></a>
               <span about="_:q41" rel="rdf:rest" resource="rdf:nil"></span></span>
             </span>
             </dd>
             <dd rel="rdfs:subClassOf" resource="_:op5">
-              <a rel="owl:onProperty" resource="rdf:rest" href="https://www.w3.org/TR/rdf-schema/#ch_rest"><code>rdf:rest</code></a> &#x2208; <a rel="owl:allValuesFrom" href="#TransformList"><code>tfo:TransformList</code></a>
+              <a rel="owl:onProperty" resource="rdf:rest" href="https://www.w3.org/TR/rdf-schema/#ch_rest"><code>rdf:rest</code></a> &#x2208; <a rel="owl:allValuesFrom" href="#FunctionList"><code>tfo:FunctionList</code></a>
             </dd>
           </dl>
         </section>
@@ -264,11 +267,14 @@ ex:end a tfo:Parameter ;
         <section id="Invocation" about="[tfo:Invocation]" typeof="owl:Class">
           <h4 property="rdfs:label"><code>Invocation</code></h4>
           <p property="rdfs:comment">This class represents an invocation of a transformation function, connecting a specific input and scalar parameters with its output.</p>
+          <aside role="note" property="skos:note">
+            <p>This class supersedes <code>tfo:Application</code>, which has been deprecated due to being too easily confused with a software application versus the application of a function.</p>
+          </aside>
           <dl>
             <dt>Subclass of:</dt>
             <dd><a rel="rdfs:subClassOf" href="#Partial"><code>tfo:Partial</code></a></dd>
-            <dt>Same as:</dt>
-            <dd><code rel="owl:sameAs" resource="#Application"><del property="owl:deprecated" datatype="xsd:boolean" content="true">tfo:Application</del></code></dd>
+            <dt>Equivalent to:</dt>
+            <dd><code rel="owl:equivalentClass" resource="#Application" typeof="owl:Class"><del property="owl:deprecated" datatype="xsd:boolean" content="true">tfo:Application</del></code></dd>
             <dt>Properties:</dt>
             <dd><a rev="rdfs:domain" href="#completes"><code>tfo:completes</code></a></dd>
             <dd><a rev="rdfs:domain" href="#input"><code>tfo:input</code></a></dd>
@@ -294,7 +300,7 @@ ex:end a tfo:Parameter ;
       </figure>
       <section>
         <h3>Specifying Transforms</h3>
-        <p>These properties have to do with specifying <code>tfo:Transform</code> entities and their parameters.</p>
+        <p>These properties have to do with specifying <code>tfo:Function</code> entities and their parameters.</p>
         <section id="accepts" about="[tfo:accepts]" typeof="owl:ObjectProperty">
           <h4 property="rdfs:label"><code>accepts</code></h4>
           <p property="rdfs:comment">Specifies the list of content-types, in order of preference, that the function can process.</p>
@@ -334,7 +340,7 @@ ex:end a tfo:Parameter ;
             <dt>Subproperty of:</dt>
             <dd><a rel="rdfs:subPropertyOf" href="#returns"><code>tfo:returns</code></a></dd>
             <dt>Domain:</dt>
-            <dd><a rel="rdfs:domain" href="#Transform"><code>tfo:Transform</code></a></dd>
+            <dd><a rel="rdfs:domain" href="#Function"><code>tfo:Function</code></a></dd>
             <dt>Range:</dt>
             <dd rel="rdfs:range">
               <span about="_:uo3" rel="owl:unionOf" resource="_:q5">
@@ -406,7 +412,7 @@ ex:end a tfo:Parameter ;
             <dt>Range:</dt>
             <dd rel="rdfs:range">
               <span about="_:uo4" rel="owl:unionOf" resource="_:q7">
-                <a about="_:q7" rel="rdf:first" href="#Transform"><code>tfo:Transform</code></a> <span about="_:q7" rel="rdf:rest" resource="_:q8">&#x222a;</span> <a about="_:q8" rel="rdf:first" href="#Partial"><code>tfo:Partial</code></a>
+                <a about="_:q7" rel="rdf:first" href="#Function"><code>tfo:Function</code></a> <span about="_:q7" rel="rdf:rest" resource="_:q8">&#x222a;</span> <a about="_:q8" rel="rdf:first" href="#Partial"><code>tfo:Partial</code></a>
                 <span about="_:q8" rel="rdf:rest" resource="rdf:nil"></span>
               </span>
             </dd>
@@ -420,18 +426,18 @@ ex:end a tfo:Parameter ;
             <dt>Domain:</dt>
             <dd><a rel="rdfs:domain" href="#Queue"><code>tfo:Queue</code></a></dd>
             <dt>Range:</dt>
-            <dd><a rel="rdfs:range" href="#TransformList"><code>tfo:TransformList</code></a></dd>
+            <dd><a rel="rdfs:range" href="#FunctionList"><code>tfo:FunctionList</code></a></dd>
           </dl>
           <p><a rel="rdfs:isDefinedBy" href="#">Back to Top</a></p>
         </section>
         <section id="precedes" about="[tfo:precedes]" typeof="owl:ObjectProperty">
           <h4 property="rdfs:label"><code>precedes</code></h4>
-          <p property="rdfs:comment">Specifies one or more <code>tfo:Transform</code> that the subject must <em>precede</em> in a queue.</p>
+          <p property="rdfs:comment">Specifies one or more <code>tfo:Function</code> that the subject must <em>precede</em> in a queue.</p>
           <dl>
             <dt>Domain:</dt>
-            <dd><a rel="rdfs:domain" href="#Transform"><code>tfo:Transform</code></a></dd>
+            <dd><a rel="rdfs:domain" href="#Function"><code>tfo:Function</code></a></dd>
             <dt>Range:</dt>
-            <dd><a rel="rdfs:range" href="#Transform"><code>tfo:Transform</code></a></dd>
+            <dd><a rel="rdfs:range" href="#Function"><code>tfo:Function</code></a></dd>
             <dt>Inverse of:</dt>
             <dd><a rel="owl:inverseOf" href="#follows"><code>tfo:follows</code></a></dd>
           </dl>
@@ -439,12 +445,12 @@ ex:end a tfo:Parameter ;
         </section>
         <section id="follows" about="[tfo:follows]" typeof="owl:ObjectProperty">
           <h4 property="rdfs:label"><code>follows</code></h4>
-          <p property="rdfs:comment">Specifies one or more <code>tfo:Transform</code> that the subject must <em>follow</em> in a queue.</p>
+          <p property="rdfs:comment">Specifies one or more <code>tfo:Function</code> that the subject must <em>follow</em> in a queue.</p>
           <dl>
             <dt>Domain:</dt>
-            <dd><a rel="rdfs:domain" href="#Transform"><code>tfo:Transform</code></a></dd>
+            <dd><a rel="rdfs:domain" href="#Function"><code>tfo:Function</code></a></dd>
             <dt>Range:</dt>
-            <dd><a rel="rdfs:range" href="#Transform"><code>tfo:Transform</code></a></dd>
+            <dd><a rel="rdfs:range" href="#Function"><code>tfo:Function</code></a></dd>
             <dt>Inverse of:</dt>
             <dd><a rel="owl:inverseOf" href="#precedes"><code>tfo:precedes</code></a></dd>
           </dl>
@@ -472,7 +478,7 @@ ex:end a tfo:Parameter ;
             <dt>Range:</dt>
             <dd rel="rdfs:range">
               <span about="_:uo41" rel="owl:unionOf" resource="_:q42">
-                <a about="_:q42" rel="rdf:first" href="#Transform"><code>tfo:Transform</code></a>
+                <a about="_:q42" rel="rdf:first" href="#Function"><code>tfo:Function</code></a>
                 <span about="_:q42" rel="rdf:rest" resource="_:q43">&#x222a;</span> <a about="_:q43" rel="rdf:first" href="#Partial"><code>tfo:Partial</code></a>
                 <span about="_:q43" rel="rdf:rest" resource="rdf:nil"></span>
               </span>
@@ -491,7 +497,7 @@ ex:end a tfo:Parameter ;
             <dt>Range:</dt>
             <dd rel="rdfs:range">
               <span about="_:uo42" rel="owl:unionOf" resource="_:q44">
-                <a about="_:q44" rel="rdf:first" href="#Transform"><code>tfo:Transform</code></a>
+                <a about="_:q44" rel="rdf:first" href="#Function"><code>tfo:Function</code></a>
                 <span about="_:q44" rel="rdf:rest" resource="_:q45">&#x222a;</span> <a about="_:q45" rel="rdf:first" href="#Partial"><code>tfo:Partial</code></a>
                 <span about="_:q45" rel="rdf:rest" resource="rdf:nil"></span>
               </span>
@@ -505,10 +511,10 @@ ex:end a tfo:Parameter ;
         <p>These properties relate trnasforms to queue insertion events.</p>
         <section id="triggers" about="[tfo:triggers]" typeof="owl:ObjectProperty">
           <h4 property="rdfs:label"><code>triggers</code></h4>
-          <p property="rdfs:comment">A <code>tfo:Transform</code> can trigger an <code>tfo:Insertion</code> event on a certain condition (e.g., successful completion).</p>
+          <p property="rdfs:comment">A <code>tfo:Function</code> can trigger an <code>tfo:Insertion</code> event on a certain condition (e.g., successful completion).</p>
           <dl>
             <dt>Domain:</dt>
-            <dd><a rel="rdfs:domain" href="#Transform"><code>tfo:Transform</code></a></dd>
+            <dd><a rel="rdfs:domain" href="#Function"><code>tfo:Function</code></a></dd>
             <dt>Range:</dt>
             <dd><a rel="rdfs:range" href="#Insertion"><code>tfo:Insertion</code></a></dd>
           </dl>
@@ -539,7 +545,7 @@ ex:end a tfo:Parameter ;
       </section>
       <section>
         <h3>Applying Transformations</h3>
-        <p>This group of properties is responsible for relating <code>tfo:Transform</code> to the actual data objects they transform.</p>
+        <p>This group of properties is responsible for relating <code>tfo:Function</code> to the actual data objects they transform.</p>
         <section id="completes" about="[tfo:completes]" typeof="owl:ObjectProperty owl:FunctionalProperty">
           <h4 property="rdfs:label"><code>completes</code></h4>
           <p property="rdfs:comment">Identifies a <code>tfo:Partial</code> function that this <code>tfo:Invocation</code> completes.</p>
@@ -560,7 +566,7 @@ ex:end a tfo:Parameter ;
             <dt>Domain:</dt>
             <dd><a rel="rdfs:domain" href="#Partial"><code>tfo:Partial</code></a></dd>
             <dt>Range:</dt>
-            <dd><a rel="rdfs:range" href="#Transform"><code>tfo:Transform</code></a></dd>
+            <dd><a rel="rdfs:range" href="#Function"><code>tfo:Function</code></a></dd>
           </dl>
           <p><a rel="rdfs:isDefinedBy" href="#">Back to Top</a></p>
         </section>
@@ -597,7 +603,7 @@ ex:end a tfo:Parameter ;
           <p property="rdfs:comment">Specifies a regular expression for matching against URIs.</p>
           <dl>
             <dt>Domain:</dt>
-            <dd><a rel="rdfs:domain" href="#Transform"><code>tfo:Transform</code></a></dd>
+            <dd><a rel="rdfs:domain" href="#Function"><code>tfo:Function</code></a></dd>
             <dt>Range:</dt>
             <dd><a rel="rdfs:range" href="#regexp"><code>tfo:regexp</code></a></dd>
           </dl>
@@ -608,7 +614,7 @@ ex:end a tfo:Parameter ;
           <p property="rdfs:comment">Specifies a regular expression for <em>anti</em>-matching against URIs.</p>
           <dl>
             <dt>Domain:</dt>
-            <dd><a rel="rdfs:domain" href="#Transform"><code>tfo:Transform</code></a></dd>
+            <dd><a rel="rdfs:domain" href="#Function"><code>tfo:Function</code></a></dd>
             <dt>Range:</dt>
             <dd><a rel="rdfs:range" href="#regexp"><code>tfo:regexp</code></a></dd>
           </dl>
@@ -629,24 +635,24 @@ ex:end a tfo:Parameter ;
           <p><a rel="rdfs:isDefinedBy" href="#">Back to Top</a></p>
         </section>
         <section id="by-xpath" about="[tfo:by-xpath]" typeof="owl:DatatypeProperty">
-          <h4 property="rdfs:label"><code>by-xpath</code></h4>
+          <h4><del property="owl:deprecated" datatype="xsd:boolean" content="true"><code property="rdfs:label">by-xpath</code></del></h4>
           <p property="rdfs:comment">Specifies an XPath expression for matching against markup (HTML/XML) content.</p>
           <dl>
             <dt>Domain:</dt>
-            <dd><a rel="rdfs:domain" href="#MarkupTransform"><code>tfo:MarkupTransform</code></a></dd>
+            <dd><a rel="rdfs:domain" href="#MarkupTransform"><del><code>tfo:MarkupTransform</code></del></a></dd>
             <dt>Range:</dt>
-            <dd><a rel="rdfs:range" href="#xpath"><code>tfo:xpath</code></a></dd>
+            <dd><a rel="rdfs:range" href="#xpath"><del><code>tfo:xpath</code></del></a></dd>
           </dl>
           <p><a rel="rdfs:isDefinedBy" href="#">Back to Top</a></p>
         </section>
         <section id="not-by-xpath" about="[tfo:not-by-xpath]" typeof="owl:DatatypeProperty">
-          <h4 property="rdfs:label"><code>not-by-xpath</code></h4>
+          <h4><del property="owl:deprecated" datatype="xsd:boolean" content="true"><code property="rdfs:label">not-by-xpath</code></del></h4>
           <p property="rdfs:comment">Specifies an XPath expression for <em>anti</em>-matching against markup (HTML/XML) content.</p>
           <dl>
             <dt>Domain:</dt>
-            <dd><a rel="rdfs:domain" href="#MarkupTransform"><code>tfo:MarkupTransform</code></a></dd>
+            <dd><a rel="rdfs:domain" href="#MarkupTransform"><del><code>tfo:MarkupTransform</code></del></a></dd>
             <dt>Range:</dt>
-            <dd><a rel="rdfs:range" href="#xpath"><code>tfo:xpath</code></a></dd>
+            <dd><a rel="rdfs:range" href="#xpath"><del><code>tfo:xpath</code></del></a></dd>
           </dl>
           <p><a rel="rdfs:isDefinedBy" href="#">Back to Top</a></p>
         </section>
@@ -694,7 +700,7 @@ ex:end a tfo:Parameter ;
         <p><a rel="rdfs:isDefinedBy" href="#">Back to Top</a></p>
       </section>
       <section id="xpath" about="[tfo:xpath]" typeof="rdfs:Datatype">
-        <h3 property="rdfs:label"><code>xpath</code></h3>
+        <h3><del property="owl:deprecated" datatype="xsd:boolean" content="true"><code property="rdfs:label">xpath</code></del></h3>
         <p property="rdfs:comment">An XPath expression.</p>
         <dl>
           <dt>Restriction of:</dt>

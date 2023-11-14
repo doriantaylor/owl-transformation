@@ -29,7 +29,7 @@ digraph {
     tfo_ParameterList [label="tfo:ParameterList", target="_parent", href="https://vocab.methodandstructure.com/transformation#ParameterList"];
     tfo_Partial [label="tfo:Partial", target="_parent", href="https://vocab.methodandstructure.com/transformation#Partial"];
     tfo_Transform [label="tfo:Transform", target="_parent", href="https://vocab.methodandstructure.com/transformation#Transform"];
-    tfo_MarkupTransform [label="tfo:MarkupTransform", target="_parent", href="https://vocab.methodandstructure.com/transformation#MarkupTransform"];
+    // tfo_MarkupTransform [label="tfo:MarkupTransform", target="_parent", href="https://vocab.methodandstructure.com/transformation#MarkupTransform"];
     tfo_Queue [label="tfo:Queue", target="_parent", href="https://vocab.methodandstructure.com/transformation#Queue"];
     tfo_StrictQueue [label="tfo:StrictQueue", target="_parent", href="https://vocab.methodandstructure.com/transformation#StrictQueue"];
     tfo_AddressableQueue [label="tfo:AddressableQueue", target="_parent", href="https://vocab.methodandstructure.com/transformation#AddressableQueue"];
@@ -61,7 +61,8 @@ digraph {
         tfo_Bundle           -> dcat_Catalog;
         tfo_Bundle           -> prov_SoftwareAgent;
         tfo_Invocation       -> tfo_Partial -> prov_Activity;
-        tfo_MarkupTransform  -> tfo_Transform -> dcat_DataService;
+        // tfo_MarkupTransform  -> tfo_Transform -> dcat_DataService;
+        tfo_Transform        -> dcat_DataService;
         tfo_Transform        -> prov_Entity;
         tfo_Parameter        -> rdf_Property;
         tfo_ParameterList    -> rdf_List;
@@ -95,7 +96,7 @@ digraph {
     tfo_Insertion -> http_StatusCode [label="tfo:condition"];
 
     tfo_Transform -> tfo_regexp [label="tfo:by-uri,\ntfo:not-by-uri"];
-    tfo_MarkupTransform -> tfo_xpath [label="tfo:by-xpath,\ntfo:not-by-xpath"];
+    //tfo_MarkupTransform -> tfo_xpath [label="tfo:by-xpath,\ntfo:not-by-xpath"];
 
     subgraph {
         edge [style=dashed];
