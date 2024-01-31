@@ -23,11 +23,18 @@ September 6, 2023
 
 October 9, 2023
 
+January 30, 2024
+
 Namespace URI  
 [`https://vocab.methodandstructure.com/transformation#`](https://vocab.methodandstructure.com/transformation#)
 
 Preferred Namespace Prefix  
 `tfo`
+
+Imported Vocabularies  
+<a href="https://www.w3.org/TR/xmlschema11-2/" about="#"
+rel="owl:imports" resource="http://www.w3.org/2001/XMLSchema#">W3C XML
+Schema Definition Language (XSD) 1.1 Part 2: Datatypes</a>
 
 This document describes functions which transform HTTP <span
 class="dfn">representations</span>, i.e., the actual literal payloads of
@@ -63,7 +70,7 @@ Consider the following example:
     @prefix prov: <http://www.w3.org/ns/prov#> .
     @prefix ex:   <https://example.club/#> .
 
-    ex:range a tfo:Transform ;
+    ex:range a tfo:Function ;
       skos:prefLabel "Byte Range"@en ;
       skos:description "Select a subset of bytes from a given segment."@en ;
       tfo:accepts "*/*"^^tfo:content-type ;
@@ -104,7 +111,7 @@ which can be resolved to their corresponding representations.
 This vocabulary extends the
 <a href="https://www.w3.org/TR/vocab-dcat-2/" about="#"
 rel="owl:imports" resource="dcat:">Data Catalog Vocabulary</a> by making
-`tfo:Transform` a subclass of
+`tfo:Function` a subclass of
 [`dcat:DataService`](https://www.w3.org/TR/vocab-dcat-2/#Class:Data_Service)
 and
 <a href="https://www.w3.org/TR/prov-o/" about="#" resource="prov:">the
@@ -157,14 +164,14 @@ Properties:
 
 ### Transforms
 
-A `tfo:Transform` is essentially a function definition, specifying input
+A `tfo:Function` is essentially a function definition, specifying input
 and output constraints, and parameters in both named and positional
 representations.
 
-<div id="Transform" class="section" about="[tfo:Transform]"
+<div id="Function" class="section" about="[tfo:Function]"
 typeof="owl:Class">
 
-#### `Transform`
+#### `Function`
 
 This class provides a specification for a transformation function.
 
@@ -211,8 +218,8 @@ This class has been deprecated since it only made sense in 2020 when
 this vocabulary was being used in a different context.
 
 Subclass of:  
-<a href="https://vocab.methodandstructure.com/transformation#Transform"
-rel="rdfs:subClassOf"><code>tfo:Transform</code></a>
+<a href="https://vocab.methodandstructure.com/transformation#Function"
+rel="rdfs:subClassOf"><code>tfo:Function</code></a>
 
 Properties:  
 [~~`tfo:by-xpath`~~](https://vocab.methodandstructure.com/transformation#by-xpath)
@@ -295,7 +302,7 @@ rel="owl:allValuesFrom"><code>tfo:ParameterList</code></a>
 
 ### Queues
 
-Queues are how we bundle sequences of `tfo:Transform` (or `tfo:Partial`)
+Queues are how we bundle sequences of `tfo:Function` (or `tfo:Partial`)
 for execution. “Queue” is something of a misnomer, as the sequence of
 transforms need not be explicitly asserted, but rather negotiated on the
 fly.
@@ -304,7 +311,7 @@ fly.
 
 #### `Queue`
 
-A queue is a collection of `tfo:Transform` (and/or `tfo:Partial`)
+A queue is a collection of `tfo:Function` (and/or `tfo:Partial`)
 elements, organized either by explicit sequence (via `tfo:member-list`),
 or by dynamic sorting at runtime.
 
@@ -369,12 +376,12 @@ rel="rdfs:subClassOf"><code>tfo:StrictQueue</code></a>
 
 </div>
 
-<div id="TransformList" class="section" about="[tfo:TransformList]"
+<div id="FunctionList" class="section" about="[tfo:FunctionList]"
 typeof="owl:Class">
 
-#### `TransformList`
+#### `FunctionList`
 
-A transform list is a list that only holds `tfo:Transform` or
+A function list is a list that only holds `tfo:Function` or
 `tfo:Partial` entities.
 
 Subclass of:  
@@ -386,8 +393,8 @@ Property restrictions:
 rel="owl:onProperty" resource="rdf:first"><code>rdf:first</code></a> ∈
 <span rel="owl:allValuesFrom"><span about="_:uo40" rel="owl:unionOf"
 resource="_:q40">
-<a href="https://vocab.methodandstructure.com/transformation#Transform"
-about="_:q40" rel="rdf:first"><code>tfo:Transform</code></a> <span
+<a href="https://vocab.methodandstructure.com/transformation#Function"
+about="_:q40" rel="rdf:first"><code>tfo:Function</code></a> <span
 about="_:q40" rel="rdf:rest" resource="_:q41">∪</span>
 <a href="https://vocab.methodandstructure.com/transformation#Partial"
 about="_:q41" rel="rdf:first"><code>tfo:Partial</code></a> <span
@@ -395,8 +402,8 @@ about="_:q41" rel="rdf:rest" resource="rdf:nil"></span></span> </span>
 
 <a href="https://www.w3.org/TR/rdf-schema/#ch_rest" rel="owl:onProperty"
 resource="rdf:rest"><code>rdf:rest</code></a> ∈ <a
-href="https://vocab.methodandstructure.com/transformation#TransformList"
-rel="owl:allValuesFrom"><code>tfo:TransformList</code></a>
+href="https://vocab.methodandstructure.com/transformation#FunctionList"
+rel="owl:allValuesFrom"><code>tfo:FunctionList</code></a>
 
 </div>
 
@@ -495,7 +502,7 @@ rev="rdfs:domain"><code>tfo:transform</code></a>
 
 ### Specifying Transforms
 
-These properties have to do with specifying `tfo:Transform` entities and
+These properties have to do with specifying `tfo:Function` entities and
 their parameters.
 
 <div id="accepts" class="section" about="[tfo:accepts]"
@@ -565,8 +572,8 @@ Subproperty of:
 rel="rdfs:subPropertyOf"><code>tfo:returns</code></a>
 
 Domain:  
-<a href="https://vocab.methodandstructure.com/transformation#Transform"
-rel="rdfs:domain"><code>tfo:Transform</code></a>
+<a href="https://vocab.methodandstructure.com/transformation#Function"
+rel="rdfs:domain"><code>tfo:Function</code></a>
 
 Range:  
 <span about="_:uo3" rel="owl:unionOf" resource="_:q5"> <a
@@ -690,8 +697,8 @@ rel="rdfs:domain"><code>tfo:Queue</code></a>
 
 Range:  
 <span about="_:uo4" rel="owl:unionOf" resource="_:q7">
-<a href="https://vocab.methodandstructure.com/transformation#Transform"
-about="_:q7" rel="rdf:first"><code>tfo:Transform</code></a> <span
+<a href="https://vocab.methodandstructure.com/transformation#Function"
+about="_:q7" rel="rdf:first"><code>tfo:Function</code></a> <span
 about="_:q7" rel="rdf:rest" resource="_:q8">∪</span>
 <a href="https://vocab.methodandstructure.com/transformation#Partial"
 about="_:q8" rel="rdf:first"><code>tfo:Partial</code></a> <span
@@ -715,8 +722,8 @@ rel="rdfs:domain"><code>tfo:Queue</code></a>
 
 Range:  
 <a
-href="https://vocab.methodandstructure.com/transformation#TransformList"
-rel="rdfs:range"><code>tfo:TransformList</code></a>
+href="https://vocab.methodandstructure.com/transformation#FunctionList"
+rel="rdfs:range"><code>tfo:FunctionList</code></a>
 
 <a href="https://vocab.methodandstructure.com/transformation#"
 rel="rdfs:isDefinedBy">Back to Top</a>
@@ -728,16 +735,16 @@ typeof="owl:ObjectProperty">
 
 #### `precedes`
 
-Specifies one or more `tfo:Transform` that the subject must *precede* in
+Specifies one or more `tfo:Function` that the subject must *precede* in
 a queue.
 
 Domain:  
-<a href="https://vocab.methodandstructure.com/transformation#Transform"
-rel="rdfs:domain"><code>tfo:Transform</code></a>
+<a href="https://vocab.methodandstructure.com/transformation#Function"
+rel="rdfs:domain"><code>tfo:Function</code></a>
 
 Range:  
-<a href="https://vocab.methodandstructure.com/transformation#Transform"
-rel="rdfs:range"><code>tfo:Transform</code></a>
+<a href="https://vocab.methodandstructure.com/transformation#Function"
+rel="rdfs:range"><code>tfo:Function</code></a>
 
 Inverse of:  
 <a href="https://vocab.methodandstructure.com/transformation#follows"
@@ -753,16 +760,16 @@ typeof="owl:ObjectProperty">
 
 #### `follows`
 
-Specifies one or more `tfo:Transform` that the subject must *follow* in
-a queue.
+Specifies one or more `tfo:Function` that the subject must *follow* in a
+queue.
 
 Domain:  
-<a href="https://vocab.methodandstructure.com/transformation#Transform"
-rel="rdfs:domain"><code>tfo:Transform</code></a>
+<a href="https://vocab.methodandstructure.com/transformation#Function"
+rel="rdfs:domain"><code>tfo:Function</code></a>
 
 Range:  
-<a href="https://vocab.methodandstructure.com/transformation#Transform"
-rel="rdfs:range"><code>tfo:Transform</code></a>
+<a href="https://vocab.methodandstructure.com/transformation#Function"
+rel="rdfs:range"><code>tfo:Function</code></a>
 
 Inverse of:  
 <a href="https://vocab.methodandstructure.com/transformation#precedes"
@@ -810,8 +817,8 @@ rel="rdfs:domain"><code>tfo:Queue</code></a>
 
 Range:  
 <span about="_:uo41" rel="owl:unionOf" resource="_:q42">
-<a href="https://vocab.methodandstructure.com/transformation#Transform"
-about="_:q42" rel="rdf:first"><code>tfo:Transform</code></a> <span
+<a href="https://vocab.methodandstructure.com/transformation#Function"
+about="_:q42" rel="rdf:first"><code>tfo:Function</code></a> <span
 about="_:q42" rel="rdf:rest" resource="_:q43">∪</span>
 <a href="https://vocab.methodandstructure.com/transformation#Partial"
 about="_:q43" rel="rdf:first"><code>tfo:Partial</code></a> <span
@@ -839,8 +846,8 @@ rel="rdfs:domain"><code>tfo:Queue</code></a>
 
 Range:  
 <span about="_:uo42" rel="owl:unionOf" resource="_:q44">
-<a href="https://vocab.methodandstructure.com/transformation#Transform"
-about="_:q44" rel="rdf:first"><code>tfo:Transform</code></a> <span
+<a href="https://vocab.methodandstructure.com/transformation#Function"
+about="_:q44" rel="rdf:first"><code>tfo:Function</code></a> <span
 about="_:q44" rel="rdf:rest" resource="_:q45">∪</span>
 <a href="https://vocab.methodandstructure.com/transformation#Partial"
 about="_:q45" rel="rdf:first"><code>tfo:Partial</code></a> <span
@@ -864,12 +871,12 @@ typeof="owl:ObjectProperty">
 
 #### `triggers`
 
-A `tfo:Transform` can trigger an `tfo:Insertion` event on a certain
+A `tfo:Function` can trigger an `tfo:Insertion` event on a certain
 condition (e.g., successful completion).
 
 Domain:  
-<a href="https://vocab.methodandstructure.com/transformation#Transform"
-rel="rdfs:domain"><code>tfo:Transform</code></a>
+<a href="https://vocab.methodandstructure.com/transformation#Function"
+rel="rdfs:domain"><code>tfo:Function</code></a>
 
 Range:  
 <a href="https://vocab.methodandstructure.com/transformation#Insertion"
@@ -927,7 +934,7 @@ rel="rdfs:isDefinedBy">Back to Top</a>
 
 ### Applying Transformations
 
-This group of properties is responsible for relating `tfo:Transform` to
+This group of properties is responsible for relating `tfo:Function` to
 the actual data objects they transform.
 
 <div id="completes" class="section" about="[tfo:completes]"
@@ -967,8 +974,8 @@ Domain:
 rel="rdfs:domain"><code>tfo:Partial</code></a>
 
 Range:  
-<a href="https://vocab.methodandstructure.com/transformation#Transform"
-rel="rdfs:range"><code>tfo:Transform</code></a>
+<a href="https://vocab.methodandstructure.com/transformation#Function"
+rel="rdfs:range"><code>tfo:Function</code></a>
 
 <a href="https://vocab.methodandstructure.com/transformation#"
 rel="rdfs:isDefinedBy">Back to Top</a>
@@ -1039,8 +1046,8 @@ typeof="owl:DatatypeProperty">
 Specifies a regular expression for matching against URIs.
 
 Domain:  
-<a href="https://vocab.methodandstructure.com/transformation#Transform"
-rel="rdfs:domain"><code>tfo:Transform</code></a>
+<a href="https://vocab.methodandstructure.com/transformation#Function"
+rel="rdfs:domain"><code>tfo:Function</code></a>
 
 Range:  
 <a href="https://vocab.methodandstructure.com/transformation#regexp"
@@ -1059,8 +1066,8 @@ typeof="owl:DatatypeProperty">
 Specifies a regular expression for *anti*-matching against URIs.
 
 Domain:  
-<a href="https://vocab.methodandstructure.com/transformation#Transform"
-rel="rdfs:domain"><code>tfo:Transform</code></a>
+<a href="https://vocab.methodandstructure.com/transformation#Function"
+rel="rdfs:domain"><code>tfo:Function</code></a>
 
 Range:  
 <a href="https://vocab.methodandstructure.com/transformation#regexp"

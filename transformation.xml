@@ -44,12 +44,14 @@
         <dd property="dct:modified" datatype="xsd:dateTime" content="2023-08-27T00:30:09Z">August 27, 2023</dd>
         <dd property="dct:modified" datatype="xsd:dateTime" content="2023-09-06T20:54:02Z">September 6, 2023</dd>
         <dd property="dct:modified" datatype="xsd:dateTime" content="2023-10-09T19:04:07Z">October 9, 2023</dd>
+        <dd property="dct:modified" datatype="xsd:dateTime" content="2024-01-31T03:26:41Z">January 30, 2024</dd>
         <dt>Namespace URI</dt>
         <dd><a href="#"><code>https://vocab.methodandstructure.com/transformation#</code></a></dd>
         <dt>Preferred Namespace Prefix</dt>
         <dd><code about="#" property="vann:preferredNamespacePrefix" datatype="xsd:token">tfo</code></dd>
-        <!--<dt>Imported Vocabularies</dt>
-            <dd><a about="#" rel="owl:imports" resource="http://www.w3.org/ns/prov#" href="https://www.w3.org/TR/prov-o/"><span property="rdfs:label">W3C PROVenance Interchange Ontology (PROV-O)</span></a></dd>-->
+        <dt>Imported Vocabularies</dt>
+        <dd><a about="#" rel="owl:imports" resource="http://www.w3.org/2001/XMLSchema#" href="https://www.w3.org/TR/xmlschema11-2/">W3C XML Schema Definition Language (XSD) 1.1 Part 2: Datatypes</a></dd>
+        <!--<dd><a about="#" rel="owl:imports" resource="http://www.w3.org/ns/prov#" href="https://www.w3.org/TR/prov-o/"><span property="rdfs:label">W3C PROVenance Interchange Ontology (PROV-O)</span></a></dd>-->
       </dl>
       <p property="rdfs:comment dct:description">This document describes functions which transform HTTP <dfn>representations</dfn>, i.e., the actual literal payloads of HTTP messages.</p>
       <p>Many, if not most Web content manipulation tasks are concerned exclusively with <em>representations</em>: the literal <em>contents</em> of <abbr>HTTP</abbr> <em>messages</em>, rather than abstract or internal representations. Such manipulations may include excerpting and rearranging files, compressing and decompressing, cropping and resizing images, and converting between data formats. If we separate these operations from other <em>development</em> tasks, we can reuse them.</p>
@@ -119,8 +121,8 @@ ex:end a tfo:Parameter ;
       <section>
         <h3>Transforms</h3>
         <p>A <code>tfo:Function</code> is essentially a function definition, specifying input and output constraints, and parameters in both named and positional representations.</p>
-        <section id="Transform" about="[tfo:Function]" typeof="owl:Class">
-          <h4 property="rdfs:label"><code>Transform</code></h4>
+        <section id="Function" about="[tfo:Function]" typeof="owl:Class">
+          <h4 property="rdfs:label"><code>Function</code></h4>
           <p property="rdfs:comment">This class provides a specification for a transformation function.</p>
           <dl>
             <dt>Subclass of:</dt>
@@ -230,9 +232,9 @@ ex:end a tfo:Parameter ;
             <dd><a rel="rdfs:subClassOf" href="#StrictQueue"><code>tfo:StrictQueue</code></a></dd>
           </dl>
         </section>
-        <section id="TransformList" about="[tfo:FunctionList]" typeof="owl:Class">
-          <h4 property="rdfs:label"><code>TransformList</code></h4>
-          <p property="rdfs:comment">A transform list is a list that only holds <code>tfo:Function</code> or <code>tfo:Partial</code> entities.</p>
+        <section id="FunctionList" about="[tfo:FunctionList]" typeof="owl:Class">
+          <h4 property="rdfs:label"><code>FunctionList</code></h4>
+          <p property="rdfs:comment">A function list is a list that only holds <code>tfo:Function</code> or <code>tfo:Partial</code> entities.</p>
           <dl>
             <dt>Subclass of:</dt>
             <dd><a rel="rdfs:subClassOf" resource="rdf:List" href="https://www.w3.org/TR/rdf-schema/#ch_list"><code>rdf:List</code></a></dd>

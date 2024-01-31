@@ -15,12 +15,12 @@ digraph {
     subgraph {
         node [shape=box, style=""];
         tfo_Bundle [label="tfo:Bundle", target="_parent", href="https://vocab.methodandstructure.com/transformation#Bundle"];
-        tfo_Transform [label="tfo:Transform", target="_parent", href="https://vocab.methodandstructure.com/transformation#Transform"];
+        tfo_Function [label="tfo:Function", target="_parent", href="https://vocab.methodandstructure.com/transformation#Function"];
         tfo_Parameter [label="tfo:Parameter", target="_parent", href="https://vocab.methodandstructure.com/transformation#Parameter"];
         tfo_ParameterList [label="tfo:ParameterList", target="_parent", href="https://vocab.methodandstructure.com/transformation#ParameterList"];
         tfo_Queue [label="tfo:Queue", target="_parent", href="https://vocab.methodandstructure.com/transformation#Queue"];
         tfo_Insertion [label="tfo:Insertion", target="_parent", href="https://vocab.methodandstructure.com/transformation#Insertion"];
-        tfo_TransformList [label="tfo:TransformList", target="_parent", href="https://vocab.methodandstructure.com/transformation#TransformList"];
+        tfo_FunctionList [label="tfo:FunctionList", target="_parent", href="https://vocab.methodandstructure.com/transformation#FunctionList"];
         tfo_Partial [label="tfo:Partial", target="_parent", href="https://vocab.methodandstructure.com/transformation#Partial"];
         tfo_Invocation [label="tfo:Invocation", target="_parent", href="https://vocab.methodandstructure.com/transformation#Invocation"];
     }
@@ -84,9 +84,9 @@ digraph {
         dcat_DataService -> tfo_returns;
         dcat_DataService -> tfo_parameter;
         dcat_DataService -> tfo_parameter_list;
-        tfo_Transform -> tfo_precedes;
-        tfo_Transform -> tfo_follows;
-        tfo_Transform -> tfo_triggers;
+        tfo_Function  -> tfo_precedes;
+        tfo_Function  -> tfo_follows;
+        tfo_Function  -> tfo_triggers;
 
         tfo_Parameter -> tfo_default;
 
@@ -114,18 +114,18 @@ digraph {
         tfo_parameter      -> tfo_Parameter;
         tfo_parameter_list -> tfo_ParameterList;
 
-        tfo_member      -> tfo_Transform;
+        tfo_member      -> tfo_Function;
         tfo_member      -> tfo_Partial;
-        tfo_member_list -> tfo_TransformList;
+        tfo_member_list -> tfo_FunctionList;
 
         tfo_next -> tfo_Queue;
 
-        tfo_transform -> tfo_Transform;
-        tfo_precedes  -> tfo_Transform;
-        tfo_follows   -> tfo_Transform;
+        tfo_transform -> tfo_Function;
+        tfo_precedes  -> tfo_Function;
+        tfo_follows   -> tfo_Function;
 
         tfo_triggers  -> tfo_Insertion;
-        tfo_target    -> tfo_Transform;
+        tfo_target    -> tfo_Function;
         tfo_condition -> http_StatusCode;
 
         tfo_completes -> tfo_Partial;

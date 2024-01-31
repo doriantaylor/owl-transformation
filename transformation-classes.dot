@@ -28,12 +28,12 @@ digraph {
     tfo_Parameter [label="tfo:Parameter", target="_parent", href="https://vocab.methodandstructure.com/transformation#Parameter"];
     tfo_ParameterList [label="tfo:ParameterList", target="_parent", href="https://vocab.methodandstructure.com/transformation#ParameterList"];
     tfo_Partial [label="tfo:Partial", target="_parent", href="https://vocab.methodandstructure.com/transformation#Partial"];
-    tfo_Transform [label="tfo:Transform", target="_parent", href="https://vocab.methodandstructure.com/transformation#Transform"];
+    tfo_Function [label="tfo:Function", target="_parent", href="https://vocab.methodandstructure.com/transformation#Function"];
     // tfo_MarkupTransform [label="tfo:MarkupTransform", target="_parent", href="https://vocab.methodandstructure.com/transformation#MarkupTransform"];
     tfo_Queue [label="tfo:Queue", target="_parent", href="https://vocab.methodandstructure.com/transformation#Queue"];
     tfo_StrictQueue [label="tfo:StrictQueue", target="_parent", href="https://vocab.methodandstructure.com/transformation#StrictQueue"];
     tfo_AddressableQueue [label="tfo:AddressableQueue", target="_parent", href="https://vocab.methodandstructure.com/transformation#AddressableQueue"];
-    tfo_TransformList [label="tfo:TransformList", target="_parent", href="https://vocab.methodandstructure.com/transformation#TransformList"];
+    tfo_FunctionList [label="tfo:FunctionList", target="_parent", href="https://vocab.methodandstructure.com/transformation#FunctionList"];
     tfo_Insertion [label="tfo:Insertion", target="_parent", href="https://vocab.methodandstructure.com/transformation#Insertion"];
 
     // our datatypes
@@ -62,15 +62,15 @@ digraph {
         tfo_Bundle           -> prov_SoftwareAgent;
         tfo_Invocation       -> tfo_Partial -> prov_Activity;
         // tfo_MarkupTransform  -> tfo_Transform -> dcat_DataService;
-        tfo_Transform        -> dcat_DataService;
-        tfo_Transform        -> prov_Entity;
+        tfo_Function         -> dcat_DataService;
+        tfo_Function         -> prov_Entity;
         tfo_Parameter        -> rdf_Property;
         tfo_ParameterList    -> rdf_List;
         tfo_iregexp          -> tfo_regexp;
         tfo_StrictQueue      -> tfo_Queue -> prov_Activity;
         tfo_AddressableQueue -> tfo_StrictQueue;
         tfo_Insertion        -> tfo_Queue;
-        tfo_TransformList    -> rdf_List;
+        tfo_FunctionList    -> rdf_List;
     }
 
     // main relations
@@ -80,22 +80,22 @@ digraph {
     dcat_DataService -> tfo_ParameterList [label="tfo:parameter-list"];
     dcat_DataService -> tfo_content_type [label="tfo:accepts,\ntfo:returns"];
     // tfo_Transform -> tfo_content_type [label="tfo:returns"];
-    tfo_Transform -> tfo_Transform [label="tfo:precedes,\ntfo:follows"];
-    tfo_Transform -> tfo_Insertion [label="tfo:triggers"];
-    tfo_Partial   -> tfo_Transform [label="tfo:transform"];
+    tfo_Function  -> tfo_Function [label="tfo:precedes,\ntfo:follows"];
+    tfo_Function  -> tfo_Insertion [label="tfo:triggers"];
+    tfo_Partial   -> tfo_Function [label="tfo:transform"];
     tfo_Invocation -> tfo_Partial [label="tfo:completes"];
     tfo_Invocation -> rdfs_Resource [label="tfo:input"];
     tfo_Invocation -> rdfs_Resource [label="tfo:output"];
 
     tfo_Queue -> tfo_Queue [label="tfo:next"];
-    tfo_Queue -> tfo_Transform [label="tfo:member,\ntfo:first,\ntfo:last"];
+    tfo_Queue -> tfo_Function [label="tfo:member,\ntfo:first,\ntfo:last"];
     tfo_Queue -> tfo_Partial [label="tfo:member,\ntfo:first,\ntfo:last"];
-    tfo_Queue -> tfo_TransformList [label="tfo:member-list"];
+    tfo_Queue -> tfo_FunctionList [label="tfo:member-list"];
 
     tfo_Insertion -> tfo_Queue [label="tfo:target"];
     tfo_Insertion -> http_StatusCode [label="tfo:condition"];
 
-    tfo_Transform -> tfo_regexp [label="tfo:by-uri,\ntfo:not-by-uri"];
+    tfo_Function -> tfo_regexp [label="tfo:by-uri,\ntfo:not-by-uri"];
     //tfo_MarkupTransform -> tfo_xpath [label="tfo:by-xpath,\ntfo:not-by-xpath"];
 
     subgraph {
@@ -105,9 +105,9 @@ digraph {
         //tfo_ParameterList -> tfo_Parameter [label="rdf:first"];
         //tfo_ParameterList -> tfo_ParameterList [label="rdf:rest"];
         //tfo_ParameterList -> rdf_nil [label="rdf:rest"];
-        //tfo_TransformList -> tfo_Transform [label="rdf:first"];
-        //tfo_TransformList -> tfo_Partial [label="rdf:first"];
-        //tfo_TransformList -> tfo_TransformList [label="rdf:rest"];
-        //tfo_TransformList -> rdf_nil [label="rdf:rest"];
+        //tfo_FunctionList -> tfo_Transform [label="rdf:first"];
+        //tfo_FunctionList -> tfo_Partial [label="rdf:first"];
+        //tfo_FunctionList -> tfo_FunctionList [label="rdf:rest"];
+        //tfo_FunctionList -> rdf_nil [label="rdf:rest"];
     }
 }
