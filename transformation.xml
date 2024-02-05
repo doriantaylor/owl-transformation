@@ -561,10 +561,10 @@ ex:end a tfo:Parameter ;
         </section>
         <section id="transform" about="[tfo:transform]" typeof="owl:ObjectProperty owl:FunctionalProperty">
           <h4 property="rdfs:label"><code>transform</code></h4>
-          <p property="rdfs:comment">Specifies the transform associated with this particular application</p>
+          <p property="rdfs:comment">Specifies the transform associated with this particular invocation.</p>
           <dl>
             <dt>Subproperty of:</dt>
-            <dd><a rel="rdfs:subPropertyOf" href="#input"><code>tfo:input</code></a></dd>
+            <dd><a rel="rdfs:PropertyOf" resource="prov:used" href="https://www.w3.org/TR/prov-o/#used"><code>prov:used</code></a></dd>
             <dt>Domain:</dt>
             <dd><a rel="rdfs:domain" href="#Partial"><code>tfo:Partial</code></a></dd>
             <dt>Range:</dt>

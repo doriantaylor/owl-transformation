@@ -963,11 +963,11 @@ typeof="owl:ObjectProperty owl:FunctionalProperty">
 
 #### `transform`
 
-Specifies the transform associated with this particular application
+Specifies the transform associated with this particular invocation.
 
 Subproperty of:  
-<a href="https://vocab.methodandstructure.com/transformation#input"
-rel="rdfs:subPropertyOf"><code>tfo:input</code></a>
+<a href="https://www.w3.org/TR/prov-o/#used" rel="rdfs:PropertyOf"
+resource="prov:used"><code>prov:used</code></a>
 
 Domain:  
 <a href="https://vocab.methodandstructure.com/transformation#Partial"
