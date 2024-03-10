@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="/transform"?>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
       xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
       xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
       xmlns:owl="http://www.w3.org/2002/07/owl#"
       xmlns:sh="http://www.w3.org/ns/shacl#"
+      xmlns:xhv="http://www.w3.org/1999/xhtml/vocab#"
       xmlns:httpv="http://www.w3.org/2011/http#"
       xmlns:dct="http://purl.org/dc/terms/"
       xmlns:skos="http://www.w3.org/2004/02/skos/core#"
@@ -16,8 +18,8 @@
       xmlns:vann="http://purl.org/vocab/vann/"
       xmlns:ci="https://vocab.methodandstructure.com/content-inventory#"
       xmlns:tfo="https://vocab.methodandstructure.com/transformation#"
-      prefix="rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# xsd: http://www.w3.org/2001/XMLSchema# owl: http://www.w3.org/2002/07/owl# sh: http://www.w3.org/ns/shacl# httpv: http://www.w3.org/2011/http# dct: http://purl.org/dc/terms/ skos: http://www.w3.org/2004/02/skos/core# prov: http://www.w3.org/ns/prov# dcat: http://www.w3.org/ns/dcat# bibo: http://purl.org/ontology/bibo/ foaf: http://xmlns.com/foaf/0.1/ vann: http://purl.org/vocab/vann/ ci: https://vocab.methodandstructure.com/content-inventory# tfo: https://vocab.methodandstructure.com/transformation#"
-      xml:lang="en">
+      prefix="rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# xsd: http://www.w3.org/2001/XMLSchema# owl: http://www.w3.org/2002/07/owl# sh: http://www.w3.org/ns/shacl# xhv: http://www.w3.org/1999/xhtml/vocab# httpv: http://www.w3.org/2011/http# dct: http://purl.org/dc/terms/ skos: http://www.w3.org/2004/02/skos/core# prov: http://www.w3.org/ns/prov# dcat: http://www.w3.org/ns/dcat# bibo: http://purl.org/ontology/bibo/ foaf: http://xmlns.com/foaf/0.1/ vann: http://purl.org/vocab/vann/ ci: https://vocab.methodandstructure.com/content-inventory# tfo: https://vocab.methodandstructure.com/transformation#"
+      vocab="http://www.w3.org/1999/xhtml/vocab#" xml:lang="en">
   <head>
     <title about="#" property="dct:title">Transformation Functions Ontology</title>
     <base href="https://vocab.methodandstructure.com/transformation"/>
@@ -28,6 +30,7 @@
     <link rel="owl:sameAs" rev="ci:canonical" href="https://privatealpha.com/ontology/permutation/1"/>
     <link rel="owl:sameAs" rev="ci:canonical" href="https://privatealpha.com/ontology/transformation/1"/>
     <link rel="dct:subject foaf:primaryTopic" href="#"/>
+    <link rel="up top contents index" href="/"/>
   </head>
   <body about="" typeof="bibo:Specification">
     <div about="#" typeof="owl:Ontology">
