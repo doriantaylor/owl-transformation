@@ -1,5 +1,5 @@
 digraph {
-    graph [bgcolor=transparent];
+    graph [bgcolor=transparent,rankdir=LR];
     node [shape=box,color="#000000",fontcolor="#000000",fontname="Lucida Grande, Lucida Sans Unicode, sans-serif"];
     edge [color="#000000",fontcolor="#000000",fontname="Lucida Grande, Lucida Sans Unicode, sans-serif"];
 
@@ -9,16 +9,19 @@ digraph {
         node [style=dashed];
         prov_Activity [label="prov:Activity", target="_parent", href="https://www.w3.org/TR/prov-o/#Activity"];
         prov_Entity [label="prov:Entity", target="_parent", href="https://www.w3.org/TR/prov-o/#Entity"];
+        dcat_Resource [label="dcat:Resource" target="_parent", href="https://www.w3.org/TR/vocab-dcat-2/#Class:Resource"];
+        dcat_Dataset [label="dcat:Dataset" target="_parent", href="https://www.w3.org/TR/vocab-dcat-2/#Class:Dataset"];
         dcat_Catalog [label="dcat:Catalog" target="_parent", href="https://www.w3.org/TR/vocab-dcat-2/#Class:Catalog"];
         dcat_DataService [label="dcat:DataService" target="_parent", href="https://www.w3.org/TR/vocab-dcat-2/#Class:Data_Service"];
         prov_SoftwareAgent [label="prov:SoftwareAgent", target="_parent", href="https://www.w3.org/TR/prov-o/#SoftwareAgent"];
-        rdf_List      [label="rdf:List", target="_parent", href="https://www.w3.org/TR/rdf-schema/#ch_list"];
-        rdf_Property  [label="rdf:Property", target="_parent", href="https://www.w3.org/TR/rdf-schema/#ch_property"];
-        rdfs_Resource [label="rdfs:Resource", target="_parent", href="https://www.w3.org/TR/rdf-schema/#ch_resource"];
+        rdf_Bag      [label="rdf:Bag", target="_parent", href="https://www.w3.org/TR/rdf11-schema/#ch_bag"];
+        rdf_List      [label="rdf:List", target="_parent", href="https://www.w3.org/TR/rdf11-schema/#ch_list"];
+        rdf_Property  [label="rdf:Property", target="_parent", href="https://www.w3.org/TR/rdf11-schema/#ch_property"];
+        rdfs_Resource [label="rdfs:Resource", target="_parent", href="https://www.w3.org/TR/rdf11-schema/#ch_resource"];
+	rdfs_Literal [label="rdfs:Literal", target="_parent", href="https://www.w3.org/TR/rdf11-schema/#ch_literal"];
+	rdfs_Container [label="rdfs:Container", target="_parent", href="https://www.w3.org/TR/rdf11-schema/#ch_container"];
         http_StatusCode [label="http:StatusCode", target="_parent", href="https://www.w3.org/TR/HTTP-in-RDF10/#StatusCodeClass"];
-        xsd_string    [label="xsd:string", target="_parent", href="https://www.w3.org/TR/xmlschema-2/#string"];
-        xsd_token     [label="xsd:token", target="_parent", href="https://www.w3.org/TR/xmlschema-2/#token"];
-        //rdf_nil       [label="rdf:nil", target="_parent", href="https://www.w3.org/TR/rdf-schema/#ch_nil"];
+        //rdf_nil       [label="rdf:nil", target="_parent", href="https://www.w3.org/TR/rdf11-schema/#ch_nil"];
     }
 
     // our classes
@@ -27,6 +30,7 @@ digraph {
     tfo_Invocation [label="tfo:Invocation", target="_parent", href="https://vocab.methodandstructure.com/transformation#Invocation"];
     tfo_Parameter [label="tfo:Parameter", target="_parent", href="https://vocab.methodandstructure.com/transformation#Parameter"];
     tfo_ParameterList [label="tfo:ParameterList", target="_parent", href="https://vocab.methodandstructure.com/transformation#ParameterList"];
+    tfo_Range [label="tfo:Range", target="_parent", href="https://vocab.methodandstructure.com/transformation#Range"];
     tfo_Partial [label="tfo:Partial", target="_parent", href="https://vocab.methodandstructure.com/transformation#Partial"];
     tfo_Function [label="tfo:Function", target="_parent", href="https://vocab.methodandstructure.com/transformation#Function"];
     // tfo_MarkupTransform [label="tfo:MarkupTransform", target="_parent", href="https://vocab.methodandstructure.com/transformation#MarkupTransform"];
@@ -37,13 +41,21 @@ digraph {
     tfo_Insertion [label="tfo:Insertion", target="_parent", href="https://vocab.methodandstructure.com/transformation#Insertion"];
 
     // our datatypes
-
     subgraph {
         node [shape=note];
         tfo_content_type [label="tfo:content-type", target="_parent", href="https://vocab.methodandstructure.com/transformation#content-type"];
         tfo_regexp [label="tfo:regexp", target="_parent", href="https://vocab.methodandstructure.com/transformation#regexp"];
         tfo_iregexp [label="tfo:iregexp", target="_parent", href="https://vocab.methodandstructure.com/transformation#iregexp"];
         tfo_xpath [label="tfo:xpath", target="_parent", href="https://vocab.methodandstructure.com/transformation#xpath"];
+	tfo_term [label="tfo:term", target="_parent", href="https://vocab.methodandstructure.com/transformation#term"];
+    }
+
+    // third-party datatypes
+    subgraph {
+        node [shape=note,style=dashed];
+        xsd_string    [label="xsd:string", target="_parent", href="https://www.w3.org/TR/xmlschema11-2/#string"];
+        xsd_token     [label="xsd:token", target="_parent", href="https://www.w3.org/TR/xmlschema11-2/#token"];
+	xsd_boolean   [label="xsd:boolean", target="_parent", href="https://www.w3.org/TR/xmlschema11-2/#boolean"];
     }
 
     subgraph {
@@ -58,11 +70,11 @@ digraph {
 
     subgraph {
         edge [style=dashed, label="rdfs:subClassOf"];
-        tfo_Bundle           -> dcat_Catalog;
+        tfo_Bundle           -> dcat_Catalog -> dcat_Dataset -> dcat_Resource;
         tfo_Bundle           -> prov_SoftwareAgent;
         tfo_Invocation       -> tfo_Partial -> prov_Activity;
         // tfo_MarkupTransform  -> tfo_Transform -> dcat_DataService;
-        tfo_Function         -> dcat_DataService;
+        tfo_Function         -> dcat_DataService -> dcat_Resource;
         tfo_Function         -> prov_Entity;
         tfo_Parameter        -> rdf_Property;
         tfo_ParameterList    -> rdf_List;
@@ -70,14 +82,15 @@ digraph {
         tfo_StrictQueue      -> tfo_Queue -> prov_Activity;
         tfo_AddressableQueue -> tfo_StrictQueue;
         tfo_Insertion        -> tfo_Queue;
-        tfo_FunctionList    -> rdf_List;
+        tfo_FunctionList     -> rdf_List;
+	tfo_Range            -> rdfs_Container;
     }
 
     // main relations
 
     tfo_Bundle -> rdfs_Resource [label="tfo:implementation"];
-    dcat_DataService -> tfo_Parameter [label="tfo:parameter"];
-    dcat_DataService -> tfo_ParameterList [label="tfo:parameter-list"];
+    dcat_Resource -> tfo_Parameter [label="tfo:parameter"];
+    dcat_Resource -> tfo_ParameterList [label="tfo:parameter-list"];
     dcat_DataService -> tfo_content_type [label="tfo:accepts,\ntfo:returns"];
     // tfo_Transform -> tfo_content_type [label="tfo:returns"];
     tfo_Function  -> tfo_Function [label="tfo:precedes,\ntfo:follows"];
@@ -86,6 +99,17 @@ digraph {
     tfo_Invocation -> tfo_Partial [label="tfo:completes"];
     tfo_Invocation -> rdfs_Resource [label="tfo:input"];
     tfo_Invocation -> rdfs_Resource [label="tfo:output"];
+
+    tfo_Parameter -> rdf_Bag [label="tfo:composite"];
+    tfo_Parameter -> rdf_List [label="tfo:composite"];
+    tfo_Parameter -> tfo_Range [label="tfo:composite"];
+    tfo_Parameter -> rdfs_Resource [label="tfo:default"];
+    tfo_Parameter -> xsd_boolean [label="tfo:empty,\ntfo:shift"];
+
+    tfo_Range -> xsd_boolean [label="tfo:infimum"];
+    tfo_Range -> xsd_boolean [label="tfo:supremum"];
+    tfo_Range -> rdfs_Literal [label="tfo:low"];
+    tfo_Range -> rdfs_Literal [label="tfo:high"];
 
     tfo_Queue -> tfo_Queue [label="tfo:next"];
     tfo_Queue -> tfo_Function [label="tfo:member,\ntfo:first,\ntfo:last"];
@@ -101,6 +125,7 @@ digraph {
     subgraph {
         edge [style=dashed];
         dcat_Catalog -> dcat_DataService [label="dcat:service"];
+	rdf_Bag -> tfo_term [label="rdfs:member"];
         //tfo_Parameter -> tfo_Invocation [label="rdfs:domain"];
         //tfo_ParameterList -> tfo_Parameter [label="rdf:first"];
         //tfo_ParameterList -> tfo_ParameterList [label="rdf:rest"];

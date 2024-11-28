@@ -25,6 +25,10 @@ October 9, 2023
 
 January 30, 2024
 
+October 16, 2024
+
+November 25, 2024
+
 Namespace URI  
 [`https://vocab.methodandstructure.com/transformation#`](https://vocab.methodandstructure.com/transformation#)
 
@@ -36,9 +40,9 @@ Imported Vocabularies
 rel="owl:imports" resource="http://www.w3.org/2001/XMLSchema#">W3C XML
 Schema Definition Language (XSD) 1.1 Part 2: Datatypes</a>
 
-This document describes functions which transform HTTP <span
-class="dfn">representations</span>, i.e., the actual literal payloads of
-HTTP messages.
+This document describes functions which transform HTTP
+<span class="dfn">representations</span>, i.e., the actual literal
+payloads of HTTP messages.
 
 Many, if not most Web content manipulation tasks are concerned
 exclusively with *representations*: the literal *contents* of HTTP
@@ -53,8 +57,8 @@ The purpose of this vocabulary is to provide a mechanism for identifying
 segments (like HTTP response bodies) and perhaps take additional scalar
 parameters (and specify both *named* and *sequential* calling
 conventions), and relate a function definition to a concrete
-implementation. The vocabulary also provides a mechanism for [<span
-class="dfn">memoizing</span>](https://en.wikipedia.org/wiki/Memoization)
+implementation. The vocabulary also provides a mechanism for
+[<span class="dfn">memoizing</span>](https://en.wikipedia.org/wiki/Memoization)
 the application of a function to a particular data object, i.e.,
 relating a particular input (plus any additional parameters) to a
 particular output.
@@ -127,7 +131,10 @@ over the input.
 
 ## Classes
 
-![](https://vocab.methodandstructure.com/transformation-classes)
+<figure>
+<img
+src="https://vocab.methodandstructure.com/transformation-classes" />
+</figure>
 
 <div class="section">
 
@@ -246,24 +253,23 @@ typeof="owl:Class">
 This class provides a specification for a parameter in a given function.
 
 Subclass of:  
-<a href="https://www.w3.org/TR/rdf-schema/#ch_property"
+<a href="https://www.w3.org/TR/rdf11-schema/#ch_property"
 rel="rdfs:subClassOf"
 resource="rdf:Property"><code>rdf:Property</code></a>
 
 Property restrictions:  
-<a href="https://www.w3.org/TR/rdf-schema/#ch_domain"
+<a href="https://www.w3.org/TR/rdf11-schema/#ch_domain"
 rel="owl:onProperty" resource="rdfs:domain"><code>rdfs:domain</code></a>
 ∈ <span rel="owl:allValuesFrom" resource="_:E0U5-E-2m20e9akyFS7CJK">
 <span rel="owl:unionOf"
 resource="_:ERYaN15IEBIX5V9Qjn1gSJ">(<a href="https://vocab.methodandstructure.com/transformation#Partial"
-rel="rdf:first"><code>tfo:Partial</code></a> <span
-about="_:ERYaN15IEBIX5V9Qjn1gSJ" rel="rdf:rest"
+rel="rdf:first"><code>tfo:Partial</code></a>
+<span about="_:ERYaN15IEBIX5V9Qjn1gSJ" rel="rdf:rest"
 resource="_:Elw4xkTlnNqDG4rt5jhIUJ">∪</span>
 <a href="https://vocab.methodandstructure.com/transformation#Bundle"
 about="_:Elw4xkTlnNqDG4rt5jhIUJ"
-rel="rdf:first"><code>tfo:Bundle</code></a><span
-about="_:Elw4xkTlnNqDG4rt5jhIUJ" rel="rdf:rest"
-resource="rdf:nil">)</span> </span> </span>
+rel="rdf:first"><code>tfo:Bundle</code></a><span about="_:Elw4xkTlnNqDG4rt5jhIUJ"
+rel="rdf:rest" resource="rdf:nil">)</span> </span> </span>
 
 Properties:  
 <a href="https://vocab.methodandstructure.com/transformation#default"
@@ -280,19 +286,45 @@ This class represents a list with the restriction that its members be
 tfo:Parameter nodes.
 
 Subclass of:  
-<a href="https://www.w3.org/TR/rdf-schema/#ch_list"
+<a href="https://www.w3.org/TR/rdf11-schema/#ch_list"
 rel="rdfs:subClassOf" resource="rdf:List"><code>rdf:List</code></a>
 
 Property restrictions:  
-<a href="https://www.w3.org/TR/rdf-schema/#ch_first"
+<a href="https://www.w3.org/TR/rdf11-schema/#ch_first"
 rel="owl:onProperty" resource="rdf:first"><code>rdf:first</code></a> ∈
 <a href="https://vocab.methodandstructure.com/transformation#Parameter"
 rel="owl:allValuesFrom"><code>tfo:Parameter</code></a>
 
-<a href="https://www.w3.org/TR/rdf-schema/#ch_rest" rel="owl:onProperty"
-resource="rdf:rest"><code>rdf:rest</code></a> ∈ <a
+<a href="https://www.w3.org/TR/rdf11-schema/#ch_rest"
+rel="owl:onProperty" resource="rdf:rest"><code>rdf:rest</code></a> ∈ <a
 href="https://vocab.methodandstructure.com/transformation#ParameterList"
 rel="owl:allValuesFrom"><code>tfo:ParameterList</code></a>
+
+</div>
+
+<div id="Range" class="section" about="[tfo:Range]" typeof="owl:Class">
+
+#### `Range`
+
+A span of numbers or sequence-able objects, like dates.
+
+Subclass of:  
+<a href="https://www.w3.org/TR/rdf11-schema/#ch_container"
+rel="rdfs:subClassOf"
+resource="rdfs:Container"><code>rdfs:Container</code></a>
+
+Properties:  
+<a href="https://vocab.methodandstructure.com/transformation#low"
+rev="rdfs:domain"><code>tfo:low</code></a>
+
+<a href="https://vocab.methodandstructure.com/transformation#high"
+rev="rdfs:domain"><code>tfo:high</code></a>
+
+<a href="https://vocab.methodandstructure.com/transformation#infimum"
+rev="rdfs:domain"><code>tfo:infimum</code></a>
+
+<a href="https://vocab.methodandstructure.com/transformation#supremum"
+rev="rdfs:domain"><code>tfo:supremum</code></a>
 
 </div>
 
@@ -385,23 +417,24 @@ A function list is a list that only holds `tfo:Function` or
 `tfo:Partial` entities.
 
 Subclass of:  
-<a href="https://www.w3.org/TR/rdf-schema/#ch_list"
+<a href="https://www.w3.org/TR/rdf11-schema/#ch_list"
 rel="rdfs:subClassOf" resource="rdf:List"><code>rdf:List</code></a>
 
 Property restrictions:  
-<a href="https://www.w3.org/TR/rdf-schema/#ch_first"
+<a href="https://www.w3.org/TR/rdf11-schema/#ch_first"
 rel="owl:onProperty" resource="rdf:first"><code>rdf:first</code></a> ∈
 <span rel="owl:allValuesFrom"><span about="_:uo40" rel="owl:unionOf"
 resource="_:q40">
 <a href="https://vocab.methodandstructure.com/transformation#Function"
-about="_:q40" rel="rdf:first"><code>tfo:Function</code></a> <span
-about="_:q40" rel="rdf:rest" resource="_:q41">∪</span>
+about="_:q40" rel="rdf:first"><code>tfo:Function</code></a>
+<span about="_:q40" rel="rdf:rest" resource="_:q41">∪</span>
 <a href="https://vocab.methodandstructure.com/transformation#Partial"
-about="_:q41" rel="rdf:first"><code>tfo:Partial</code></a> <span
-about="_:q41" rel="rdf:rest" resource="rdf:nil"></span></span> </span>
+about="_:q41" rel="rdf:first"><code>tfo:Partial</code></a>
+<span about="_:q41" rel="rdf:rest" resource="rdf:nil"></span></span>
+</span>
 
-<a href="https://www.w3.org/TR/rdf-schema/#ch_rest" rel="owl:onProperty"
-resource="rdf:rest"><code>rdf:rest</code></a> ∈ <a
+<a href="https://www.w3.org/TR/rdf11-schema/#ch_rest"
+rel="owl:onProperty" resource="rdf:rest"><code>rdf:rest</code></a> ∈ <a
 href="https://vocab.methodandstructure.com/transformation#FunctionList"
 rel="owl:allValuesFrom"><code>tfo:FunctionList</code></a>
 
@@ -456,7 +489,7 @@ Subclass of:
 rel="rdfs:subClassOf"><code>tfo:Partial</code></a>
 
 Equivalent to:  
-`tfo:Application`
+~~`tfo:Application`~~
 
 Properties:  
 <a href="https://vocab.methodandstructure.com/transformation#completes"
@@ -496,7 +529,10 @@ rev="rdfs:domain"><code>tfo:transform</code></a>
 
 ## Properties
 
-![](https://vocab.methodandstructure.com/transformation-properties)
+<figure>
+<img
+src="https://vocab.methodandstructure.com/transformation-properties" />
+</figure>
 
 <div class="section">
 
@@ -521,11 +557,11 @@ resource="dcat:DataService"><code>dcat:DataService</code></a>
 Range:  
 <span about="_:uo1" rel="owl:unionOf" resource="_:q1"> <a
 href="https://vocab.methodandstructure.com/transformation#content-type"
-about="_:q1" rel="rdf:first"><code>tfo:content-type</code></a> <span
-about="_:q1" rel="rdf:rest" resource="_:q2">∪</span>
-<a href="https://www.w3.org/TR/rdf-schema/#ch_list" about="_:q2"
-rel="rdf:first" resource="rdf:List"><code>rdf:List</code></a> <span
-about="_:q2" rel="rdf:rest" resource="rdf:nil"></span> </span>
+about="_:q1" rel="rdf:first"><code>tfo:content-type</code></a>
+<span about="_:q1" rel="rdf:rest" resource="_:q2">∪</span>
+<a href="https://www.w3.org/TR/rdf11-schema/#ch_list" about="_:q2"
+rel="rdf:first" resource="rdf:List"><code>rdf:List</code></a>
+<span about="_:q2" rel="rdf:rest" resource="rdf:nil"></span> </span>
 
 <a href="https://vocab.methodandstructure.com/transformation#"
 rel="rdfs:isDefinedBy">Back to Top</a>
@@ -548,11 +584,11 @@ resource="dcat:DataService"><code>dcat:DataService</code></a>
 Range:  
 <span about="_:uo2" rel="owl:unionOf" resource="_:q3"> <a
 href="https://vocab.methodandstructure.com/transformation#content-type"
-about="_:q3" rel="rdf:first"><code>tfo:content-type</code></a> <span
-about="_:q3" rel="rdf:rest" resource="_:q4">∪</span>
-<a href="https://www.w3.org/TR/rdf-schema/#ch_list" about="_:q4"
-rel="rdf:first" resource="rdf:List"><code>rdf:List</code></a> <span
-about="_:q4" rel="rdf:rest" resource="rdf:nil"></span> </span>
+about="_:q3" rel="rdf:first"><code>tfo:content-type</code></a>
+<span about="_:q3" rel="rdf:rest" resource="_:q4">∪</span>
+<a href="https://www.w3.org/TR/rdf11-schema/#ch_list" about="_:q4"
+rel="rdf:first" resource="rdf:List"><code>rdf:List</code></a>
+<span about="_:q4" rel="rdf:rest" resource="rdf:nil"></span> </span>
 
 <a href="https://vocab.methodandstructure.com/transformation#"
 rel="rdfs:isDefinedBy">Back to Top</a>
@@ -578,11 +614,11 @@ rel="rdfs:domain"><code>tfo:Function</code></a>
 Range:  
 <span about="_:uo3" rel="owl:unionOf" resource="_:q5"> <a
 href="https://vocab.methodandstructure.com/transformation#content-type"
-about="_:q5" rel="rdf:first"><code>tfo:content-type</code></a> <span
-about="_:q5" rel="rdf:rest" resource="_:q6">∪</span>
-<a href="https://www.w3.org/TR/rdf-schema/#ch_list" about="_:q6"
-rel="rdf:first" resource="rdf:List"><code>rdf:List</code></a> <span
-about="_:q6" rel="rdf:rest" resource="rdf:nil"></span> </span>
+about="_:q5" rel="rdf:first"><code>tfo:content-type</code></a>
+<span about="_:q5" rel="rdf:rest" resource="_:q6">∪</span>
+<a href="https://www.w3.org/TR/rdf11-schema/#ch_list" about="_:q6"
+rel="rdf:first" resource="rdf:List"><code>rdf:List</code></a>
+<span about="_:q6" rel="rdf:rest" resource="rdf:nil"></span> </span>
 
 <a href="https://vocab.methodandstructure.com/transformation#"
 rel="rdfs:isDefinedBy">Back to Top</a>
@@ -604,8 +640,8 @@ Domain:
 rel="rdfs:domain"><code>tfo:Bundle</code></a>
 
 Range:  
-<a href="https://www.w3.org/TR/rdf-schema/#ch_resource" rel="rdfs:range"
-resource="rdfs:Resource"><code>rdfs:Resource</code></a>
+<a href="https://www.w3.org/TR/rdf11-schema/#ch_resource"
+rel="rdfs:range" resource="rdfs:Resource"><code>rdfs:Resource</code></a>
 
 <a href="https://vocab.methodandstructure.com/transformation#"
 rel="rdfs:isDefinedBy">Back to Top</a>
@@ -623,9 +659,9 @@ Parameters can either be supplied to the function as key-value pairs or
 sequentially.
 
 Domain:  
-<a href="https://www.w3.org/TR/vocab-dcat-2/#Class:Data_Service"
+<a href="https://www.w3.org/TR/vocab-dcat-2/#Class:Resource"
 rel="rdfs:domain"
-resource="dcat:DataService"><code>dcat:DataService</code></a>
+resource="dcat:Resource"><code>dcat:Resource</code></a>
 
 Range:  
 <a href="https://vocab.methodandstructure.com/transformation#Parameter"
@@ -645,14 +681,48 @@ Specifies the sequence of parameters when the invocation method of the
 function is sequential.
 
 Domain:  
-<a href="https://www.w3.org/TR/vocab-dcat-2/#Class:Data_Service"
+<a href="https://www.w3.org/TR/vocab-dcat-2/#Class:Resource"
 rel="rdfs:domain"
-resource="dcat:DataService"><code>dcat:DataService</code></a>
+resource="dcat:Resource"><code>dcat:Resource</code></a>
 
 Range:  
 <a
 href="https://vocab.methodandstructure.com/transformation#ParameterList"
 rel="rdfs:range"><code>tfo:ParameterList</code></a>
+
+<a href="https://vocab.methodandstructure.com/transformation#"
+rel="rdfs:isDefinedBy">Back to Top</a>
+
+</div>
+
+<div id="composite" class="section" about="[tfo:composite]"
+typeof="owl:ObjectProperty owl:FunctionalProperty">
+
+#### `composite`
+
+Assigns a composite type for the parameter.
+
+The range can be any class but we prefer some subclass of
+`rdfs:Container`. It is assumed that the code implementation knows what
+to do with the composite class.
+
+Domain:  
+<a href="https://vocab.methodandstructure.com/transformation#Parameter"
+rel="rdfs:domain"><code>tfo:Parameter</code></a>
+
+Range:  
+<a href="https://www.w3.org/TR/rdf11-schema/#ch_class" rel="rdfs:range"
+resource="rdfs:Class"><code>rdfs:Class</code></a>
+
+See also:  
+<a href="https://www.w3.org/TR/rdf11-schema/#ch_bag" rel="rdfs:seeAlso"
+resource="rdf:Bag"><code>rdf:Bag</code></a>
+
+<a href="https://www.w3.org/TR/rdf11-schema/#ch_list" rel="rdfs:seeAlso"
+resource="rdf:List"><code>rdf:List</code></a>
+
+<a href="https://vocab.methodandstructure.com/transformation#Range"
+rel="rdfs:seeAlso"><code>tfo:Range</code></a>
 
 <a href="https://vocab.methodandstructure.com/transformation#"
 rel="rdfs:isDefinedBy">Back to Top</a>
@@ -669,6 +739,128 @@ Specifies one or more default values for a parameter.
 Domain:  
 <a href="https://vocab.methodandstructure.com/transformation#Parameter"
 rel="rdfs:domain"><code>tfo:Parameter</code></a>
+
+<a href="https://vocab.methodandstructure.com/transformation#"
+rel="rdfs:isDefinedBy">Back to Top</a>
+
+</div>
+
+<div id="empty" class="section" about="[tfo:empty]"
+typeof="owl:DatatypeProperty owl:FunctionalProperty">
+
+#### `empty`
+
+Flags whether an empty parameter value should be treated as input rather
+than ignored.
+
+Domain:  
+<a href="https://vocab.methodandstructure.com/transformation#Parameter"
+rel="rdfs:domain"><code>tfo:Parameter</code></a>
+
+Range:  
+<a href="https://www.w3.org/TR/xmlschema11-2/#boolean" rel="rdfs:range"
+resource="xsd:boolean"><code>xsd:boolean</code></a>
+
+<a href="https://vocab.methodandstructure.com/transformation#"
+rel="rdfs:isDefinedBy">Back to Top</a>
+
+</div>
+
+<div id="shift" class="section" about="[tfo:shift]"
+typeof="owl:DatatypeProperty owl:FunctionalProperty">
+
+#### `shift`
+
+Flags whether a parameter with multiple values but a fixed cardinality
+shift off the front of the list rather than truncate off the back.
+
+Domain:  
+<a href="https://vocab.methodandstructure.com/transformation#Parameter"
+rel="rdfs:domain"><code>tfo:Parameter</code></a>
+
+Range:  
+<a href="https://www.w3.org/TR/xmlschema11-2/#boolean" rel="rdfs:range"
+resource="xsd:boolean"><code>xsd:boolean</code></a>
+
+<a href="https://vocab.methodandstructure.com/transformation#"
+rel="rdfs:isDefinedBy">Back to Top</a>
+
+</div>
+
+<div id="low" class="section" about="[tfo:low]"
+typeof="owl:DatatypeProperty owl:FunctionalProperty">
+
+#### `low`
+
+Specifies the *lower* bound of a `tfo:Range`.
+
+Domain:  
+<a href="https://vocab.methodandstructure.com/transformation#Range"
+rel="rdfs:domain"><code>tfo:Range</code></a>
+
+Range:  
+<a href="https://www.w3.org/TR/rdf11-schema/#ch_resource"
+rel="rdfs:range" resource="rdfs:Literal"><code>rdfs:Literal</code></a>
+
+<a href="https://vocab.methodandstructure.com/transformation#"
+rel="rdfs:isDefinedBy">Back to Top</a>
+
+</div>
+
+<div id="high" class="section" about="[tfo:high]"
+typeof="owl:DatatypeProperty owl:FunctionalProperty">
+
+#### `high`
+
+Specifies the *upper* bound of a `tfo:Range`.
+
+Domain:  
+<a href="https://vocab.methodandstructure.com/transformation#Range"
+rel="rdfs:domain"><code>tfo:Range</code></a>
+
+Range:  
+<a href="https://www.w3.org/TR/rdf11-schema/#ch_resource"
+rel="rdfs:range" resource="rdfs:Literal"><code>rdfs:Literal</code></a>
+
+<a href="https://vocab.methodandstructure.com/transformation#"
+rel="rdfs:isDefinedBy">Back to Top</a>
+
+</div>
+
+<div id="infimum" class="section" about="[tfo:infimum]"
+typeof="owl:DatatypeProperty owl:FunctionalProperty">
+
+#### `infimum`
+
+Flags whether a `tfo:Range` will be open on the *low* side.
+
+Domain:  
+<a href="https://vocab.methodandstructure.com/transformation#Range"
+rel="rdfs:domain"><code>tfo:Range</code></a>
+
+Range:  
+<a href="https://www.w3.org/TR/xmlschema11-2/#boolean" rel="rdfs:range"
+resource="xsd:boolean"><code>xsd:boolean</code></a>
+
+<a href="https://vocab.methodandstructure.com/transformation#"
+rel="rdfs:isDefinedBy">Back to Top</a>
+
+</div>
+
+<div id="supremum" class="section" about="[tfo:supremum]"
+typeof="owl:DatatypeProperty owl:FunctionalProperty">
+
+#### `supremum`
+
+Flags whether a `tfo:Range` will be open on the *high* side.
+
+Domain:  
+<a href="https://vocab.methodandstructure.com/transformation#Range"
+rel="rdfs:domain"><code>tfo:Range</code></a>
+
+Range:  
+<a href="https://www.w3.org/TR/xmlschema11-2/#boolean" rel="rdfs:range"
+resource="xsd:boolean"><code>xsd:boolean</code></a>
 
 <a href="https://vocab.methodandstructure.com/transformation#"
 rel="rdfs:isDefinedBy">Back to Top</a>
@@ -698,11 +890,11 @@ rel="rdfs:domain"><code>tfo:Queue</code></a>
 Range:  
 <span about="_:uo4" rel="owl:unionOf" resource="_:q7">
 <a href="https://vocab.methodandstructure.com/transformation#Function"
-about="_:q7" rel="rdf:first"><code>tfo:Function</code></a> <span
-about="_:q7" rel="rdf:rest" resource="_:q8">∪</span>
+about="_:q7" rel="rdf:first"><code>tfo:Function</code></a>
+<span about="_:q7" rel="rdf:rest" resource="_:q8">∪</span>
 <a href="https://vocab.methodandstructure.com/transformation#Partial"
-about="_:q8" rel="rdf:first"><code>tfo:Partial</code></a> <span
-about="_:q8" rel="rdf:rest" resource="rdf:nil"></span> </span>
+about="_:q8" rel="rdf:first"><code>tfo:Partial</code></a>
+<span about="_:q8" rel="rdf:rest" resource="rdf:nil"></span> </span>
 
 <a href="https://vocab.methodandstructure.com/transformation#"
 rel="rdfs:isDefinedBy">Back to Top</a>
@@ -818,11 +1010,11 @@ rel="rdfs:domain"><code>tfo:Queue</code></a>
 Range:  
 <span about="_:uo41" rel="owl:unionOf" resource="_:q42">
 <a href="https://vocab.methodandstructure.com/transformation#Function"
-about="_:q42" rel="rdf:first"><code>tfo:Function</code></a> <span
-about="_:q42" rel="rdf:rest" resource="_:q43">∪</span>
+about="_:q42" rel="rdf:first"><code>tfo:Function</code></a>
+<span about="_:q42" rel="rdf:rest" resource="_:q43">∪</span>
 <a href="https://vocab.methodandstructure.com/transformation#Partial"
-about="_:q43" rel="rdf:first"><code>tfo:Partial</code></a> <span
-about="_:q43" rel="rdf:rest" resource="rdf:nil"></span> </span>
+about="_:q43" rel="rdf:first"><code>tfo:Partial</code></a>
+<span about="_:q43" rel="rdf:rest" resource="rdf:nil"></span> </span>
 
 <a href="https://vocab.methodandstructure.com/transformation#"
 rel="rdfs:isDefinedBy">Back to Top</a>
@@ -847,11 +1039,11 @@ rel="rdfs:domain"><code>tfo:Queue</code></a>
 Range:  
 <span about="_:uo42" rel="owl:unionOf" resource="_:q44">
 <a href="https://vocab.methodandstructure.com/transformation#Function"
-about="_:q44" rel="rdf:first"><code>tfo:Function</code></a> <span
-about="_:q44" rel="rdf:rest" resource="_:q45">∪</span>
+about="_:q44" rel="rdf:first"><code>tfo:Function</code></a>
+<span about="_:q44" rel="rdf:rest" resource="_:q45">∪</span>
 <a href="https://vocab.methodandstructure.com/transformation#Partial"
-about="_:q45" rel="rdf:first"><code>tfo:Partial</code></a> <span
-about="_:q45" rel="rdf:rest" resource="rdf:nil"></span> </span>
+about="_:q45" rel="rdf:first"><code>tfo:Partial</code></a>
+<span about="_:q45" rel="rdf:rest" resource="rdf:nil"></span> </span>
 
 <a href="https://vocab.methodandstructure.com/transformation#"
 rel="rdfs:isDefinedBy">Back to Top</a>
@@ -999,8 +1191,8 @@ Domain:
 rel="rdfs:domain"><code>tfo:Invocation</code></a>
 
 Range:  
-<a href="https://www.w3.org/TR/rdf-schema/#ch_resource" rel="rdfs:range"
-resource="rdfs:Resource"><code>rdfs:Resource</code></a>
+<a href="https://www.w3.org/TR/rdf11-schema/#ch_resource"
+rel="rdfs:range" resource="rdfs:Resource"><code>rdfs:Resource</code></a>
 
 <a href="https://vocab.methodandstructure.com/transformation#"
 rel="rdfs:isDefinedBy">Back to Top</a>
@@ -1020,8 +1212,8 @@ Domain:
 rel="rdfs:domain"><code>tfo:Invocation</code></a>
 
 Range:  
-<a href="https://www.w3.org/TR/rdf-schema/#ch_resource" rel="rdfs:range"
-resource="rdfs:Resource"><code>rdfs:Resource</code></a>
+<a href="https://www.w3.org/TR/rdf11-schema/#ch_resource"
+rel="rdfs:range" resource="rdfs:Resource"><code>rdfs:Resource</code></a>
 
 <a href="https://vocab.methodandstructure.com/transformation#"
 rel="rdfs:isDefinedBy">Back to Top</a>
@@ -1168,10 +1360,10 @@ A literal that represents a content-type such as that which is found in
 the HTTP `Accept:` or `Content-Type:` header.
 
 Restriction of:  
-<a href="https://www.w3.org/TR/xmlschema-2/#token" rel="owl:onDatatype"
-resource="xsd:token"><code>xsd:token</code></a> <span
-rel="owl:withRestrictions" resource="_:rl1">matching</span> <span
-about="_:rl1"
+<a href="https://www.w3.org/TR/xmlschema11-2/#token"
+rel="owl:onDatatype" resource="xsd:token"><code>xsd:token</code></a>
+<span rel="owl:withRestrictions" resource="_:rl1">matching</span>
+<span about="_:rl1"
 rel="rdf:first">`` ^([!#$%&'\*\+\-.^_`|~0-9-A-Za-z]+)(?:/[!#$%&'\*\+\-.^_`|~0-9-A-Za-z]+)?)$ ``</span>
 <span about="_:rl1" rel="rdf:rest" resource="rdf:nil"></span>
 
@@ -1200,8 +1392,8 @@ We do not specify a flavour, but in practice we should assume PCRE or
 ECMA-262.
 
 Restriction of:  
-<a href="https://www.w3.org/TR/xmlschema-2/#string" rel="owl:onDatatype"
-resource="xsd:string"><code>xsd:string</code></a>
+<a href="https://www.w3.org/TR/xmlschema11-2/#string"
+rel="owl:onDatatype" resource="xsd:string"><code>xsd:string</code></a>
 
 <a href="https://vocab.methodandstructure.com/transformation#"
 rel="rdfs:isDefinedBy">Back to Top</a>
@@ -1223,8 +1415,28 @@ Subclass of:
 rel="rdfs:subClassOf"><code>tfo:regexp</code></a>
 
 Restriction of:  
-<a href="https://www.w3.org/TR/xmlschema-2/#string" rel="owl:onDatatype"
-resource="xsd:string"><code>xsd:string</code></a>
+<a href="https://www.w3.org/TR/xmlschema11-2/#string"
+rel="owl:onDatatype" resource="xsd:string"><code>xsd:string</code></a>
+
+<a href="https://vocab.methodandstructure.com/transformation#"
+rel="rdfs:isDefinedBy">Back to Top</a>
+
+</div>
+
+<div id="term" class="section" about="[tfo:term]"
+typeof="rdfs:Datatype">
+
+### `term`
+
+An RDF term represented as either a CURIE (prefixed term) or IRI.
+
+Union of:  
+(<a href="https://www.w3.org/TR/xmlschema11-2/#QName" rel="rdf:first"
+resource="xsd:QName"><code>xsd:QName</code></a> <span rel="rdf:rest"
+resource="_:E0hqEbAJ28y0otPLbGJzOI">∪
+<a href="https://www.w3.org/TR/xmlschema11-2/#anyURI" rel="rdf:first"
+resource="xsd:anyURI"><code>xsd:anyURI</code></a><span rel="rdf:rest"
+resource="rdf:nil">)</span></span>
 
 <a href="https://vocab.methodandstructure.com/transformation#"
 rel="rdfs:isDefinedBy">Back to Top</a>
@@ -1239,8 +1451,8 @@ typeof="rdfs:Datatype">
 An XPath expression.
 
 Restriction of:  
-<a href="https://www.w3.org/TR/xmlschema-2/#string" rel="owl:onDatatype"
-resource="xsd:string"><code>xsd:string</code></a>
+<a href="https://www.w3.org/TR/xmlschema11-2/#string"
+rel="owl:onDatatype" resource="xsd:string"><code>xsd:string</code></a>
 
 <a href="https://vocab.methodandstructure.com/transformation#"
 rel="rdfs:isDefinedBy">Back to Top</a>
@@ -1253,13 +1465,13 @@ rel="rdfs:isDefinedBy">Back to Top</a>
 
 ## References
 
--   <a href="https://www.w3.org/TR/prov-o/" rel="dct:references">PROV-O: The
-    Provenance Ontology</a>
--   <a href="https://www.w3.org/TR/rdf-schema/" rel="dct:references">RDF
-    Schema 1.1</a>
--   <a href="https://www.w3.org/TR/xmlschema-2/" rel="dct:references">XML
-    Schema Part 2: Datatypes Second Edition</a>
--   <a href="https://www.iana.org/assignments/media-types/media-types.xhtml"
-    rel="dct:references">Media Types (IANA)</a>
+- <a href="https://www.w3.org/TR/prov-o/" rel="dct:references">PROV-O: The
+  Provenance Ontology</a>
+- <a href="https://www.w3.org/TR/rdf-schema/" rel="dct:references">RDF
+  Schema 1.1</a>
+- <a href="https://www.w3.org/TR/xmlschema11-2/" rel="dct:references">W3C
+  XML Schema Definition Language (XSD) 1.1 Part 2: Datatypes</a>
+- <a href="https://www.iana.org/assignments/media-types/media-types.xhtml"
+  rel="dct:references">Media Types (IANA)</a>
 
 </div>

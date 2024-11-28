@@ -1,12 +1,16 @@
 digraph {
-    graph [bgcolor=transparent,rankdir=TB];
+    graph [bgcolor=transparent,rankdir=LR];
     node [shape=box,style=rounded,color="#000000",fontcolor="#000000",fontname="Lucida Grande, Lucida Sans Unicode, sans-serif"];
     edge [concentrate=true,color="#000000",fontcolor="#000000",fontname="Lucida Grande, Lucida Sans Unicode, sans-serif"];
 
+    // third-party classes
     subgraph {
         node [shape=box, style=dashed];
-        rdfs_Resource [label="rdfs:Resource", target="_parent", href="https://www.w3.org/TR/rdf-schema/#ch_resource"];
+        rdfs_Resource [label="rdfs:Resource", target="_parent", href="https://www.w3.org/TR/rdf11-schema/#ch_resource"];
+        rdfs_Literal [label="rdfs:Literal", target="_parent", href="https://www.w3.org/TR/rdf11-schema/#ch_literal"];
+        rdfs_Class [label="rdfs:Class", target="_parent", href="https://www.w3.org/TR/rdf11-schema/#ch_class"];
         http_StatusCode [label="http:StatusCode", target="_parent", href="https://www.w3.org/TR/HTTP-in-RDF10/#StatusCodeClass"];
+        dcat_Resource [label="dcat:Resource" target="_parent", href="https://www.w3.org/TR/vocab-dcat-2/#Class:Resource"];
         dcat_DataService [label="dcat:DataService" target="_parent", href="https://www.w3.org/TR/vocab-dcat-2/#Class:Data_Service"];
     }
 
@@ -18,6 +22,7 @@ digraph {
         tfo_Function [label="tfo:Function", target="_parent", href="https://vocab.methodandstructure.com/transformation#Function"];
         tfo_Parameter [label="tfo:Parameter", target="_parent", href="https://vocab.methodandstructure.com/transformation#Parameter"];
         tfo_ParameterList [label="tfo:ParameterList", target="_parent", href="https://vocab.methodandstructure.com/transformation#ParameterList"];
+        tfo_Range [label="tfo:Range", target="_parent", href="https://vocab.methodandstructure.com/transformation#Range"];
         tfo_Queue [label="tfo:Queue", target="_parent", href="https://vocab.methodandstructure.com/transformation#Queue"];
         tfo_Insertion [label="tfo:Insertion", target="_parent", href="https://vocab.methodandstructure.com/transformation#Insertion"];
         tfo_FunctionList [label="tfo:FunctionList", target="_parent", href="https://vocab.methodandstructure.com/transformation#FunctionList"];
@@ -31,6 +36,12 @@ digraph {
         tfo_content_type [label="tfo:content-type", target="_parent", href="https://vocab.methodandstructure.com/transformation#content-type"];
     }
 
+    // third-party datatypes
+    subgraph {
+        node [shape=note,style=dashed];
+	xsd_boolean   [label="xsd:boolean", target="_parent", href="https://www.w3.org/TR/xmlschema11-2/#boolean"];
+    }
+
     // third-party properties
 
     subgraph {
@@ -38,9 +49,22 @@ digraph {
         prov_used [label="prov:used", target="_parent", href="https://www.w3.org/TR/prov-o/#used"];
         prov_generated [label="prov:generated", target="_parent", href="https://www.w3.org/TR/prov-o/#generated"];
         // prov_wasAttributedTo [label="prov:wasAttributedTo", target="_parent", href="https://www.w3.org/TR/prov-o/#wasAttributedTo"];
+        rdfs_member [label="rdfs:member", target="_parent", href="https://www.w3.org/TR/rdf11-schema/#ch_member"];
     }
 
     // our properties
+
+    // parameter stuff
+    tfo_composite [label="tfo:composite", target="_parent", href="https://vocab.methodandstructure.com/transformation#composite"];
+    tfo_default [label="tfo:default", target="_parent", href="https://vocab.methodandstructure.com/transformation#default"];
+    tfo_empty [label="tfo:empty", target="_parent", href="https://vocab.methodandstructure.com/transformation#empty"];
+    tfo_shift [label="tfo:shift", target="_parent", href="https://vocab.methodandstructure.com/transformation#shift"];
+
+    // range stuff
+    tfo_low [label="tfo:low", target="_parent", href="https://vocab.methodandstructure.com/transformation#low"];
+    tfo_high [label="tfo:high", target="_parent", href="https://vocab.methodandstructure.com/transformation#high"];
+    tfo_infimum [label="tfo:infimum", target="_parent", href="https://vocab.methodandstructure.com/transformation#infimum"];
+    tfo_supremum [label="tfo:supremum", target="_parent", href="https://vocab.methodandstructure.com/transformation#supremum"];
 
     tfo_accepts [label="tfo:accepts", target="_parent", href="https://vocab.methodandstructure.com/transformation#accepts"];
     tfo_returns [label="tfo:returns", target="_parent", href="https://vocab.methodandstructure.com/transformation#returns"];
@@ -75,6 +99,9 @@ digraph {
 
         tfo_first -> tfo_member;
         tfo_last  -> tfo_member;
+
+	tfo_low -> rdfs_member;
+	tfo_high -> rdfs_member;
     }
 
     subgraph {
@@ -82,13 +109,21 @@ digraph {
         tfo_Bundle -> tfo_implementation;
         dcat_DataService -> tfo_accepts;
         dcat_DataService -> tfo_returns;
-        dcat_DataService -> tfo_parameter;
-        dcat_DataService -> tfo_parameter_list;
+        dcat_Resource -> tfo_parameter;
+        dcat_Resource -> tfo_parameter_list;
         tfo_Function  -> tfo_precedes;
         tfo_Function  -> tfo_follows;
         tfo_Function  -> tfo_triggers;
 
+        tfo_Parameter -> tfo_composite;
         tfo_Parameter -> tfo_default;
+        tfo_Parameter -> tfo_empty;
+        tfo_Parameter -> tfo_shift;
+
+	tfo_Range -> tfo_low;
+	tfo_Range -> tfo_high;
+	tfo_Range -> tfo_infimum;
+	tfo_Range -> tfo_supremum;
 
         tfo_Queue -> tfo_member;
         tfo_Queue -> tfo_member_list;
@@ -107,6 +142,15 @@ digraph {
 
     subgraph {
         edge [style=dashed, label="rdfs:range"];
+	tfo_composite -> rdfs_Class;
+	tfo_default -> rdfs_Resource;
+	tfo_empty -> xsd_boolean;
+	tfo_shift -> xsd_boolean;
+
+	tfo_low -> rdfs_Literal;
+	tfo_high -> rdfs_Literal;
+	tfo_infimum -> xsd_boolean;
+	tfo_supremum -> xsd_boolean;
 
         tfo_accepts -> tfo_content_type;
         tfo_returns -> tfo_content_type;

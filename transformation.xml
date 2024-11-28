@@ -48,6 +48,8 @@
         <dd property="dct:modified" datatype="xsd:dateTime" content="2023-09-06T20:54:02Z">September 6, 2023</dd>
         <dd property="dct:modified" datatype="xsd:dateTime" content="2023-10-09T19:04:07Z">October 9, 2023</dd>
         <dd property="dct:modified" datatype="xsd:dateTime" content="2024-01-31T03:26:41Z">January 30, 2024</dd>
+        <dd property="dct:modified" datatype="xsd:dateTime" content="2024-10-16T02:03:59Z">October 16, 2024</dd>
+        <dd property="dct:modified" datatype="xsd:dateTime" content="2024-11-26T04:18:22Z">November 25, 2024</dd>
         <dt>Namespace URI</dt>
         <dd><a href="#"><code>https://vocab.methodandstructure.com/transformation#</code></a></dd>
         <dt>Preferred Namespace Prefix</dt>
@@ -168,10 +170,10 @@ ex:end a tfo:Parameter ;
           <p property="rdfs:comment">This class provides a specification for a parameter in a given function.</p>
           <dl>
             <dt>Subclass of:</dt>
-            <dd><a rel="rdfs:subClassOf" resource="rdf:Property" href="https://www.w3.org/TR/rdf-schema/#ch_property"><code>rdf:Property</code></a></dd>
+            <dd><a rel="rdfs:subClassOf" resource="rdf:Property" href="https://www.w3.org/TR/rdf11-schema/#ch_property"><code>rdf:Property</code></a></dd>
             <dt>Property restrictions:</dt>
             <dd rel="rdfs:subClassOf" resource="_:op1">
-              <a rel="owl:onProperty" resource="rdfs:domain" href="https://www.w3.org/TR/rdf-schema/#ch_domain"><code>rdfs:domain</code></a> &#x2208;
+              <a rel="owl:onProperty" resource="rdfs:domain" href="https://www.w3.org/TR/rdf11-schema/#ch_domain"><code>rdfs:domain</code></a> &#x2208;
               <span rel="owl:allValuesFrom" resource="_:E0U5-E-2m20e9akyFS7CJK">
                 <span rel="owl:unionOf" resource="_:ERYaN15IEBIX5V9Qjn1gSJ">(<a rel="rdf:first" href="#Partial"><code>tfo:Partial</code></a> <span about="_:ERYaN15IEBIX5V9Qjn1gSJ" rel="rdf:rest" resource="_:Elw4xkTlnNqDG4rt5jhIUJ">&#x222a;</span> <a about="_:Elw4xkTlnNqDG4rt5jhIUJ" rel="rdf:first" href="#Bundle"><code>tfo:Bundle</code></a><span about="_:Elw4xkTlnNqDG4rt5jhIUJ" rel="rdf:rest" resource="rdf:nil">)</span>
               </span>
@@ -185,16 +187,29 @@ ex:end a tfo:Parameter ;
           <p property="rdfs:comment">This class represents a list with the restriction that its members be tfo:Parameter nodes.</p>
           <dl>
             <dt>Subclass of:</dt>
-            <dd><a rel="rdfs:subClassOf" resource="rdf:List" href="https://www.w3.org/TR/rdf-schema/#ch_list"><code>rdf:List</code></a></dd>
+            <dd><a rel="rdfs:subClassOf" resource="rdf:List" href="https://www.w3.org/TR/rdf11-schema/#ch_list"><code>rdf:List</code></a></dd>
             <dt>Property restrictions:</dt>
             <dd rel="rdfs:subClassOf" resource="_:op2">
-              <a rel="owl:onProperty" resource="rdf:first" href="https://www.w3.org/TR/rdf-schema/#ch_first"><code>rdf:first</code></a> &#x2208; <a rel="owl:allValuesFrom" href="#Parameter"><code>tfo:Parameter</code></a>
+              <a rel="owl:onProperty" resource="rdf:first" href="https://www.w3.org/TR/rdf11-schema/#ch_first"><code>rdf:first</code></a> &#x2208; <a rel="owl:allValuesFrom" href="#Parameter"><code>tfo:Parameter</code></a>
             </dd>
             <dd rel="rdfs:subClassOf" resource="_:op3">
-              <a rel="owl:onProperty" resource="rdf:rest" href="https://www.w3.org/TR/rdf-schema/#ch_rest"><code>rdf:rest</code></a> &#x2208; <a rel="owl:allValuesFrom" href="#ParameterList"><code>tfo:ParameterList</code></a>
+              <a rel="owl:onProperty" resource="rdf:rest" href="https://www.w3.org/TR/rdf11-schema/#ch_rest"><code>rdf:rest</code></a> &#x2208; <a rel="owl:allValuesFrom" href="#ParameterList"><code>tfo:ParameterList</code></a>
             </dd>
           </dl>
         </section>
+        <section id="Range" about="[tfo:Range]" typeof="owl:Class">
+          <h4 property="rdfs:label"><code>Range</code></h4>
+	  <p property="rdfs:comment">A span of numbers or sequence-able objects, like dates.</p>
+          <dl>
+            <dt>Subclass of:</dt>
+            <dd><a rel="rdfs:subClassOf" resource="rdfs:Container" href="https://www.w3.org/TR/rdf11-schema/#ch_container"><code>rdfs:Container</code></a></dd>
+            <dt>Properties:</dt>
+            <dd><a rev="rdfs:domain" href="#low"><code>tfo:low</code></a></dd>
+            <dd><a rev="rdfs:domain" href="#high"><code>tfo:high</code></a></dd>
+            <dd><a rev="rdfs:domain" href="#infimum"><code>tfo:infimum</code></a></dd>
+            <dd><a rev="rdfs:domain" href="#supremum"><code>tfo:supremum</code></a></dd>
+	  </dl>
+	</section>
       </section>
       <section>
         <h3>Queues</h3>
@@ -240,17 +255,17 @@ ex:end a tfo:Parameter ;
           <p property="rdfs:comment">A function list is a list that only holds <code>tfo:Function</code> or <code>tfo:Partial</code> entities.</p>
           <dl>
             <dt>Subclass of:</dt>
-            <dd><a rel="rdfs:subClassOf" resource="rdf:List" href="https://www.w3.org/TR/rdf-schema/#ch_list"><code>rdf:List</code></a></dd>
+            <dd><a rel="rdfs:subClassOf" resource="rdf:List" href="https://www.w3.org/TR/rdf11-schema/#ch_list"><code>rdf:List</code></a></dd>
             <dt>Property restrictions:</dt>
             <dd rel="rdfs:subClassOf" resource="_:op4">
-              <a rel="owl:onProperty" resource="rdf:first" href="https://www.w3.org/TR/rdf-schema/#ch_first"><code>rdf:first</code></a> &#x2208; <span rel="owl:allValuesFrom"><span about="_:uo40" rel="owl:unionOf" resource="_:q40">
+              <a rel="owl:onProperty" resource="rdf:first" href="https://www.w3.org/TR/rdf11-schema/#ch_first"><code>rdf:first</code></a> &#x2208; <span rel="owl:allValuesFrom"><span about="_:uo40" rel="owl:unionOf" resource="_:q40">
               <a about="_:q40" rel="rdf:first" href="#Function"><code>tfo:Function</code></a>
               <span about="_:q40" rel="rdf:rest" resource="_:q41">&#x222a;</span> <a about="_:q41" rel="rdf:first" href="#Partial"><code>tfo:Partial</code></a>
               <span about="_:q41" rel="rdf:rest" resource="rdf:nil"></span></span>
             </span>
             </dd>
             <dd rel="rdfs:subClassOf" resource="_:op5">
-              <a rel="owl:onProperty" resource="rdf:rest" href="https://www.w3.org/TR/rdf-schema/#ch_rest"><code>rdf:rest</code></a> &#x2208; <a rel="owl:allValuesFrom" href="#FunctionList"><code>tfo:FunctionList</code></a>
+              <a rel="owl:onProperty" resource="rdf:rest" href="https://www.w3.org/TR/rdf11-schema/#ch_rest"><code>rdf:rest</code></a> &#x2208; <a rel="owl:allValuesFrom" href="#FunctionList"><code>tfo:FunctionList</code></a>
             </dd>
           </dl>
         </section>
@@ -315,7 +330,7 @@ ex:end a tfo:Parameter ;
             <dt>Range:</dt>
             <dd rel="rdfs:range">
               <span about="_:uo1" rel="owl:unionOf" resource="_:q1">
-                <a about="_:q1" rel="rdf:first" href="#content-type"><code>tfo:content-type</code></a> <span about="_:q1" rel="rdf:rest" resource="_:q2">&#x222a;</span> <a about="_:q2" rel="rdf:first" resource="rdf:List" href="https://www.w3.org/TR/rdf-schema/#ch_list"><code>rdf:List</code></a>
+                <a about="_:q1" rel="rdf:first" href="#content-type"><code>tfo:content-type</code></a> <span about="_:q1" rel="rdf:rest" resource="_:q2">&#x222a;</span> <a about="_:q2" rel="rdf:first" resource="rdf:List" href="https://www.w3.org/TR/rdf11-schema/#ch_list"><code>rdf:List</code></a>
                 <span about="_:q2" rel="rdf:rest" resource="rdf:nil"></span>
               </span>
             </dd>
@@ -331,7 +346,7 @@ ex:end a tfo:Parameter ;
             <dt>Range:</dt>
             <dd rel="rdfs:range">
               <span about="_:uo2" rel="owl:unionOf" resource="_:q3">
-                <a about="_:q3" rel="rdf:first" href="#content-type"><code>tfo:content-type</code></a> <span about="_:q3" rel="rdf:rest" resource="_:q4">&#x222a;</span> <a about="_:q4" rel="rdf:first" resource="rdf:List" href="https://www.w3.org/TR/rdf-schema/#ch_list"><code>rdf:List</code></a>
+                <a about="_:q3" rel="rdf:first" href="#content-type"><code>tfo:content-type</code></a> <span about="_:q3" rel="rdf:rest" resource="_:q4">&#x222a;</span> <a about="_:q4" rel="rdf:first" resource="rdf:List" href="https://www.w3.org/TR/rdf11-schema/#ch_list"><code>rdf:List</code></a>
                 <span about="_:q4" rel="rdf:rest" resource="rdf:nil"></span>
               </span>
             </dd>
@@ -349,7 +364,7 @@ ex:end a tfo:Parameter ;
             <dt>Range:</dt>
             <dd rel="rdfs:range">
               <span about="_:uo3" rel="owl:unionOf" resource="_:q5">
-                <a about="_:q5" rel="rdf:first" href="#content-type"><code>tfo:content-type</code></a> <span about="_:q5" rel="rdf:rest" resource="_:q6">&#x222a;</span> <a about="_:q6" rel="rdf:first" resource="rdf:List" href="https://www.w3.org/TR/rdf-schema/#ch_list"><code>rdf:List</code></a>
+                <a about="_:q5" rel="rdf:first" href="#content-type"><code>tfo:content-type</code></a> <span about="_:q5" rel="rdf:rest" resource="_:q6">&#x222a;</span> <a about="_:q6" rel="rdf:first" resource="rdf:List" href="https://www.w3.org/TR/rdf11-schema/#ch_list"><code>rdf:List</code></a>
                 <span about="_:q6" rel="rdf:rest" resource="rdf:nil"></span>
               </span>
             </dd>
@@ -366,7 +381,7 @@ ex:end a tfo:Parameter ;
             <dt>Domain:</dt>
             <dd><a rel="rdfs:domain" href="#Bundle"><code>tfo:Bundle</code></a></dd>
             <dt>Range:</dt>
-            <dd><a rel="rdfs:range" href="https://www.w3.org/TR/rdf-schema/#ch_resource" resource="rdfs:Resource"><code>rdfs:Resource</code></a></dd>
+            <dd><a rel="rdfs:range" href="https://www.w3.org/TR/rdf11-schema/#ch_resource" resource="rdfs:Resource"><code>rdfs:Resource</code></a></dd>
           </dl>
           <p><a rel="rdfs:isDefinedBy" href="#">Back to Top</a></p>
         </section>
@@ -378,7 +393,7 @@ ex:end a tfo:Parameter ;
           </aside>
           <dl>
             <dt>Domain:</dt>
-            <dd><a rel="rdfs:domain" resource="dcat:DataService" href="https://www.w3.org/TR/vocab-dcat-2/#Class:Data_Service"><code>dcat:DataService</code></a></dd>
+            <dd><a rel="rdfs:domain" resource="dcat:Resource" href="https://www.w3.org/TR/vocab-dcat-2/#Class:Resource"><code>dcat:Resource</code></a></dd>
             <dt>Range:</dt>
             <dd><a rel="rdfs:range" href="#Parameter"><code>tfo:Parameter</code></a></dd>
           </dl>
@@ -389,9 +404,27 @@ ex:end a tfo:Parameter ;
           <p property="rdfs:comment">Specifies the sequence of parameters when the invocation method of the function is sequential.</p>
           <dl>
             <dt>Domain:</dt>
-            <dd><a rel="rdfs:domain" resource="dcat:DataService" href="https://www.w3.org/TR/vocab-dcat-2/#Class:Data_Service"><code>dcat:DataService</code></a></dd>
+            <dd><a rel="rdfs:domain" resource="dcat:Resource" href="https://www.w3.org/TR/vocab-dcat-2/#Class:Resource"><code>dcat:Resource</code></a></dd>
             <dt>Range:</dt>
             <dd><a rel="rdfs:range" href="#ParameterList"><code>tfo:ParameterList</code></a></dd>
+          </dl>
+          <p><a rel="rdfs:isDefinedBy" href="#">Back to Top</a></p>
+        </section>
+        <section id="composite" about="[tfo:composite]" typeof="owl:ObjectProperty owl:FunctionalProperty">
+          <h4 property="rdfs:label"><code>composite</code></h4>
+          <p property="rdfs:comment">Assigns a composite type for the parameter.</p>
+	  <aside about="#composite" role="note" property="skos:note">
+	    <p>The range can be any class but we prefer some subclass of <code>rdfs:Container</code>. It is assumed that the code implementation knows what to do with the composite class.</p>
+	  </aside>
+          <dl>
+            <dt>Domain:</dt>
+            <dd><a rel="rdfs:domain" href="#Parameter"><code>tfo:Parameter</code></a></dd>
+            <dt>Range:</dt>
+            <dd><a rel="rdfs:range" resource="rdfs:Class" href="https://www.w3.org/TR/rdf11-schema/#ch_class"><code>rdfs:Class</code></a></dd>
+	    <dt>See also:</dt>
+	    <dd><a rel="rdfs:seeAlso" resource="rdf:Bag" href="https://www.w3.org/TR/rdf11-schema/#ch_bag"><code>rdf:Bag</code></a></dd>
+	    <dd><a rel="rdfs:seeAlso" resource="rdf:List" href="https://www.w3.org/TR/rdf11-schema/#ch_list"><code>rdf:List</code></a></dd>
+	    <dd><a rel="rdfs:seeAlso" href="#Range"><code>tfo:Range</code></a></dd>
           </dl>
           <p><a rel="rdfs:isDefinedBy" href="#">Back to Top</a></p>
         </section>
@@ -401,6 +434,72 @@ ex:end a tfo:Parameter ;
           <dl>
             <dt>Domain:</dt>
             <dd><a rel="rdfs:domain" href="#Parameter"><code>tfo:Parameter</code></a></dd>
+          </dl>
+          <p><a rel="rdfs:isDefinedBy" href="#">Back to Top</a></p>
+        </section>
+        <section id="empty" about="[tfo:empty]" typeof="owl:DatatypeProperty owl:FunctionalProperty">
+          <h4 property="rdfs:label"><code>empty</code></h4>
+          <p property="rdfs:comment">Flags whether an empty parameter value should be treated as input rather than ignored.</p>
+          <dl>
+            <dt>Domain:</dt>
+            <dd><a rel="rdfs:domain" href="#Parameter"><code>tfo:Parameter</code></a></dd>
+            <dt>Range:</dt>
+            <dd><a rel="rdfs:range" resource="xsd:boolean" href="https://www.w3.org/TR/xmlschema11-2/#boolean"><code>xsd:boolean</code></a></dd>
+          </dl>
+          <p><a rel="rdfs:isDefinedBy" href="#">Back to Top</a></p>
+        </section>
+        <section id="shift" about="[tfo:shift]" typeof="owl:DatatypeProperty owl:FunctionalProperty">
+          <h4 property="rdfs:label"><code>shift</code></h4>
+          <p property="rdfs:comment">Flags whether a parameter with multiple values but a fixed cardinality shift off the front of the list rather than truncate off the back.</p>
+          <dl>
+            <dt>Domain:</dt>
+            <dd><a rel="rdfs:domain" href="#Parameter"><code>tfo:Parameter</code></a></dd>
+            <dt>Range:</dt>
+            <dd><a rel="rdfs:range" resource="xsd:boolean" href="https://www.w3.org/TR/xmlschema11-2/#boolean"><code>xsd:boolean</code></a></dd>
+          </dl>
+          <p><a rel="rdfs:isDefinedBy" href="#">Back to Top</a></p>
+        </section>
+        <section id="low" about="[tfo:low]" typeof="owl:DatatypeProperty owl:FunctionalProperty">
+          <h4 property="rdfs:label"><code>low</code></h4>
+          <p property="rdfs:comment">Specifies the <em>lower</em> bound of a <code>tfo:Range</code>.</p>
+          <dl>
+            <dt>Domain:</dt>
+            <dd><a rel="rdfs:domain" href="#Range"><code>tfo:Range</code></a></dd>
+            <dt>Range:</dt>
+            <dd><a rel="rdfs:range" href="https://www.w3.org/TR/rdf11-schema/#ch_resource" resource="rdfs:Literal"><code>rdfs:Literal</code></a></dd>
+          </dl>
+          <p><a rel="rdfs:isDefinedBy" href="#">Back to Top</a></p>
+        </section>
+        <section id="high" about="[tfo:high]" typeof="owl:DatatypeProperty owl:FunctionalProperty">
+          <h4 property="rdfs:label"><code>high</code></h4>
+          <p property="rdfs:comment">Specifies the <em>upper</em> bound of a <code>tfo:Range</code>.</p>
+          <dl>
+            <dt>Domain:</dt>
+            <dd><a rel="rdfs:domain" href="#Range"><code>tfo:Range</code></a></dd>
+            <dt>Range:</dt>
+            <dd><a rel="rdfs:range" href="https://www.w3.org/TR/rdf11-schema/#ch_resource" resource="rdfs:Literal"><code>rdfs:Literal</code></a></dd>
+          </dl>
+          <p><a rel="rdfs:isDefinedBy" href="#">Back to Top</a></p>
+        </section>
+        <section id="infimum" about="[tfo:infimum]" typeof="owl:DatatypeProperty owl:FunctionalProperty">
+          <h4 property="rdfs:label"><code>infimum</code></h4>
+          <p property="rdfs:comment">Flags whether a <code>tfo:Range</code> will be open on the <em>low</em> side.</p>
+          <dl>
+            <dt>Domain:</dt>
+            <dd><a rel="rdfs:domain" href="#Range"><code>tfo:Range</code></a></dd>
+            <dt>Range:</dt>
+            <dd><a rel="rdfs:range" resource="xsd:boolean" href="https://www.w3.org/TR/xmlschema11-2/#boolean"><code>xsd:boolean</code></a></dd>
+          </dl>
+          <p><a rel="rdfs:isDefinedBy" href="#">Back to Top</a></p>
+        </section>
+        <section id="supremum" about="[tfo:supremum]" typeof="owl:DatatypeProperty owl:FunctionalProperty">
+          <h4 property="rdfs:label"><code>supremum</code></h4>
+          <p property="rdfs:comment">Flags whether a <code>tfo:Range</code> will be open on the <em>high</em> side.</p>
+          <dl>
+            <dt>Domain:</dt>
+            <dd><a rel="rdfs:domain" href="#Range"><code>tfo:Range</code></a></dd>
+            <dt>Range:</dt>
+            <dd><a rel="rdfs:range" resource="xsd:boolean" href="https://www.w3.org/TR/xmlschema11-2/#boolean"><code>xsd:boolean</code></a></dd>
           </dl>
           <p><a rel="rdfs:isDefinedBy" href="#">Back to Top</a></p>
         </section>
@@ -584,7 +683,7 @@ ex:end a tfo:Parameter ;
             <dt>Domain:</dt>
             <dd><a rel="rdfs:domain" href="#Invocation"><code>tfo:Invocation</code></a></dd>
             <dt>Range:</dt>
-            <dd><a rel="rdfs:range" href="https://www.w3.org/TR/rdf-schema/#ch_resource" resource="rdfs:Resource"><code>rdfs:Resource</code></a></dd>
+            <dd><a rel="rdfs:range" href="https://www.w3.org/TR/rdf11-schema/#ch_resource" resource="rdfs:Resource"><code>rdfs:Resource</code></a></dd>
           </dl>
           <p><a rel="rdfs:isDefinedBy" href="#">Back to Top</a></p>
         </section>
@@ -595,7 +694,7 @@ ex:end a tfo:Parameter ;
             <dt>Domain:</dt>
             <dd><a rel="rdfs:domain" href="#Invocation"><code>tfo:Invocation</code></a></dd>
             <dt>Range:</dt>
-            <dd><a rel="rdfs:range" href="https://www.w3.org/TR/rdf-schema/#ch_resource" resource="rdfs:Resource"><code>rdfs:Resource</code></a></dd>
+            <dd><a rel="rdfs:range" href="https://www.w3.org/TR/rdf11-schema/#ch_resource" resource="rdfs:Resource"><code>rdfs:Resource</code></a></dd>
           </dl>
           <p><a rel="rdfs:isDefinedBy" href="#">Back to Top</a></p>
         </section>
@@ -671,7 +770,7 @@ ex:end a tfo:Parameter ;
         <p property="rdfs:comment">A literal that represents a content-type such as that which is found in the HTTP <code>Accept:</code> or <code>Content-Type:</code> header.</p>
         <dl>
           <dt>Restriction of:</dt>
-          <dd style="text-align: start"><a rel="owl:onDatatype" resource="xsd:token" href="https://www.w3.org/TR/xmlschema-2/#token"><code>xsd:token</code></a> <span rel="owl:withRestrictions" resource="_:rl1">matching</span> <span about="_:rl1" rel="rdf:first"><code about="_:rp1" property="xsd:pattern" datatype="xsd:string">^([!#$%&amp;'\*\+\-.^_`|~0-9-A-Za-z]+)(?:/[!#$%&amp;'\*\+\-.^_`|~0-9-A-Za-z]+)?)$</code></span> <span about="_:rl1" rel="rdf:rest" resource="rdf:nil"></span></dd>
+          <dd style="text-align: start"><a rel="owl:onDatatype" resource="xsd:token" href="https://www.w3.org/TR/xmlschema11-2/#token"><code>xsd:token</code></a> <span rel="owl:withRestrictions" resource="_:rl1">matching</span> <span about="_:rl1" rel="rdf:first"><code about="_:rp1" property="xsd:pattern" datatype="xsd:string">^([!#$%&amp;'\*\+\-.^_`|~0-9-A-Za-z]+)(?:/[!#$%&amp;'\*\+\-.^_`|~0-9-A-Za-z]+)?)$</code></span> <span about="_:rl1" rel="rdf:rest" resource="rdf:nil"></span></dd>
           <dt>See also:</dt>
           <dd><a rel="rdfs:seeAlso" href="https://tools.ietf.org/html/rfc7230#section-3.2.6">RFC 7230 &#x2014; Hypertext Transfer Protocol (HTTP/1.1): Message Syntax and Routing &#xa7; 3.2.6: Field Value Components</a></dd>
           <dd><a rel="rdfs:seeAlso" href="https://tools.ietf.org/html/rfc7231#section-5.3.2">RFC 7231 &#x2014; Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content &#xa7; 5.3.2: <code>Accept</code></a></dd>
@@ -686,7 +785,7 @@ ex:end a tfo:Parameter ;
         </aside>
         <dl>
           <dt>Restriction of:</dt>
-          <dd><a rel="owl:onDatatype" resource="xsd:string" href="https://www.w3.org/TR/xmlschema-2/#string"><code>xsd:string</code></a></dd>
+          <dd><a rel="owl:onDatatype" resource="xsd:string" href="https://www.w3.org/TR/xmlschema11-2/#string"><code>xsd:string</code></a></dd>
         </dl>
         <p><a rel="rdfs:isDefinedBy" href="#">Back to Top</a></p>
       </section>
@@ -700,7 +799,16 @@ ex:end a tfo:Parameter ;
           <dt>Subclass of:</dt>
           <dd><a rel="rdfs:subClassOf" href="#regexp"><code>tfo:regexp</code></a></dd>
           <dt>Restriction of:</dt>
-          <dd><a rel="owl:onDatatype" resource="xsd:string" href="https://www.w3.org/TR/xmlschema-2/#string"><code>xsd:string</code></a></dd>
+          <dd><a rel="owl:onDatatype" resource="xsd:string" href="https://www.w3.org/TR/xmlschema11-2/#string"><code>xsd:string</code></a></dd>
+        </dl>
+        <p><a rel="rdfs:isDefinedBy" href="#">Back to Top</a></p>
+      </section>
+      <section id="term" about="[tfo:term]" typeof="rdfs:Datatype">
+        <h3 property="rdfs:label"><code>term</code></h3>
+        <p property="rdfs:comment">An RDF term represented as either a CURIE (prefixed term) or IRI.</p>
+        <dl>
+	  <dt>Union of:</dt>
+	  <dd rel="owl:unionOf" resource="_:EhqnOGqdpRyTaU1V4IOG9J">(<a rel="rdf:first" href="https://www.w3.org/TR/xmlschema11-2/#QName" resource="xsd:QName"><code>xsd:QName</code></a> <span rel="rdf:rest" resource="_:E0hqEbAJ28y0otPLbGJzOI">&#x222a; <a rel="rdf:first" resource="xsd:anyURI" href="https://www.w3.org/TR/xmlschema11-2/#anyURI"><code>xsd:anyURI</code></a><span rel="rdf:rest" resource="rdf:nil">)</span></span></dd>
         </dl>
         <p><a rel="rdfs:isDefinedBy" href="#">Back to Top</a></p>
       </section>
@@ -709,7 +817,7 @@ ex:end a tfo:Parameter ;
         <p property="rdfs:comment">An XPath expression.</p>
         <dl>
           <dt>Restriction of:</dt>
-          <dd><a rel="owl:onDatatype" resource="xsd:string" href="https://www.w3.org/TR/xmlschema-2/#string"><code>xsd:string</code></a></dd>
+          <dd><a rel="owl:onDatatype" resource="xsd:string" href="https://www.w3.org/TR/xmlschema11-2/#string"><code>xsd:string</code></a></dd>
         </dl>
         <p><a rel="rdfs:isDefinedBy" href="#">Back to Top</a></p>
       </section>
@@ -719,7 +827,7 @@ ex:end a tfo:Parameter ;
       <ul>
         <li><a rel="dct:references" href="https://www.w3.org/TR/prov-o/">PROV-O: The Provenance Ontology</a></li>
         <li><a rel="dct:references" href="https://www.w3.org/TR/rdf-schema/">RDF Schema 1.1</a></li>
-        <li><a rel="dct:references" href="https://www.w3.org/TR/xmlschema-2/">XML Schema Part 2: Datatypes Second Edition</a></li>
+        <li><a rel="dct:references" href="https://www.w3.org/TR/xmlschema11-2/">W3C XML Schema Definition Language (XSD) 1.1 Part 2: Datatypes</a></li>
         <li><a rel="dct:references" href="https://www.iana.org/assignments/media-types/media-types.xhtml">Media Types (<abbr>IANA</abbr>)</a></li>
       </ul>
       </section>
