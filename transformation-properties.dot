@@ -8,7 +8,8 @@ digraph {
         node [shape=box, style=dashed];
         rdfs_Resource [label="rdfs:Resource", target="_parent", href="https://www.w3.org/TR/rdf11-schema/#ch_resource"];
         rdfs_Literal [label="rdfs:Literal", target="_parent", href="https://www.w3.org/TR/rdf11-schema/#ch_literal"];
-        rdfs_Class [label="rdfs:Class", target="_parent", href="https://www.w3.org/TR/rdf11-schema/#ch_class"];
+        // rdfs_Class [label="rdfs:Class", target="_parent", href="https://www.w3.org/TR/rdf11-schema/#ch_class"];
+        rdfs_Datatype [label="rdfs:Datatype", target="_parent", href="https://www.w3.org/TR/rdf11-schema/#ch_datatype"];
         http_StatusCode [label="http:StatusCode", target="_parent", href="https://www.w3.org/TR/HTTP-in-RDF10/#StatusCodeClass"];
         dcat_Resource [label="dcat:Resource" target="_parent", href="https://www.w3.org/TR/vocab-dcat-2/#Class:Resource"];
         dcat_DataService [label="dcat:DataService" target="_parent", href="https://www.w3.org/TR/vocab-dcat-2/#Class:Data_Service"];
@@ -21,6 +22,7 @@ digraph {
         tfo_Bundle [label="tfo:Bundle", target="_parent", href="https://vocab.methodandstructure.com/transformation#Bundle"];
         tfo_Function [label="tfo:Function", target="_parent", href="https://vocab.methodandstructure.com/transformation#Function"];
         tfo_Parameter [label="tfo:Parameter", target="_parent", href="https://vocab.methodandstructure.com/transformation#Parameter"];
+        tfo_Composite [label="tfo:Composite", target="_parent", href="https://vocab.methodandstructure.com/transformation#Composite"];
         tfo_ParameterList [label="tfo:ParameterList", target="_parent", href="https://vocab.methodandstructure.com/transformation#ParameterList"];
         tfo_Range [label="tfo:Range", target="_parent", href="https://vocab.methodandstructure.com/transformation#Range"];
         tfo_Queue [label="tfo:Queue", target="_parent", href="https://vocab.methodandstructure.com/transformation#Queue"];
@@ -55,8 +57,8 @@ digraph {
     // our properties
 
     // parameter stuff
-    tfo_composite [label="tfo:composite", target="_parent", href="https://vocab.methodandstructure.com/transformation#composite"];
     tfo_default [label="tfo:default", target="_parent", href="https://vocab.methodandstructure.com/transformation#default"];
+    tfo_element [label="tfo:element", target="_parent", href="https://vocab.methodandstructure.com/transformation#element"];
     tfo_empty [label="tfo:empty", target="_parent", href="https://vocab.methodandstructure.com/transformation#empty"];
     tfo_shift [label="tfo:shift", target="_parent", href="https://vocab.methodandstructure.com/transformation#shift"];
 
@@ -115,7 +117,7 @@ digraph {
         tfo_Function  -> tfo_follows;
         tfo_Function  -> tfo_triggers;
 
-        tfo_Parameter -> tfo_composite;
+        tfo_Composite -> tfo_element;
         tfo_Parameter -> tfo_default;
         tfo_Parameter -> tfo_empty;
         tfo_Parameter -> tfo_shift;
@@ -142,7 +144,7 @@ digraph {
 
     subgraph {
         edge [style=dashed, label="rdfs:range"];
-	tfo_composite -> rdfs_Class;
+	tfo_element -> rdfs_Datatype;
 	tfo_default -> rdfs_Resource;
 	tfo_empty -> xsd_boolean;
 	tfo_shift -> xsd_boolean;

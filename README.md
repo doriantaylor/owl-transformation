@@ -40,6 +40,10 @@ Imported Vocabularies
 rel="owl:imports" resource="http://www.w3.org/2001/XMLSchema#">W3C XML
 Schema Definition Language (XSD) 1.1 Part 2: Datatypes</a>
 
+<a href="https://www.w3.org/TR/prov-o/" about="#" rel="owl:imports"
+resource="http://www.w3.org/ns/prov#"><span property="rdfs:label">W3C
+PROVenance Interchange Ontology (PROV-O)</span></a>
+
 This document describes functions which transform HTTP
 <span class="dfn">representations</span>, i.e., the actual literal
 payloads of HTTP messages.
@@ -127,7 +131,7 @@ over the input.
 
 </div>
 
-<div class="section">
+<div id="ch-classes" class="section">
 
 ## Classes
 
@@ -136,7 +140,7 @@ over the input.
 src="https://vocab.methodandstructure.com/transformation-classes" />
 </figure>
 
-<div class="section">
+<div id="sec-bundles" class="section">
 
 ### Bundles
 
@@ -163,11 +167,14 @@ resource="prov:SoftwareAgent"><code>prov:SoftwareAgent</code></a>
 Properties:  
 [`tfo:implementation`](https://vocab.methodandstructure.com/transformation#implementation)
 
-</div>
+<a href="https://vocab.methodandstructure.com/transformation#"
+rel="rdfs:isDefinedBy">Back to Top</a>
 
 </div>
 
-<div class="section">
+</div>
+
+<div id="sec-transforms" class="section">
 
 ### Transforms
 
@@ -211,6 +218,9 @@ Properties:
 
 [`tfo:not-by-uri`](https://vocab.methodandstructure.com/transformation#not-by-uri)
 
+<a href="https://vocab.methodandstructure.com/transformation#"
+rel="rdfs:isDefinedBy">Back to Top</a>
+
 </div>
 
 <div id="MarkupTransform" class="section" about="[tfo:MarkupTransform]"
@@ -233,11 +243,14 @@ Properties:
 
 [~~`tfo:not-by-xpath`~~](https://vocab.methodandstructure.com/transformation#not-by-xpath)
 
-</div>
+<a href="https://vocab.methodandstructure.com/transformation#"
+rel="rdfs:isDefinedBy">Back to Top</a>
 
 </div>
 
-<div class="section">
+</div>
+
+<div id="sec-paramaters" class="section">
 
 ### Parameters
 
@@ -275,6 +288,49 @@ Properties:
 <a href="https://vocab.methodandstructure.com/transformation#default"
 rev="rdfs:domain"><code>tfo:default</code></a>
 
+<a href="https://vocab.methodandstructure.com/transformation#empty"
+rev="rdfs:domain"><code>tfo:empty</code></a>
+
+<a href="https://vocab.methodandstructure.com/transformation#shift"
+rev="rdfs:domain"><code>tfo:shift</code></a>
+
+<a href="https://vocab.methodandstructure.com/transformation#universe"
+rev="rdfs:domain"><code>tfo:universe</code></a>
+
+<a href="https://vocab.methodandstructure.com/transformation#"
+rel="rdfs:isDefinedBy">Back to Top</a>
+
+</div>
+
+<div id="Composite" class="section" about="[tfo:Composite]"
+typeof="owl:Class">
+
+#### `Composite`
+
+A composite parameter has a multi-valued value like a list, tuple, set
+or range.
+
+Subclass of:  
+<a href="https://vocab.methodandstructure.com/transformation#Parameter"
+rel="rdfs:subClassOf"><code>tfo:Parameter</code></a>
+
+Properties:  
+<a href="https://vocab.methodandstructure.com/transformation#element"
+rev="rdfs:domain"><code>tfo:element</code></a>
+
+See also:  
+<a href="https://www.w3.org/TR/rdf11-schema/#ch_bag" rel="rdfs:seeAlso"
+resource="rdf:Bag"><code>rdf:Bag</code></a>
+
+<a href="https://www.w3.org/TR/rdf11-schema/#ch_list" rel="rdfs:seeAlso"
+resource="rdf:List"><code>rdf:List</code></a>
+
+<a href="https://vocab.methodandstructure.com/transformation#Range"
+rel="rdfs:seeAlso"><code>tfo:Range</code></a>
+
+<a href="https://vocab.methodandstructure.com/transformation#"
+rel="rdfs:isDefinedBy">Back to Top</a>
+
 </div>
 
 <div id="ParameterList" class="section" about="[tfo:ParameterList]"
@@ -299,6 +355,9 @@ rel="owl:allValuesFrom"><code>tfo:Parameter</code></a>
 rel="owl:onProperty" resource="rdf:rest"><code>rdf:rest</code></a> ∈ <a
 href="https://vocab.methodandstructure.com/transformation#ParameterList"
 rel="owl:allValuesFrom"><code>tfo:ParameterList</code></a>
+
+<a href="https://vocab.methodandstructure.com/transformation#"
+rel="rdfs:isDefinedBy">Back to Top</a>
 
 </div>
 
@@ -326,11 +385,14 @@ rev="rdfs:domain"><code>tfo:infimum</code></a>
 <a href="https://vocab.methodandstructure.com/transformation#supremum"
 rev="rdfs:domain"><code>tfo:supremum</code></a>
 
-</div>
+<a href="https://vocab.methodandstructure.com/transformation#"
+rel="rdfs:isDefinedBy">Back to Top</a>
 
 </div>
 
-<div class="section">
+</div>
+
+<div id="sec-queues" class="section">
 
 ### Queues
 
@@ -376,6 +438,9 @@ rev="rdfs:domain"><code>tfo:last</code></a>
 <a href="https://vocab.methodandstructure.com/transformation#next"
 rev="rdfs:domain"><code>tfo:next</code></a>
 
+<a href="https://vocab.methodandstructure.com/transformation#"
+rel="rdfs:isDefinedBy">Back to Top</a>
+
 </div>
 
 <div id="StrictQueue" class="section" about="[tfo:StrictQueue]"
@@ -405,6 +470,9 @@ Subclass of:
 <a
 href="https://vocab.methodandstructure.com/transformation#StrictQueue"
 rel="rdfs:subClassOf"><code>tfo:StrictQueue</code></a>
+
+<a href="https://vocab.methodandstructure.com/transformation#"
+rel="rdfs:isDefinedBy">Back to Top</a>
 
 </div>
 
@@ -461,11 +529,14 @@ rev="rdfs:domain"><code>tfo:condition</code></a>
 <a href="https://vocab.methodandstructure.com/transformation#target"
 rev="rdfs:domain"><code>tfo:target</code></a>
 
-</div>
+<a href="https://vocab.methodandstructure.com/transformation#"
+rel="rdfs:isDefinedBy">Back to Top</a>
 
 </div>
 
-<div class="section">
+</div>
+
+<div id="sec-invocation" class="section">
 
 ### Function Invocation
 
@@ -519,13 +590,16 @@ Properties:
 <a href="https://vocab.methodandstructure.com/transformation#transform"
 rev="rdfs:domain"><code>tfo:transform</code></a>
 
-</div>
+<a href="https://vocab.methodandstructure.com/transformation#"
+rel="rdfs:isDefinedBy">Back to Top</a>
 
 </div>
 
 </div>
 
-<div class="section">
+</div>
+
+<div id="ch-properties" class="section">
 
 ## Properties
 
@@ -534,7 +608,7 @@ rev="rdfs:domain"><code>tfo:transform</code></a>
 src="https://vocab.methodandstructure.com/transformation-properties" />
 </figure>
 
-<div class="section">
+<div id="sec-specifying-transforms" class="section">
 
 ### Specifying Transforms
 
@@ -695,34 +769,21 @@ rel="rdfs:isDefinedBy">Back to Top</a>
 
 </div>
 
-<div id="composite" class="section" about="[tfo:composite]"
+<div id="element" class="section" about="[tfo:element]"
 typeof="owl:ObjectProperty owl:FunctionalProperty">
 
-#### `composite`
+#### `element`
 
-Assigns a composite type for the parameter.
-
-The range can be any class but we prefer some subclass of
-`rdfs:Container`. It is assumed that the code implementation knows what
-to do with the composite class.
+This property designates an elementary type to go into the composite
+type.
 
 Domain:  
-<a href="https://vocab.methodandstructure.com/transformation#Parameter"
-rel="rdfs:domain"><code>tfo:Parameter</code></a>
+<a href="https://vocab.methodandstructure.com/transformation#Composite"
+rel="rdfs:domain"><code>tfo:Composite</code></a>
 
 Range:  
-<a href="https://www.w3.org/TR/rdf11-schema/#ch_class" rel="rdfs:range"
-resource="rdfs:Class"><code>rdfs:Class</code></a>
-
-See also:  
-<a href="https://www.w3.org/TR/rdf11-schema/#ch_bag" rel="rdfs:seeAlso"
-resource="rdf:Bag"><code>rdf:Bag</code></a>
-
-<a href="https://www.w3.org/TR/rdf11-schema/#ch_list" rel="rdfs:seeAlso"
-resource="rdf:List"><code>rdf:List</code></a>
-
-<a href="https://vocab.methodandstructure.com/transformation#Range"
-rel="rdfs:seeAlso"><code>tfo:Range</code></a>
+<a href="https://www.w3.org/TR/rdf11-schema/#ch_datatype"
+rel="rdfs:range" resource="rdfs:Datatype"><code>rdfs:Datatype</code></a>
 
 <a href="https://vocab.methodandstructure.com/transformation#"
 rel="rdfs:isDefinedBy">Back to Top</a>
@@ -739,6 +800,28 @@ Specifies one or more default values for a parameter.
 Domain:  
 <a href="https://vocab.methodandstructure.com/transformation#Parameter"
 rel="rdfs:domain"><code>tfo:Parameter</code></a>
+
+<a href="https://vocab.methodandstructure.com/transformation#"
+rel="rdfs:isDefinedBy">Back to Top</a>
+
+</div>
+
+<div id="universe" class="section" about="[tfo:universe]"
+typeof="owl:ObjectProperty">
+
+#### `universe`
+
+Specifies the container that contains the “universe” of values that a
+paramter can take.
+
+Domain:  
+<a href="https://vocab.methodandstructure.com/transformation#Parameter"
+rel="rdfs:domain"><code>tfo:Parameter</code></a>
+
+Range:  
+<a href="https://www.w3.org/TR/rdf11-schema/#ch_container"
+rel="rdfs:range"
+resource="rdfs:Container"><code>rdfs:Container</code></a>
 
 <a href="https://vocab.methodandstructure.com/transformation#"
 rel="rdfs:isDefinedBy">Back to Top</a>
@@ -869,7 +952,7 @@ rel="rdfs:isDefinedBy">Back to Top</a>
 
 </div>
 
-<div class="section">
+<div id="sec-specifying-queues" class="section">
 
 ### Specifying Queues
 
@@ -1052,7 +1135,7 @@ rel="rdfs:isDefinedBy">Back to Top</a>
 
 </div>
 
-<div class="section">
+<div id="sec-manipulating-queues" class="section">
 
 ### Manipulating Queues at Runtime
 
@@ -1112,8 +1195,7 @@ rel="rdfs:domain"><code>tfo:Insertion</code></a>
 
 Range:  
 <a href="https://www.w3.org/TR/HTTP-in-RDF10/#StatusCodeClass"
-rel="rdfs:range"
-resource="httpv:StatusCode"><code>http:StatusCode</code></a>
+rel="rdfs:range" resource="ht:StatusCode"><code>ht:StatusCode</code></a>
 
 <a href="https://vocab.methodandstructure.com/transformation#"
 rel="rdfs:isDefinedBy">Back to Top</a>
@@ -1122,7 +1204,7 @@ rel="rdfs:isDefinedBy">Back to Top</a>
 
 </div>
 
-<div class="section">
+<div id="sec-applying-transformations" class="section">
 
 ### Applying Transformations
 
@@ -1222,7 +1304,7 @@ rel="rdfs:isDefinedBy">Back to Top</a>
 
 </div>
 
-<div class="section">
+<div id="sec-constraints" class="section">
 
 ### Constraints
 
@@ -1343,7 +1425,7 @@ rel="rdfs:isDefinedBy">Back to Top</a>
 
 </div>
 
-<div class="section">
+<div id="ch-datatypes" class="section">
 
 ## Datatypes
 
@@ -1461,7 +1543,7 @@ rel="rdfs:isDefinedBy">Back to Top</a>
 
 </div>
 
-<div class="section">
+<div id="ch-references" class="section">
 
 ## References
 

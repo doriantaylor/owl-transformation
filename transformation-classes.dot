@@ -18,6 +18,7 @@ digraph {
         rdf_List      [label="rdf:List", target="_parent", href="https://www.w3.org/TR/rdf11-schema/#ch_list"];
         rdf_Property  [label="rdf:Property", target="_parent", href="https://www.w3.org/TR/rdf11-schema/#ch_property"];
         rdfs_Resource [label="rdfs:Resource", target="_parent", href="https://www.w3.org/TR/rdf11-schema/#ch_resource"];
+        rdfs_Datatype [label="rdfs:Resource", target="_parent", href="https://www.w3.org/TR/rdf11-schema/#ch_datatype"];
 	rdfs_Literal [label="rdfs:Literal", target="_parent", href="https://www.w3.org/TR/rdf11-schema/#ch_literal"];
 	rdfs_Container [label="rdfs:Container", target="_parent", href="https://www.w3.org/TR/rdf11-schema/#ch_container"];
         http_StatusCode [label="http:StatusCode", target="_parent", href="https://www.w3.org/TR/HTTP-in-RDF10/#StatusCodeClass"];
@@ -29,6 +30,7 @@ digraph {
     tfo_Bundle [label="tfo:Bundle", target="_parent", href="https://vocab.methodandstructure.com/transformation#Bundle"];
     tfo_Invocation [label="tfo:Invocation", target="_parent", href="https://vocab.methodandstructure.com/transformation#Invocation"];
     tfo_Parameter [label="tfo:Parameter", target="_parent", href="https://vocab.methodandstructure.com/transformation#Parameter"];
+    tfo_Composite [label="tfo:Composite", target="_parent", href="https://vocab.methodandstructure.com/transformation#Composite"];
     tfo_ParameterList [label="tfo:ParameterList", target="_parent", href="https://vocab.methodandstructure.com/transformation#ParameterList"];
     tfo_Range [label="tfo:Range", target="_parent", href="https://vocab.methodandstructure.com/transformation#Range"];
     tfo_Partial [label="tfo:Partial", target="_parent", href="https://vocab.methodandstructure.com/transformation#Partial"];
@@ -76,7 +78,7 @@ digraph {
         // tfo_MarkupTransform  -> tfo_Transform -> dcat_DataService;
         tfo_Function         -> dcat_DataService -> dcat_Resource;
         tfo_Function         -> prov_Entity;
-        tfo_Parameter        -> rdf_Property;
+        tfo_Composite        -> tfo_Parameter -> rdf_Property;
         tfo_ParameterList    -> rdf_List;
         tfo_iregexp          -> tfo_regexp;
         tfo_StrictQueue      -> tfo_Queue -> prov_Activity;
@@ -84,6 +86,10 @@ digraph {
         tfo_Insertion        -> tfo_Queue;
         tfo_FunctionList     -> rdf_List;
 	tfo_Range            -> rdfs_Container;
+
+	tfo_Composite -> rdf_Bag [label="rdfs:range"];
+	tfo_Composite -> rdf_List [label="rdfs:range"];
+	tfo_Composite -> tfo_Range [label="rdfs:range"];
     }
 
     // main relations
@@ -100,11 +106,11 @@ digraph {
     tfo_Invocation -> rdfs_Resource [label="tfo:input"];
     tfo_Invocation -> rdfs_Resource [label="tfo:output"];
 
-    tfo_Parameter -> rdf_Bag [label="tfo:composite"];
-    tfo_Parameter -> rdf_List [label="tfo:composite"];
-    tfo_Parameter -> tfo_Range [label="tfo:composite"];
+    tfo_Parameter -> rdfs_Container [label="tfo:universe"];
     tfo_Parameter -> rdfs_Resource [label="tfo:default"];
     tfo_Parameter -> xsd_boolean [label="tfo:empty,\ntfo:shift"];
+
+    tfo_Composite -> rdfs_Datatype [label="tfo:element"];
 
     tfo_Range -> xsd_boolean [label="tfo:infimum"];
     tfo_Range -> xsd_boolean [label="tfo:supremum"];
